@@ -70,6 +70,21 @@ public class OwnerActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add:
+                Intent intent = new Intent(this, AddDate.class);
+                startActivity(intent);
+                return true;
+            case R.id.logout:
+                Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void toEditProfile(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);

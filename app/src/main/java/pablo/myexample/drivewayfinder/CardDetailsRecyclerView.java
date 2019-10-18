@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+class CardDetailsRecyclerView extends RecyclerView.Adapter<CardDetailsRecyclerView.ViewHolder> {
 
-    private ArrayList<String> mData;
+    private ArrayList<CardDetailsRecyclerViewObject> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, ArrayList<String> data) {
+    CardDetailsRecyclerView(Context context, ArrayList<CardDetailsRecyclerViewObject> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -25,15 +25,19 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.V
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.one_recyclerview_row, parent, false);
+        View view = mInflater.inflate(R.layout.datedetailscard, parent, false);
         return new ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String date = mData.get(position);
-        holder.date.setText(date);
+        String time = mData.get(position).getTime();
+        String name = mData.get(position).getName();
+        String status = mData.get(position).getStatus();
+        holder.time.setText(time);
+        holder.name.setText(name);
+        holder.status.setText(status);
     }
 
     // total number of rows
@@ -46,11 +50,13 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.V
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView date;
+        TextView time, name, status;
 
         ViewHolder(View itemView) {
             super(itemView);
-            date = itemView.findViewById(R.id.dateText);
+            time = itemView.findViewById(R.id.datedetailstime);
+            name = itemView.findViewById(R.id.datedetailsname);
+            status = itemView.findViewById(R.id.datedetailsstatus);
             itemView.setOnClickListener(this);
         }
 
@@ -62,7 +68,7 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.V
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return mData.get(id).getName();
     }
 
     // allows clicks events to be caught

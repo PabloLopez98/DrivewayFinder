@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/datedetailstime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="10am - 11am" />
+
+    <TextView
+        android:id="@+id/datedetailsname"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Driver Name" />
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/datedetailsstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status of Driver: requested, approved, active" />
+</LinearLayout>

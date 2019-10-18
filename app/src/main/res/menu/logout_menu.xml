@@ -9,7 +9,7 @@
         android:title="Add" />
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/logout"
         android:icon="@drawable/ic_home_black_24dp"
         app:showAsAction="always"
         android:title="Logout" />

@@ -9,10 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditProfile"
-            android:parentActivityName=".OwnerActivity"
-            >
-        </activity>
+        <activity
+            android:name=".DriverProfile"
+            android:parentActivityName=".DateDetails"/>
+        <activity
+            android:name=".DateDetails"
+            android:parentActivityName=".OwnerActivity" />
+        <activity
+            android:name=".FinalizeDate"
+            android:parentActivityName=".AddDate" />
+        <activity
+            android:name=".AddDate"
+            android:parentActivityName=".OwnerActivity" />
+        <activity
+            android:name=".EditProfile"
+            android:parentActivityName=".OwnerActivity" />
         <activity
             android:name=".OwnerActivity"
             android:label="@string/title_activity_owner" />

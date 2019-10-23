@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context=".MainActivity">
+    tools:context=".DriverRoute">
 
     <TextView
         android:id="@+id/textView3"
@@ -23,9 +23,11 @@
 
     <Button
         android:id="@+id/button3"
+        android:onClick="toTheDriverActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish" />
+        android:text="Finish"
+        />
 
 
 

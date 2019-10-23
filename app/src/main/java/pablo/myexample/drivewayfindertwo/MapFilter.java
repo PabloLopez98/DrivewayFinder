@@ -1,23 +1,22 @@
-package pablo.myexample.drivewayfinder;
+package pablo.myexample.drivewayfindertwo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
-import pablo.myexample.drivewayfindertwo.TheDriverActivity;
+import pablo.myexample.drivewayfinder.R;
 
-public class DriverRoute extends AppCompatActivity {
+public class MapFilter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_route);
+        setContentView(R.layout.activity_map_filter);
     }
 
-    public void toTheDriverActivity(View view){
+    public void backToDriverHome(View view) {
         Intent intent = new Intent(this, TheDriverActivity.class);
         startActivity(intent);
     }

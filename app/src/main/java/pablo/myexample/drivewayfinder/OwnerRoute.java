@@ -1,5 +1,6 @@
 package pablo.myexample.drivewayfinder;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -36,10 +48,10 @@ import java.util.List;
 public class OwnerRoute extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    Uri imageUri;
-    EditText email, passWord, fullName, street, city, state, phone;
-    TextView displayLocationVerification;
-    ImageView drivewayImage;
+    private Uri imageUri;
+    private EditText email, passWord, fullName, street, city, state, phone;
+    private TextView displayLocationVerification;
+    private ImageView drivewayImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +82,7 @@ public class OwnerRoute extends AppCompatActivity {
         } else if (passWord.getText().length() < 6) {
             Toast.makeText(getApplicationContext(), "Password must be at least 6 characters.", Toast.LENGTH_LONG).show();
         } else {
-            createAccountAndLogin();
+            createAccount();
         }
     }
 
@@ -82,7 +94,6 @@ public class OwnerRoute extends AppCompatActivity {
         String StreetType = St[2];//ave
         String City = city.getText().toString();
         String State = state.getText().toString();
-
 
         if (Street.matches("") || City.matches("") || State.matches("")) {
             Toast.makeText(getApplicationContext(), "Please fill location info.", Toast.LENGTH_SHORT).show();
@@ -126,9 +137,63 @@ public class OwnerRoute extends AppCompatActivity {
         }
     }
 
-    public void createAccountAndLogin() {
-        Intent intent = new Intent(this, OwnerActivity.class);
-        startActivity(intent);
+    public String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
+    //create account then send user to sign in screen
+    public void createAccount() {
+        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), passWord.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    final String userId = firebaseAuth.getCurrentUser().getUid();
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference("Uploads");
+                    final StorageReference filereference = storageReference.child("images/").child(userId).child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+                    filereference.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            return filereference.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                                OwnerProfileObject ownerProfileObject = new OwnerProfileObject(fullName.getText().toString(), phone.getText().toString(), displayLocationVerification.getText().toString(), downloadUri.toString());
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
+                                databaseReference.setValue(ownerProfileObject);
+                                Toast.makeText(getApplicationContext(), "Creation Successful!", Toast.LENGTH_SHORT).show();
+                                final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                //erase history stacks and start fresh
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                Thread thread = new Thread(){
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                };
+                                thread.start();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Image upload failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error creating account, please try again.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
 }

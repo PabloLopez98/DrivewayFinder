@@ -23,6 +23,9 @@ android {
             // resources.srcDir s =['src/main/resources']//, 'src/main/resources/']
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

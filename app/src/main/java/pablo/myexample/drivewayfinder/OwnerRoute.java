@@ -94,7 +94,7 @@ public class OwnerRoute extends AppCompatActivity {
         String StreetType = St[2];//ave
         String City = city.getText().toString();
         String State = state.getText().toString();
-
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + StreetNumber + "+" + StreetName + "+" + StreetType + ",+" + City.toLowerCase() + ",+" + State.toLowerCase() + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
         if (Street.matches("") || City.matches("") || State.matches("")) {
             Toast.makeText(getApplicationContext(), "Please fill location info.", Toast.LENGTH_SHORT).show();
         } else {

@@ -10,13 +10,13 @@
     tools:context=".DriverRoute">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/fullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Car Model" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/locationInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="License Plates" />

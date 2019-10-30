@@ -19,7 +19,7 @@
         android:text="Full Name" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/passWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number" />
@@ -32,7 +32,7 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location" />

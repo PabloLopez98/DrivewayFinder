@@ -1,33 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    tools:context=".MainActivity">
+    tools:context=".OwnerRoute">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Location" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Select a driveway photo."
+            android:textColor="@android:color/background_dark" />
 
-    <Button
-        android:id="@+id/button3"
-        android:onClick="finish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Finish" />
+        <ImageView
+            android:id="@+id/drivewayImageInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openFileChooser"
+            android:padding="8dp"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Input a location."
+            android:textColor="@android:color/background_dark"
+
+            />
+
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/streetAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:padding="8dp"
+            android:hint="12345 Street Ave" />
 
 
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/citytAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:padding="8dp"
+            android:hint="City" />
 
-</LinearLayout>
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/stateAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:padding="8dp"
+            android:hint="CA" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:onClick="validateAddress"
+            android:layout_gravity="center"
+            android:text="Verify location" />
+
+        <TextView
+            android:id="@+id/verifiedLocationShown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Verified location will be shown here."
+            android:padding="8dp"
+            android:textColor="@android:color/background_dark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Input email and password for login."
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="8dp" />
+
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/passWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:padding="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Input your full name."
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:padding="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Input your phone number"
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/phoneNumberInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="(123)-456-7890"
+            android:inputType="phone"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="finish"
+            android:padding="8dp"
+            android:text="Finish" />
+
+    </LinearLayout>
+
+</ScrollView>

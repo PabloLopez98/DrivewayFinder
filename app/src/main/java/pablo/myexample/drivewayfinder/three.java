@@ -1,6 +1,7 @@
 package pablo.myexample.drivewayfinder;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +26,23 @@ import com.squareup.picasso.Picasso;
 
 public class three extends Fragment {
 
+    TransferObjectInterface listener;
+    OwnerProfileObject ownerProfileObject;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof TransferObjectInterface) {
+            listener = (TransferObjectInterface) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        listener = null;
+        super.onDetach();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_three, container, false);
@@ -40,24 +58,23 @@ public class three extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    OwnerProfileObject ownerProfileObject = dataSnapshot.getValue(OwnerProfileObject.class);
+                    ownerProfileObject = dataSnapshot.getValue(OwnerProfileObject.class);
                     Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(drivewayImage);
                     name.setText(ownerProfileObject.getFullName());
                     phone.setText(ownerProfileObject.getPhoneNumber());
                     location.setText(ownerProfileObject.getDrivewayLocation());
+
+                    //transfer profile object from this fragment into parent activity
+                    listener.transferOwnerProfileObject(ownerProfileObject);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        return view;
-    }
 
-    /*
-    Reminder:
-    - could cause an activity leak, dont forget to set references back to null in onDestroy()
-    - find image view here
-     */
+        return view;
+
+    }
 
 }

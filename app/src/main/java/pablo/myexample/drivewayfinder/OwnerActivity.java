@@ -12,16 +12,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.nfc.NfcAdapter.EXTRA_ID;
 
-public class OwnerActivity extends AppCompatActivity {
+public class OwnerActivity extends AppCompatActivity implements TransferObjectInterface {
+
+    OwnerProfileObject ownerProfileObject;
 
     public void switchToFragmentOne() {
         setTitle("Home");
@@ -94,6 +98,10 @@ public class OwnerActivity extends AppCompatActivity {
 
     public void toEditProfile(View view) {
         Intent intent = new Intent(this, EditProfile.class);
+        intent.putExtra("name", ownerProfileObject.getFullName());
+        intent.putExtra("phone", ownerProfileObject.getPhoneNumber());
+        intent.putExtra("location", ownerProfileObject.getDrivewayLocation());
+        intent.putExtra("imageUrl", ownerProfileObject.getDrivwayImageUrl());
         startActivity(intent);
     }
 
@@ -132,6 +140,11 @@ public class OwnerActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public void transferOwnerProfileObject(OwnerProfileObject ownerProfileObject) {
+        this.ownerProfileObject = ownerProfileObject;
     }
 
 }

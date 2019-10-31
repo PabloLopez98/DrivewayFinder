@@ -88,16 +88,16 @@ public class OwnerRoute extends AppCompatActivity {
 
     public void validateAddress(View view) {
         String Street = street.getText().toString();
-        String[] St = Street.split(" ");
-        String StreetNumber = St[0];//11223
-        String StreetName = St[1];//laurel
-        String StreetType = St[2];//ave
         String City = city.getText().toString();
         String State = state.getText().toString();
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + StreetNumber + "+" + StreetName + "+" + StreetType + ",+" + City.toLowerCase() + ",+" + State.toLowerCase() + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
         if (Street.matches("") || City.matches("") || State.matches("")) {
             Toast.makeText(getApplicationContext(), "Please fill location info.", Toast.LENGTH_SHORT).show();
         } else {
+            String[] St = Street.split(" ");
+            String StreetNumber = St[0];//11223
+            String StreetName = St[1];//laurel
+            String StreetType = St[2];//ave
+            String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + StreetNumber + "+" + StreetName + "+" + StreetType + ",+" + City.toLowerCase() + ",+" + State.toLowerCase() + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
             RequestQueue queue = Volley.newRequestQueue(this);
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override

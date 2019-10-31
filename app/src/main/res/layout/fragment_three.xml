@@ -44,9 +44,9 @@
 
         <Button
             android:id="@+id/profileDisplayEditButton"
+            android:onClick="toEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toEditProfile"
             android:text="Edit" />
 
     </LinearLayout>

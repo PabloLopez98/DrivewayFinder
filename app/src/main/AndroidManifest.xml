@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pablo.myexample.drivewayfinder">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,21 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
+        <activity
+            android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen"
             />
-        <activity android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
+        <activity
+            android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.MapFilter"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:label="@string/title_activity_the_driver" />
@@ -35,9 +40,6 @@
         <activity
             android:name=".DateDetails"
             android:parentActivityName=".OwnerActivity" />
-        <activity
-            android:name=".FinalizeDate"
-            android:parentActivityName=".AddDate" />
         <activity
             android:name=".AddDate"
             android:parentActivityName=".OwnerActivity" />
@@ -64,7 +66,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

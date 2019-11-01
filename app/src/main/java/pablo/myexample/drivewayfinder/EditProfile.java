@@ -147,8 +147,7 @@ public class EditProfile extends AppCompatActivity {
         if (displayedLocation.matches("") || phoneNumber.matches("") || Name.matches("")) {
             Toast.makeText(getApplicationContext(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "editAccount();", Toast.LENGTH_SHORT).show();
-            //editAccount();
+            editAccount();
         }
     }
 
@@ -159,8 +158,9 @@ public class EditProfile extends AppCompatActivity {
             ownerProfileObject = new OwnerProfileObject(nameInput.getText().toString(), phoneInput.getText().toString(), verifiedLocation.getText().toString(), intent.getStringExtra("imageUrl"));
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
             databaseReference.setValue(ownerProfileObject);
+            Toast.makeText(getApplicationContext(), "Edit Successful!", Toast.LENGTH_SHORT).show();
 
-        } else {//chose different image
+        } else {
 
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("Uploads");
             final StorageReference filereference = storageReference.child("images/").child(userId).child(System.currentTimeMillis() + "." + getFileExtension(uri));
@@ -185,24 +185,26 @@ public class EditProfile extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Edit Successful!", Toast.LENGTH_SHORT).show();
 
-                    final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
-                    //erase history stacks and start fresh
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    Thread thread = new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
-                                startActivity(intent);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-                    thread.start();
                 }
             });
+
         }
+
+        final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+        //erase history stacks and start fresh
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
 
     }
 

@@ -85,7 +85,7 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add:
-                Intent intent = new Intent(this, AddDate.class);
+                Intent intent = new Intent(getApplicationContext(), AddDate.class);
                 startActivity(intent);
                 return true;
             case R.id.logout:

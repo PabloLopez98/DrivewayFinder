@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.joda.time.LocalTime;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,7 +31,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "Discard?" + myRecyclerViewAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Delete time slot " + myRecyclerViewAdapter.getItem(position) + " on row number " + position + "?", Toast.LENGTH_LONG).show();
     }
 
     public void showTimePicker(final View v) {
@@ -118,11 +122,22 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
     public void divideTime(View view) {
 
-        String n = dividingNumber.getText().toString();
+        if ((startTime.getText().toString().contains("AM") || startTime.getText().toString().contains("PM")) && (endTime.getText().toString().contains("AM") || endTime.getText().toString().contains("PM"))) {
 
+            String n = dividingNumber.getText().toString();
 
+            DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
 
-        //Log.i("Time Slots", );
+            LocalTime startT = LocalTime.parse(startTime.getText().toString(), dtf);
+            LocalTime endT = LocalTime.parse(endTime.getText().toString(), dtf);
+
+            ArrayList<String> timeSlots = new ArrayList<>();
+
+            while (startT.isBefore(endT.minusMinutes(30))) {
+                timeSlots.add(dtf.format(startT));
+                startT = startT.plusMinutes(n);
+            }
+        }
 
     }
 }

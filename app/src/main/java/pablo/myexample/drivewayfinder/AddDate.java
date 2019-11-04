@@ -1,11 +1,13 @@
 package pablo.myexample.drivewayfinder;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -46,8 +48,23 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
     private EditText rate;
 
     @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "Delete time slot " + myRecyclerViewAdapter.getItem(position) + " on row number " + position + "?", Toast.LENGTH_LONG).show();
+    public void onItemClick(View view, final int position) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Delete time slot: " + myRecyclerViewAdapter.getItem(position) + "?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                timeSlots.remove(position);
+                myRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        });
+        alertDialog.show();
     }
 
     //show time picker in a dialog
@@ -116,6 +133,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
            Must Do:
             - Create 'SpotObjectClass' to create object to setValue in firebase
             - Check if chosen Date exists within 'Spots', 'City', loop through 'date0 -> daten' branch
+            - setValue(spotobjectclass)
             */
         }
     }

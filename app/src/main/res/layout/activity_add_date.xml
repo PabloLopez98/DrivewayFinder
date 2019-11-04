@@ -15,6 +15,7 @@
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/drivewayImageShown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher_foreground" />
@@ -25,7 +26,7 @@
             android:background="@android:color/background_dark" />
 
         <TextView
-            android:id="@+id/locationView"
+            android:id="@+id/drivewayLocationShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -162,9 +163,9 @@
             tools:listitem="@android:layout/activity_list_item" />
 
         <Button
+            android:onClick="addDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="addDate"
             android:text="Finish" />
 
     </LinearLayout>

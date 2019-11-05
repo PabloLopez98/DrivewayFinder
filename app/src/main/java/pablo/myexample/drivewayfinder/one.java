@@ -29,6 +29,8 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
 
     private MyRecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
+    private ArrayList<String> spots;
+    private ArrayList<SpotObjectClass> spotObjects;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,25 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
 
     @Override
     public void onItemClick(View view, int position) {
+        SpotObjectClass spotObject = spotObjects.get(position);
         Intent intent = new Intent(getContext(), DateDetails.class);
+        intent.putExtra("date", spotObject.getDate());
+        intent.putExtra("location", spotObject.getDrivewayLocation());
+        intent.putExtra("imageUrl", spotObject.getDrivwayImageUrl());
+        intent.putExtra("name", spotObject.getFullName());
+        intent.putExtra("isActive", spotObject.getIsActive());
+        intent.putExtra("ownerId", spotObject.getOwnerId());
+        intent.putExtra("phone", spotObject.getPhoneNumber());
+        intent.putExtra("rate", spotObject.getRate());
+        intent.putStringArrayListExtra("timeSlotsArray", spotObject.getTimeSlots());
         startActivity(intent);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
+        spotObjects = new ArrayList<>();
+        spots = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,16 +72,21 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    ArrayList<String> spots = new ArrayList<>();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         SpotObjectClass spotObject = ds.getValue(SpotObjectClass.class);
-                        spots.add(spotObject.getDate());
+                        spotObjects.add(spotObject);
+                        if(spotObject.getIsActive().matches("Yes")) {
+                            spots.add("Active");
+                        }else{
+                            spots.add(spotObject.getDate());
+                        }
                     }
                     adapter = new MyRecyclerViewAdapter(getContext(), spots);
                     adapter.setClickListener(one.this);
                     recyclerView.setAdapter(adapter);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

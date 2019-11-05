@@ -8,9 +8,8 @@
     android:gravity="bottom"
     tools:context=".OwnerActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/TheFragmentHolder"
-        android:name="pablo.myexample.drivewayfinder.one"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"

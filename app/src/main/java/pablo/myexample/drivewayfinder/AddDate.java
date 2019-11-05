@@ -50,7 +50,6 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
     @Override
     public void onItemClick(View view, final int position) {
-
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Delete time slot: " + myRecyclerViewAdapter.getItem(position) + "?");
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
@@ -127,6 +126,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
     //'Finish button' uses this method
     public void addDate(View view) {
+
         if (chosenDate.matches("") || rate.getText().toString().matches("") || timeSlots.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
         } else {
@@ -145,7 +145,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
                     }
                     //date doesn't exists, so add it
                     else {
-                        SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate);
+                        SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate, "No");
                         databaseReference.setValue(spotObject);
                         //go back to owner activity and erase back stacks
                         Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);

@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import pablo.myexample.drivewayfindertwo.threedriver;
+
 import static android.nfc.NfcAdapter.EXTRA_ID;
 
 public class OwnerActivity extends AppCompatActivity implements TransferObjectInterface {
@@ -46,21 +48,20 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     switchToFragmentOne();
-                    return true;
+                    break;
                 case R.id.navigation_dashboard:
                     switchToFragmentTwo();
-                    return true;
+                    break;
                 case R.id.navigation_notifications:
                     switchToFragmentThree();
-                    return true;
+                    break;
             }
-            return false;
+            return true;
         }
     };
 
@@ -70,7 +71,7 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         setContentView(R.layout.activity_owner);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        setTitle("Home");
+        switchToFragmentOne();
     }
 
     @Override
@@ -96,6 +97,10 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         }
     }
 
+    /*
+    This pertains to fragment three, because we cannot pass info from fragment to activity.
+    So we placed the method here in this activity
+     */
     public void toEditProfile(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         intent.putExtra("name", ownerProfileObject.getFullName());

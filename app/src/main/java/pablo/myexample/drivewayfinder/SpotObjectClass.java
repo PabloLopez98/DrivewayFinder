@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class SpotObjectClass {
 
     private ArrayList<String> timeSlots;
-    private String ownerId, fullName, phoneNumber, drivewayLocation, drivwayImageUrl, rate, date;
+    private String ownerId, fullName, phoneNumber, drivewayLocation, drivwayImageUrl, rate, date, isActive;
 
-    public SpotObjectClass(ArrayList<String> timeSlots, String ownerId, String fullName, String phoneNumber, String drivewayLocation, String drivwayImageUrl, String rate, String date) {
+    SpotObjectClass(){}
+
+    public SpotObjectClass(ArrayList<String> timeSlots, String ownerId, String fullName, String phoneNumber, String drivewayLocation, String drivwayImageUrl, String rate, String date, String isActive) {
         this.timeSlots = timeSlots;
         this.ownerId = ownerId;
         this.fullName = fullName;
@@ -16,6 +18,15 @@ public class SpotObjectClass {
         this.drivwayImageUrl = drivwayImageUrl;
         this.rate = rate;
         this.date = date;
+        this.isActive = isActive;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 
     public ArrayList<String> getTimeSlots() {

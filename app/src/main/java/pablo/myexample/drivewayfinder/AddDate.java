@@ -46,6 +46,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
     private OwnerProfileObject ownerProfileObject;
     private String chosenDate;
     private EditText rate;
+    private String userId;
 
     @Override
     public void onItemClick(View view, final int position) {
@@ -129,12 +130,35 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
         if (chosenDate.matches("") || rate.getText().toString().matches("") || timeSlots.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
         } else {
-           /*
-           Must Do:
-            - Create 'SpotObjectClass' to create object to setValue in firebase
-            - Check if chosen Date exists within 'Spots', 'City', loop through 'date0 -> daten' branch
-            - setValue(spotobjectclass)
-            */
+
+            String[] stringChunk = ownerProfileObject.getDrivewayLocation().split(" ");
+            String state = stringChunk[4];
+            String city = stringChunk[3].replace(",", "");
+
+            final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("Spots").child(chosenDate);
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //date already exists
+                    if (dataSnapshot.exists()) {
+                        Toast.makeText(getApplicationContext(), "The chosen date is already in place!", Toast.LENGTH_LONG).show();
+                    }
+                    //date doesn't exists, so add it
+                    else {
+                        SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate);
+                        databaseReference.setValue(spotObject);
+                        //go back to owner activity and erase back stacks
+                        Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+
         }
     }
 
@@ -143,7 +167,9 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_date);
 
-        displayImageAndLocation();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        displayInfo();
 
         CalendarView calendarView = findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -197,7 +223,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
     }
 
-    public void displayImageAndLocation() {
+    public void displayInfo() {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -214,6 +240,18 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
                 String location = ownerProfileObject.getDrivewayLocation();
                 String together = l + " " + location;
                 textView.setText(together);
+                //display name
+                TextView name = findViewById(R.id.drivewayNameShown);
+                String prename = name.getText().toString();
+                String thename = ownerProfileObject.getFullName();
+                String togethername = prename + " " + thename;
+                name.setText(togethername);
+                //display phoneNumber
+                TextView phoneNumber = findViewById(R.id.drivewayPhoneNumberShown);
+                String prePhone = phoneNumber.getText().toString();
+                String phone = ownerProfileObject.getPhoneNumber();
+                String togetherPhone = prePhone + " " + phone;
+                phoneNumber.setText(togetherPhone);
             }
 
             @Override

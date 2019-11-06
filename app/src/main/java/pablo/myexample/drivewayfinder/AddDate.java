@@ -145,7 +145,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
                     }
                     //date doesn't exists, so add it
                     else {
-                        SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate, "No");
+                        SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate, "Inactive");
                         databaseReference.setValue(spotObject);
                         //go back to owner activity and erase back stacks
                         Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);

@@ -63,7 +63,6 @@ public class three extends Fragment {
                     name.setText(ownerProfileObject.getFullName());
                     phone.setText(ownerProfileObject.getPhoneNumber());
                     location.setText(ownerProfileObject.getDrivewayLocation());
-
                     //transfer profile object from this fragment into parent activity
                     listener.transferOwnerProfileObject(ownerProfileObject);
                 }

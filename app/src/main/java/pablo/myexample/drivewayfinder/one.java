@@ -31,6 +31,8 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
     private RecyclerView recyclerView;
     private ArrayList<String> spots;
     private ArrayList<SpotObjectClass> spotObjects;
+    private TransferObjectInterface listener;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,19 +40,24 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof TransferObjectInterface) {
+            listener = (TransferObjectInterface) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        listener = null;
+        super.onDetach();
+    }
+
+    @Override
     public void onItemClick(View view, int position) {
         SpotObjectClass spotObject = spotObjects.get(position);
-        Intent intent = new Intent(getContext(), DateDetails.class);
-        intent.putExtra("date", spotObject.getDate());
-        intent.putExtra("location", spotObject.getDrivewayLocation());
-        intent.putExtra("imageUrl", spotObject.getDrivwayImageUrl());
-        intent.putExtra("name", spotObject.getFullName());
-        intent.putExtra("isActive", spotObject.getIsActive());
-        intent.putExtra("ownerId", spotObject.getOwnerId());
-        intent.putExtra("phone", spotObject.getPhoneNumber());
-        intent.putExtra("rate", spotObject.getRate());
-        intent.putStringArrayListExtra("timeSlotsArray", spotObject.getTimeSlots());
-        startActivity(intent);
+        listener.transferSpotObject(spotObject);
+        ((OwnerActivity) getActivity()).toDateDetails();
     }
 
     @Override
@@ -75,7 +82,7 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         SpotObjectClass spotObject = ds.getValue(SpotObjectClass.class);
                         spotObjects.add(spotObject);
-                        if(spotObject.getIsActive().matches("Yes")) {
+                        if(spotObject.getIsActive().matches("Active")) {
                             spots.add("Active");
                         }else{
                             spots.add(spotObject.getDate());

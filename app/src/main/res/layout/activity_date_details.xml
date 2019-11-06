@@ -10,29 +10,62 @@
     tools:context=".DateDetails">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/dateDetailsImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/dateDetailsLocation"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Location" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/dateDetailsRate"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="$15/hr" />
 
+    <TextView
+        android:id="@+id/dateDetailsDate"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/dateDetailsName"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Owner Name" />
+
+    <TextView
+        android:id="@+id/dateDetailsPhone"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number" />
+
+    <TextView
+        android:id="@+id/dateDetailsIsActive"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carddetailsrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </LinearLayout>

@@ -28,6 +28,7 @@ import static android.nfc.NfcAdapter.EXTRA_ID;
 public class OwnerActivity extends AppCompatActivity implements TransferObjectInterface {
 
     OwnerProfileObject ownerProfileObject;
+    SpotObjectClass spotObject;
 
     public void switchToFragmentOne() {
         setTitle("Home");
@@ -98,9 +99,14 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
     }
 
     /*
-    This pertains to fragment three, because we cannot pass info from fragment to activity.
-    So we placed the method here in this activity
+    These following methods are here to transfer data objects from fragment to activity
      */
+
+    @Override
+    public void transferOwnerProfileObject(OwnerProfileObject ownerProfileObject) {
+        this.ownerProfileObject = ownerProfileObject;
+    }
+
     public void toEditProfile(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         intent.putExtra("name", ownerProfileObject.getFullName());
@@ -109,6 +115,29 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         intent.putExtra("imageUrl", ownerProfileObject.getDrivwayImageUrl());
         startActivity(intent);
     }
+
+    @Override
+    public void transferSpotObject(SpotObjectClass spotObject) {
+        this.spotObject = spotObject;
+    }
+
+    public void toDateDetails() {
+        Intent intent = new Intent(this, DateDetails.class);
+        intent.putExtra("date", spotObject.getDate());
+        intent.putExtra("location", spotObject.getDrivewayLocation());
+        intent.putExtra("imageUrl", spotObject.getDrivwayImageUrl());
+        intent.putExtra("name", spotObject.getFullName());
+        intent.putExtra("isActive", spotObject.getIsActive());
+        intent.putExtra("ownerId", spotObject.getOwnerId());
+        intent.putExtra("phone", spotObject.getPhoneNumber());
+        intent.putExtra("rate", spotObject.getRate());
+        intent.putStringArrayListExtra("timeSlotsArray", spotObject.getTimeSlots());
+        startActivity(intent);
+    }
+
+     /*
+    The above methods are here to transfer data objects from fragment to activity
+     */
 
     @Override
     public void onBackPressed() {
@@ -145,11 +174,6 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
             }
         });
         alertDialog.show();
-    }
-
-    @Override
-    public void transferOwnerProfileObject(OwnerProfileObject ownerProfileObject) {
-        this.ownerProfileObject = ownerProfileObject;
     }
 
 }

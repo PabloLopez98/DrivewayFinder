@@ -13,24 +13,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen"
-            />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.MapFilter"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:label="@string/title_activity_the_driver" />

@@ -1,34 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
+    android:padding="10dp"
     tools:context=".DriverRoute">
 
     <TextView
-        android:id="@+id/fullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Input email and password for login."
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/emailDriver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Car Model" />
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/passWordDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:hint="Password"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_dark" />
 
     <TextView
-        android:id="@+id/locationInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Input your full name."
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/fullNameDriver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="License Plates" />
+        android:backgroundTint="@android:color/white"
+        android:hint="Full Name"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Input your phone number"
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/phoneNumberInputDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:hint="(123)-456-7890"
+        android:inputType="phone"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Input your license plates."
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/licensePlatesDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:hint="WJ5751"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Input your car model."
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/carModelDriver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:hint="White Honda Accord"
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/button3"
-        android:onClick="toTheDriverActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish"
-        />
-
-
+        android:padding="8dp"
+        android:onClick="registerDriver"
+        android:text="Finish" />
 
 </LinearLayout>

@@ -13,38 +13,35 @@
         android:gravity="center_vertical|center_horizontal"
         >
         <TextView
-            android:id="@+id/profileDisplayName"
+            android:id="@+id/profileDriverName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Full Name" />
 
         <TextView
-            android:id="@+id/passWord"
+            android:id="@+id/profileDriverPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone Number" />
 
-
         <TextView
-            android:id="@+id/fullName"
+            android:id="@+id/profileDriverCarModel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Car Model" />
 
         <TextView
-            android:id="@+id/textView43"
+            android:id="@+id/profileDriverLicensePlate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="License Plate" />
 
         <Button
-            android:id="@+id/button5"
-            android:onClick="toEditProfileDriver"
+            android:id="@+id/editDriverProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="toEditProfileDriver"
             android:text="Edit" />
-
-
 
     </LinearLayout>
 </FrameLayout>

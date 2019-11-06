@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import pablo.myexample.drivewayfindertwo.DriverProfileObject;
 import pablo.myexample.drivewayfindertwo.threedriver;
 
 import static android.nfc.NfcAdapter.EXTRA_ID;
@@ -133,6 +134,10 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         intent.putExtra("rate", spotObject.getRate());
         intent.putStringArrayListExtra("timeSlotsArray", spotObject.getTimeSlots());
         startActivity(intent);
+    }
+
+    @Override
+    public void transferDriverProfileObject(DriverProfileObject driverProfileObject) {
     }
 
      /*

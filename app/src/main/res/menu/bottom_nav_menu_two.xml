@@ -7,11 +7,6 @@
         android:title="Scheduled" />
 
     <item
-        android:id="@+id/card_screen"
-        android:icon="@android:drawable/ic_menu_agenda"
-        android:title="cardScreen" />
-
-    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Activity" />
@@ -21,6 +16,9 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="Profile" />
 
-
+    <item
+        android:id="@+id/card_screen"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="cardScreen" />
 
 </menu>

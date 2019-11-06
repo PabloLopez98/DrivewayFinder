@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditProfile">
+    android:padding="10dp"
+    tools:context="pablo.myexample.drivewayfindertwo.EditProfileDriver">
 
     <TextView
         android:id="@+id/profileDisplayName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Full Name" />
+        android:textColor="@android:color/background_dark"
+        android:text="Current Name:" />
+
+    <EditText
+        android:id="@+id/newName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:background="@android:color/transparent"
+        />
 
     <TextView
-        android:id="@+id/passWord"
-        android:layout_width="wrap_content"
+        android:id="@+id/profileDisplayPhoneNumber"
+        android:textColor="@android:color/background_dark"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Phone Number" />
+        android:text="Current Phone Number:" />
+
+    <EditText
+        android:id="@+id/newPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(123)-465-3787"
+        android:background="@android:color/transparent"
+        />
 
     <TextView
-        android:id="@+id/textView43"
-        android:layout_width="wrap_content"
+        android:id="@+id/profileDisplayCarModel"
+        android:textColor="@android:color/background_dark"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Car Model" />
+        android:text="Current Car Model:" />
 
+    <EditText
+        android:id="@+id/newCarModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Honda Accord"
+        android:background="@android:color/transparent"
+        />
 
     <TextView
-        android:id="@+id/fullName"
-        android:layout_width="wrap_content"
+        android:id="@+id/profileDisiplayPlate"
+        android:textColor="@android:color/background_dark"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="License Plate" />
+        android:text="Current License Plate:" />
+
+    <EditText
+        android:id="@+id/newPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="5JW232"
+        android:background="@android:color/transparent"
+        />
 
     <Button
         android:id="@+id/button5"
+        android:onClick="editProfileDriverConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm" />

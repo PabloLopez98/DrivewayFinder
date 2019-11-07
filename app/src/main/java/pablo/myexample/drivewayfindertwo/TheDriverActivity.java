@@ -147,6 +147,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     public void toIconClick() {
        //pass info via intent
+        Toast.makeText(getApplicationContext(),"toIconClick",Toast.LENGTH_LONG).show();
     }
 
     public void toMapFilter(View view) {

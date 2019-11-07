@@ -24,13 +24,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import pablo.myexample.drivewayfinder.OwnerActivity;
+
 import pablo.myexample.drivewayfinder.R;
 import pablo.myexample.drivewayfinder.SpotObjectClass;
 import pablo.myexample.drivewayfinder.TransferObjectInterface;
@@ -82,24 +87,28 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                populateFragmentOneDriver();
+                retrieveFormalAddress();
             }
         });
         return view;
     }
 
-
     //dont worry about filter just yet
     //set up search and display then go back to filter later
-    public void populateFragmentOneDriver() {
+       /*
+            //after finding a string location via google api
+            retrieve from firebase by filterning by city via split etc.
+            assign adapter
+            fill arraylist with new search
+            display info and pass SpotObectClass object to each card,
+            and use Driver activity intent to pass info to icon click activity
+       */
+    public void retrieveFormalAddress() {
         if (editText.getText().toString().matches("")) {
             Toast.makeText(getContext(), "Search is empty.", Toast.LENGTH_SHORT).show();
         } else {
-
-            spotObjects = new ArrayList<>();
             String input = editText.getText().toString();
-
-           /* String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + StreetNumber + "+" + StreetName + "+" + StreetType + ",+" + City.toLowerCase() + ",+" + State.toLowerCase() + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
+            String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
             RequestQueue queue = Volley.newRequestQueue(getContext());
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
@@ -108,6 +117,8 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         JSONArray jsonArray = response.getJSONArray("results");
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String formal_address = jsonObject.getString("formatted_address");
+
+                        searchFirebaseAndPopulateRecyclerView(formal_address);
 
                     } catch (Exception e) {
                         Log.i("VolleyError", e.getLocalizedMessage());
@@ -119,18 +130,34 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                     Toast.makeText(getContext(), "Please Try Again.", Toast.LENGTH_SHORT).show();
                 }
             });
-            queue.add(stringRequest);*/
-
-            /*
-            //after finding a string location via google api
-            retrieve from firebase by filterning by city via split etc.
-            assign adapter
-            fill arraylist with new search
-            display info and pass SpotObectClass object to each card,
-            and use Driver activity intent to pass info to icon click activity
-            */
-
+            queue.add(stringRequest);
         }
+    }
+
+    public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
+        spotObjects = new ArrayList<>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot OwnerId : dataSnapshot.getChildren()) {
+                    for (DataSnapshot Date : OwnerId.child("Spots").getChildren()) {
+                        SpotObjectClass spot = Date.getValue(SpotObjectClass.class);
+                        String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
+                        if (formal_address.contains(spotCity)) {
+                            spotObjects.add(spot);
+                        }
+                    }
+                }
+                oneDriverAdapter = new OneDriverAdapter(getContext(), spotObjects);
+                oneDriverAdapter.setClickListener(onedriver.this);
+                recyclerView.setAdapter(oneDriverAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 }

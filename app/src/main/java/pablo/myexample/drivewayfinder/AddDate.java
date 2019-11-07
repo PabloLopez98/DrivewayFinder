@@ -175,7 +175,8 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                chosenDate = year + " " + month + " " + dayOfMonth;
+                int newMonth = month + 1;
+                chosenDate = year + " " + newMonth + " " + dayOfMonth;
             }
         });
 

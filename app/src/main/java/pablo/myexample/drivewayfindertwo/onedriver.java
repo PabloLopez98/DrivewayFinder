@@ -1,7 +1,11 @@
 package pablo.myexample.drivewayfindertwo;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,7 +19,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,21 +41,24 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
+import pablo.myexample.drivewayfinder.MainActivity;
 import pablo.myexample.drivewayfinder.R;
 import pablo.myexample.drivewayfinder.SpotObjectClass;
 import pablo.myexample.drivewayfinder.TransferObjectInterface;
 
-
-public class onedriver extends Fragment implements OneDriverAdapter.ItemClickListener {
+public class onedriver extends Fragment implements OneDriverAdapter.ItemClickListener, DatePickerDialog.OnDateSetListener {
 
     private RecyclerView recyclerView;
     private OneDriverAdapter oneDriverAdapter;
     private TransferObjectInterface listener;
     private ArrayList<SpotObjectClass> spotObjects;
-    private Button button;
     private EditText editText;
+    private TextView date;
+    private EditText rate;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -79,33 +89,30 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
+        rate = view.findViewById(R.id.rate);
+        date = view.findViewById(R.id.date);
         editText = view.findViewById(R.id.searchInput);
         recyclerView = view.findViewById(R.id.fragmentonerecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        button = view.findViewById(R.id.searchB);
-        button.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.searchB).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 retrieveFormalAddress();
             }
         });
+        view.findViewById(R.id.calendarButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCalendar();
+            }
+        });
         return view;
     }
 
-    //dont worry about filter just yet
-    //set up search and display then go back to filter later
-       /*
-            //after finding a string location via google api
-            retrieve from firebase by filterning by city via split etc.
-            assign adapter
-            fill arraylist with new search
-            display info and pass SpotObectClass object to each card,
-            and use Driver activity intent to pass info to icon click activity
-       */
     public void retrieveFormalAddress() {
-        if (editText.getText().toString().matches("")) {
-            Toast.makeText(getContext(), "Search is empty.", Toast.LENGTH_SHORT).show();
+        if (editText.getText().toString().matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
+            Toast.makeText(getContext(), "Please in all fields.", Toast.LENGTH_SHORT).show();
         } else {
             String input = editText.getText().toString();
             String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
@@ -143,8 +150,10 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                 for (DataSnapshot OwnerId : dataSnapshot.getChildren()) {
                     for (DataSnapshot Date : OwnerId.child("Spots").getChildren()) {
                         SpotObjectClass spot = Date.getValue(SpotObjectClass.class);
+                        String spotRate = spot.getRate();
+                        String spotDate = spot.getDate();
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
-                        if (formal_address.contains(spotCity)) {
+                        if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
                             spotObjects.add(spot);
                         }
                     }
@@ -160,4 +169,14 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
         });
     }
 
+    public void dialogCalendar() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        int newMonth = month + 1;
+        date.setText(year + " " + newMonth + " " + dayOfMonth);
+    }
 }

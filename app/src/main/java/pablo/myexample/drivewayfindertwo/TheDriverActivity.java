@@ -146,13 +146,17 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     }
 
     public void toIconClick() {
-       //pass info via intent
-        Toast.makeText(getApplicationContext(),"toIconClick",Toast.LENGTH_LONG).show();
-    }
-
-    public void toMapFilter(View view) {
-        Intent intent = new Intent(this, MapFilter.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, IconClick.class);
+        intent.putExtra("date", spotObject.getDate());
+        intent.putExtra("location", spotObject.getDrivewayLocation());
+        intent.putExtra("url", spotObject.getDrivwayImageUrl());
+        intent.putExtra("name", spotObject.getFullName());
+        intent.putExtra("active", spotObject.getIsActive());
+        intent.putExtra("id", spotObject.getOwnerId());
+        intent.putExtra("phone", spotObject.getPhoneNumber());
+        intent.putExtra("rate", spotObject.getRate());
+        intent.putStringArrayListExtra("slots", spotObject.getTimeSlots());
+        startActivity(intent);*/
     }
 
     @Override

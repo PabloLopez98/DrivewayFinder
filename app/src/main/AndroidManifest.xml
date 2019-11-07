@@ -21,9 +21,6 @@
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity
-            android:name="pablo.myexample.drivewayfindertwo.MapFilter"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
-        <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
         <activity

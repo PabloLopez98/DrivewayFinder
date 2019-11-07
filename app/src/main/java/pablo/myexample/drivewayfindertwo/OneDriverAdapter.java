@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,8 @@ class OneDriverAdapter extends RecyclerView.Adapter<pablo.myexample.drivewayfind
         SpotObjectClass spotObject = mData.get(position);
         holder.location.setText(spotObject.getDrivewayLocation());
         holder.rate.setText(spotObject.getRate());
+        holder.date.setText(spotObject.getDate());
+        Picasso.get().load(spotObject.getDrivwayImageUrl()).fit().into(holder.cardImage);
     }
 
     @Override
@@ -45,12 +50,15 @@ class OneDriverAdapter extends RecyclerView.Adapter<pablo.myexample.drivewayfind
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView location, rate;
+        TextView location, rate, date;
+        ImageView cardImage;
 
         ViewHolder(View itemView) {
             super(itemView);
             location = itemView.findViewById(R.id.locationAddress);
             rate = itemView.findViewById(R.id.locationRate);
+            date = itemView.findViewById(R.id.locationDate);
+            cardImage = itemView.findViewById(R.id.cardImage);
             itemView.setOnClickListener(this);
         }
 

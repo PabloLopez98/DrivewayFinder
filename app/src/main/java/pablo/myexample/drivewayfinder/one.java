@@ -33,7 +33,6 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
     private ArrayList<SpotObjectClass> spotObjects;
     private TransferObjectInterface listener;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

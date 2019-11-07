@@ -5,7 +5,6 @@
     android:background="@color/cardview_light_background"
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,17 +13,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:orientation="horizontal">
 
-
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/searchInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Search" />
+                android:hint="Search a location."
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/searchB"
+                android:text="Search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
 
             <ImageButton
                 android:id="@+id/button9"
@@ -36,10 +42,12 @@
 
         </LinearLayout>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragmentonerecyclerview"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
 </FrameLayout>

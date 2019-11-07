@@ -32,7 +32,8 @@ import pablo.myexample.drivewayfinder.two;
 
 public class TheDriverActivity extends AppCompatActivity implements TransferObjectInterface {
 
-    DriverProfileObject driverProfileObject;
+    private DriverProfileObject driverProfileObject;
+    private SpotObjectClass spotObject;
 
     public void switchToFragmentDriverOne() {
         setTitle("Driver Home");
@@ -144,6 +145,10 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         startActivity(intent);
     }
 
+    public void toIconClick() {
+       //pass info via intent
+    }
+
     public void toMapFilter(View view) {
         Intent intent = new Intent(this, MapFilter.class);
         startActivity(intent);
@@ -156,7 +161,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     @Override
     public void transferSpotObject(SpotObjectClass spotObject) {
-
+            this.spotObject = spotObject;
     }
 
     @Override

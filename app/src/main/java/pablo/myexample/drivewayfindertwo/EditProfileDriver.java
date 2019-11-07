@@ -54,14 +54,14 @@ public class EditProfileDriver extends AppCompatActivity {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(userId).child("ProfileInfo");
             databaseReference.setValue(driverProfileObject);
-            Toast.makeText(getApplicationContext(),"Successful update.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Successful update.", Toast.LENGTH_LONG).show();
             final Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Thread thread = new Thread() {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                        Thread.sleep(3500);
                         startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -71,4 +71,5 @@ public class EditProfileDriver extends AppCompatActivity {
             thread.start();
         }
     }
+
 }

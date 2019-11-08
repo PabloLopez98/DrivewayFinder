@@ -146,7 +146,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     }
 
     public void toIconClick() {
-        /*Intent intent = new Intent(this, IconClick.class);
+        Intent intent = new Intent(this, IconClick.class);
         intent.putExtra("date", spotObject.getDate());
         intent.putExtra("location", spotObject.getDrivewayLocation());
         intent.putExtra("url", spotObject.getDrivwayImageUrl());
@@ -156,7 +156,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         intent.putExtra("phone", spotObject.getPhoneNumber());
         intent.putExtra("rate", spotObject.getRate());
         intent.putStringArrayListExtra("slots", spotObject.getTimeSlots());
-        startActivity(intent);*/
+        startActivity(intent);
     }
 
     @Override

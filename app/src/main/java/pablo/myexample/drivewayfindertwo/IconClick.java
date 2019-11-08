@@ -23,8 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Driver;
 import java.util.ArrayList;
 
+import pablo.myexample.drivewayfinder.MainActivity;
 import pablo.myexample.drivewayfinder.R;
 
 public class IconClick extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -35,15 +37,17 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
     private Spinner spinner;
     private ArrayList<String> arrayList;
     private String selectedTimeSlot;
-    private String ownerId;
+    private String ownerId, driverId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icon_click);
 
-        ownerId = intent.getStringExtra("id");
         intent = getIntent();
+
+        driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ownerId = intent.getStringExtra("id");
         date = findViewById(R.id.iconClickDate);
         date.setText(intent.getStringExtra("date"));
         location = findViewById(R.id.iconClickLocation);
@@ -61,6 +65,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
+    //fill spinner with time slots that are available
     public void retrieveTimeSlotsFromFirebase() {
 
         arrayList = intent.getStringArrayListExtra("slots");
@@ -93,6 +98,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
+    //store the selected time slot after clicking spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         selectedTimeSlot = arrayList.get(position);
@@ -109,16 +115,46 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
 
     public void requestAppointment(View view) {
 
-        //Create Requested Object to be used both in : requested and appointment for both (driver and owner)
+        DatabaseReference getDriverProfile = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("ProfileInfo");
+        getDriverProfile.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        //for owner
-        DatabaseReference ownerRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);
-        //ownerRef.setValue();
+                DriverProfileObject driverProfileObject = dataSnapshot.getValue(DriverProfileObject.class);
 
-        //for driver
-        String driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);
-        //driverRef.setValue();
+                //Create Requested Object to be used both in : requested and appointment for both (driver and owner)
+                RequestedOrAppointmentObject requestedOrAppointmentObject = new RequestedOrAppointmentObject(date.getText().toString(), intent.getStringExtra("location"), intent.getStringExtra("url"), intent.getStringExtra("name"), ownerId, intent.getStringExtra("phone"), intent.getStringExtra("rate"), driverProfileObject.getDriverName(), driverProfileObject.getDriverCarModel(), driverProfileObject.getDriverLicensePlates(), driverProfileObject.getDriverPhoneNumber(), selectedTimeSlot);
+
+                //for owner
+                DatabaseReference ownerRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);
+                ownerRef.setValue(requestedOrAppointmentObject);
+
+                //for driver
+                DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);
+                driverRef.setValue(requestedOrAppointmentObject);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+        Toast.makeText(getApplicationContext(), "Spot Requested", Toast.LENGTH_SHORT).show();
+        final Intent toTDA = new Intent(getApplicationContext(), TheDriverActivity.class);
+        toTDA.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000); // As I am using LENGTH_LONG in Toast
+                    startActivity(toTDA);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
 
     }
 

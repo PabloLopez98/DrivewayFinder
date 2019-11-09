@@ -2,16 +2,12 @@ package pablo.myexample.drivewayfindertwo;
 
 public class RequestedOrAppointmentObject {
 
-    private String
-            date, location, imageUrl, ownerName, ownerId, ownerPhoneNumber, rate,
-            driverName, driverCarModel, driverLicensePlates, driverPhoneNumber,
-            timeSlot;
+    private String date, location, imageUrl, ownerName, ownerId, ownerPhoneNumber, rate, driverName, driverCarModel, driverLicensePlates, driverPhoneNumber, timeSlot;
 
-    RequestedOrAppointmentObject(){}
+    RequestedOrAppointmentObject() {
+    }
 
-    public RequestedOrAppointmentObject(String date, String location, String imageUrl, String ownerName, String ownerId, String ownerPhoneNumber, String rate,
-                                        String driverName, String driverCarModel, String driverLicensePlates, String driverPhoneNumber,
-                                        String timeSlot) {
+    public RequestedOrAppointmentObject(String date, String location, String imageUrl, String ownerName, String ownerId, String ownerPhoneNumber, String rate, String driverName, String driverCarModel, String driverLicensePlates, String driverPhoneNumber, String timeSlot) {
         this.date = date;
         this.location = location;
         this.imageUrl = imageUrl;

@@ -1,5 +1,6 @@
 package pablo.myexample.drivewayfindertwo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,7 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import pablo.myexample.drivewayfinder.DateDetails;
+import pablo.myexample.drivewayfinder.OwnerActivity;
 import pablo.myexample.drivewayfinder.R;
+import pablo.myexample.drivewayfinder.SpotObjectClass;
+import pablo.myexample.drivewayfinder.TransferObjectInterface;
 
 public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.ItemClickListener {
 
@@ -34,10 +38,16 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
     @Override
     public void onItemClick(View view, int position) {
-
         Intent intent = new Intent(getContext(), LocationsScreen.class);
-        startActivity(intent);
-
+        if (arrayListAppointmentsDatesOrRequested.get(position).matches("Requested Appointments")) {
+            //when reaching the other side, it will only check the requested info
+            intent.putExtra("checkRequested", "yes");
+            startActivity(intent);
+        } else {
+            //pass date 'yyyy mm dd', on other side, it will check only specified date
+            intent.putExtra("checkRequested", arrayListAppointmentsDatesOrRequested.get(position));
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -57,8 +67,6 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         arrayListAppointmentsDatesOrRequested = new ArrayList<>();
 
         retrieveAppointmentDates();
@@ -85,8 +93,6 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
                     }
                 }
 
-                //inside ondatachange
-
                 //if a request or request(s) exists than we can add it to the displaying arrayList 'arrayListAppointmentsDatesOrRequested'
                 DatabaseReference driverRequestedDates = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested");
                 driverRequestedDates.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -95,24 +101,15 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot dateObj : dataSnapshot.getChildren()) {
                                 if (dateObj.exists()) {
-                                    arrayListAppointmentsDatesOrRequested.add("Requested Appointment(s)");
-                                    Log.i("Requests", String.valueOf(arrayListAppointmentsDatesOrRequested));
-
+                                    arrayListAppointmentsDatesOrRequested.add("Requested Appointments");
                                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
-
-                                   /* myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);*/
+                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
                                     break;
                                 } else {
                                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
-
-                                   /* Log.i("RequestsAgain", arrayListAppointmentsDatesOrRequested.toString());
-                                    myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);*/
+                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
                                     break;
                                 }
                             }
@@ -124,9 +121,6 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
                     }
                 });
-
-                //inside ondatachange
-
             }
 
             @Override
@@ -134,10 +128,6 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
             }
         });
-
-
-        //adapter set here
-
 
     }
 

@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
     android:orientation="vertical"
-    >
-
+    tools:context="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/locationDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Location" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/rateDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="$15/hr" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/timeDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Time, date" />
+        android:text="Time" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/dateDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/ownerNameDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Full name of driveway owner" />
 
     <TextView
-        android:id="@+id/textView27"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="status" />
-
-    <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/ownerPhoneDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Phone Number" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/cancelButtonDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancel Appointment" />
+        android:text="don't worry about cancelling yet" />
 
 </LinearLayout>

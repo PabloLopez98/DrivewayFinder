@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -16,6 +17,7 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
     private Intent intent;
     private Intent backTODisplayLocations;
     private ImageView image;
+    private TextView location, rate, time, date, ownerName, ownerPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +32,19 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         //for showing info
         image = findViewById(R.id.imageDetail);
         Picasso.get().load(intent.getStringExtra("url")).into(image);
+        location = findViewById(R.id.locationDetail);
+        location.setText(intent.getStringExtra("location"));
+        rate = findViewById(R.id.rateDetail);
+        rate.setText(intent.getStringExtra("rate"));
+        time = findViewById(R.id.timeDetail);
+        time.setText(intent.getStringExtra("time"));
+        date = findViewById(R.id.dateDetail);
+        date.setText(intent.getStringExtra("date"));
+        ownerName = findViewById(R.id.ownerNameDetail);
+        ownerName.setText(intent.getStringExtra("ownerName"));
+        ownerPhone = findViewById(R.id.ownerPhoneDetail);
+        ownerPhone.setText(intent.getStringExtra("ownerPhone"));
 
-
-/*
-        toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
-        toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
-        toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
-        toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
-        toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
-        toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
-        toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
- */
     }
 
     @Override

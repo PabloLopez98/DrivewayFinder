@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> mData;
-    private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    ArrayList<String> mData;
+    LayoutInflater mInflater;
+    ItemClickListener mClickListener;
 
     // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, ArrayList<String> data) {

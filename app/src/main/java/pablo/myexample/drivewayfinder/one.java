@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+//displays the date that the owner allows people to park in his driveway
 public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickListener {
 
     private MyRecyclerViewAdapter adapter;
@@ -81,9 +82,9 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         SpotObjectClass spotObject = ds.getValue(SpotObjectClass.class);
                         spotObjects.add(spotObject);
-                        if(spotObject.getIsActive().matches("Active")) {
+                        if (spotObject.getIsActive().matches("Active")) {
                             spots.add("Active");
-                        }else{
+                        } else {
                             spots.add(spotObject.getDate());
                         }
                     }

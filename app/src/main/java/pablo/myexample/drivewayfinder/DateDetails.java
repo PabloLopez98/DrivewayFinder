@@ -24,6 +24,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
+
+//I am going to have two different recyclerviews one for appointments and another for requested
 public class DateDetails extends AppCompatActivity implements CardDetailsRecyclerView.ItemClickListener {
 
     private CardDetailsRecyclerView cardDetailsRecyclerView;
@@ -31,6 +34,8 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     private ImageView image;
     private Intent intent;
     private ArrayList<String> timeSlots;
+    private ArrayList<RequestedOrAppointmentObject> requestedOrAppointmentObjectArrayList;
+    private ArrayList<CardDetailsRecyclerViewObject> rows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +59,21 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         isActive = findViewById(R.id.dateDetailsIsActive);
         isActive.setText(intent.getStringExtra("isActive"));
 
-        //rows for each client
-        ArrayList<CardDetailsRecyclerViewObject> rows = new ArrayList<>();
-        //to add time slot into each row of 'rows'
+        //arraylist of rows
+        rows = new ArrayList<>();
+        //arraylist of times
         timeSlots = intent.getStringArrayListExtra("timeSlotsArray");
-
-
-        /*
-            I left off here before going to driver side.
-            I need to finish the driver side until the point of requesting an appointment,
-            in order for me to finish this part of the owner side. Plus I need to finsih driver side,
-            in order to even start the second fragment of current activity.
-         */
         //before setting up recyclerview, search for requests and those already booked
+        requestedOrAppointmentObjectArrayList = new ArrayList<>();
         //lookUpRequest();
         //fetchThoseBooked();
 
-
+        //add individual timeSlots.get(i), nameSlots.get(i), statusSlots.get(i) into each row
         for (int i = 0; i < timeSlots.size(); i++) {
             CardDetailsRecyclerViewObject cardDetailsRecyclerViewObject = new CardDetailsRecyclerViewObject(timeSlots.get(i), "No Client", "Unoccupied");
             rows.add(cardDetailsRecyclerViewObject);
         }
+
         RecyclerView recyclerView = findViewById(R.id.carddetailsrecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -85,20 +84,26 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     }
 
     public void lookUpRequest() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Requests").child(intent.getStringExtra("date"));
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Requested").child(intent.getStringExtra("date"));
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //loop through children etc.
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
+                        RequestedOrAppointmentObject requestedOrAppointmentObject = timeSlot.getValue(RequestedOrAppointmentObject.class);
+                        requestedOrAppointmentObjectArrayList.add(requestedOrAppointmentObject);
+                    }
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
 
-    public void fetchThoseBooked(){
+    public void fetchThoseBooked() {//in Appointments
 
     }
 

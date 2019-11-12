@@ -89,7 +89,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
                 }
                 switch (v.getId()) {
                     case R.id.startTime:
-                        if (hourOfDay < 9) {
+                        if (hourOfDay < 10) {
                             if (minute < 10) {
                                 startTime.setText("0" + hourOfDay + ":0" + minute + " " + M);
                             } else {
@@ -104,7 +104,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
                         }
                         break;
                     case R.id.endTime:
-                        if (hourOfDay < 9) {
+                        if (hourOfDay < 10) {
                             if (minute < 10) {
                                 endTime.setText("0" + hourOfDay + ":0" + minute + " " + M);
                             } else {
@@ -190,22 +190,22 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
 
         // set up the RecyclerView
         recyclerView = findViewById(R.id.timeRecyclerView);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         //allows recyclerview to expand completely
         recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myRecyclerViewAdapter = new MyRecyclerViewAdapter(this, timeSlots);
+        myRecyclerViewAdapter = new MyRecyclerViewAdapter(AddDate.this, timeSlots);
         myRecyclerViewAdapter.setClickListener(this);
         recyclerView.setAdapter(myRecyclerViewAdapter);
     }
 
-    //for time slots
     public void divideTime(View view) {
         if ((startTime.getText().toString().contains("AM") || startTime.getText().toString().contains("PM")) && (endTime.getText().toString().contains("AM") || endTime.getText().toString().contains("PM"))) {
             try {
-                int n = Integer.valueOf(dividingNumber.getText().toString());
+                int n = Integer.valueOf(dividingNumber.getText().toString());//30
                 DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
                 LocalTime startT = LocalTime.parse(startTime.getText().toString(), dtf);
+                Log.i("startT", String.valueOf(startT));
                 LocalTime endT = LocalTime.parse(endTime.getText().toString(), dtf);
                 while (startT.isBefore(endT)) {
                     String s = dtf.format(startT);

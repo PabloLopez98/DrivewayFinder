@@ -82,6 +82,33 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                         }
                     }
                 }
+                //
+                final DatabaseReference databaseReferenceTwo = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date.getText().toString());
+                databaseReferenceTwo.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot TimeSlot : dataSnapshot.getChildren()) {
+                                String time = TimeSlot.getKey();
+                                if (arrayList.contains(time)) {
+                                    arrayList.remove(time);
+                                }
+                            }
+                        }
+
+                        spinner = findViewById(R.id.iconClickSpinner);
+                        spinner.setOnItemSelectedListener(IconClick.this);
+                        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(IconClick.this, android.R.layout.simple_spinner_item, arrayList);
+                        spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                        spinner.setAdapter(spinnerAdapter);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -89,12 +116,6 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
 
             }
         });
-
-        spinner = findViewById(R.id.iconClickSpinner);
-        spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
-        spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
 
     }
 

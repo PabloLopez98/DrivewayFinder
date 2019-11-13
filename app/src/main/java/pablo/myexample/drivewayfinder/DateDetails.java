@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
-//I am going to have two different recyclerviews one for appointments and another for requested
 public class DateDetails extends AppCompatActivity implements CardDetailsRecyclerView.ItemClickListener {
 
     private CardDetailsRecyclerView cardDetailsRecyclerView;
@@ -34,8 +34,9 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     private ImageView image;
     private Intent intent;
     private ArrayList<String> timeSlots;
-    private ArrayList<RequestedOrAppointmentObject> requestedOrAppointmentObjectArrayList;
-    private ArrayList<CardDetailsRecyclerViewObject> rows;
+    private ArrayList<CardDetailsRecyclerViewObject> appointmentRows;
+    private ArrayList<CardDetailsRecyclerViewObject> requestedRows;
+    private TextView appointmentTextView, requestedTextView, timeSlotsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,31 +60,34 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         isActive = findViewById(R.id.dateDetailsIsActive);
         isActive.setText(intent.getStringExtra("isActive"));
 
-        //arraylist of rows
-        rows = new ArrayList<>();
-        //arraylist of times
+        appointmentRows = new ArrayList<>();
+        requestedRows = new ArrayList<>();
         timeSlots = intent.getStringArrayListExtra("timeSlotsArray");
-        //before setting up recyclerview, search for requests and those already booked
-        requestedOrAppointmentObjectArrayList = new ArrayList<>();
-        //lookUpRequest();
-        //fetchThoseBooked();
 
-        //add individual timeSlots.get(i), nameSlots.get(i), statusSlots.get(i) into each row
-        for (int i = 0; i < timeSlots.size(); i++) {
-            CardDetailsRecyclerViewObject cardDetailsRecyclerViewObject = new CardDetailsRecyclerViewObject(timeSlots.get(i), "No Client", "Unoccupied");
-            rows.add(cardDetailsRecyclerViewObject);
-        }
+        appointmentTextView = findViewById(R.id.appt);
+        requestedTextView = findViewById(R.id.rqappt);
+        timeSlotsTextView = findViewById(R.id.timeSlotsTextView);
+
+        fetchThoseBooked();
 
         RecyclerView recyclerView = findViewById(R.id.carddetailsrecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardDetailsRecyclerView = new CardDetailsRecyclerView(this, rows);
+        cardDetailsRecyclerView = new CardDetailsRecyclerView(this, appointmentRows);
         cardDetailsRecyclerView.setClickListener(this);
         recyclerView.setAdapter(cardDetailsRecyclerView);
+
+        RecyclerView recyclerView2 = findViewById(R.id.carddetailsrecyclerviewRequested);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        cardDetailsRecyclerView = new CardDetailsRecyclerView(this, requestedRows);
+        cardDetailsRecyclerView.setClickListener(this);
+        recyclerView2.setAdapter(cardDetailsRecyclerView);
 
     }
 
     public void lookUpRequest() {
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Requested").child(intent.getStringExtra("date"));
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -91,9 +95,16 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
                         RequestedOrAppointmentObject requestedOrAppointmentObject = timeSlot.getValue(RequestedOrAppointmentObject.class);
-                        requestedOrAppointmentObjectArrayList.add(requestedOrAppointmentObject);
+                        requestedRows.add(new CardDetailsRecyclerViewObject(requestedOrAppointmentObject.getTimeSlot(), requestedOrAppointmentObject.getDriverName(), "Requested"));
+                        if (timeSlots.contains(requestedOrAppointmentObject.getTimeSlot())) {
+                            timeSlots.remove(requestedOrAppointmentObject.getTimeSlot());
+                        }
                     }
                 }
+                if (requestedRows.isEmpty()) {
+                    requestedTextView.setText("No Request");
+                }
+                showRemainingSlots();
             }
 
             @Override
@@ -101,10 +112,48 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
 
             }
         });
+
     }
 
-    public void fetchThoseBooked() {//in Appointments
+    public void fetchThoseBooked() {
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Appointments").child(intent.getStringExtra("date"));
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
+                        RequestedOrAppointmentObject requestedOrAppointmentObject = timeSlot.getValue(RequestedOrAppointmentObject.class);
+                        appointmentRows.add(new CardDetailsRecyclerViewObject(requestedOrAppointmentObject.getTimeSlot(), requestedOrAppointmentObject.getDriverName(), "Occupied"));
+                        if (timeSlots.contains(requestedOrAppointmentObject.getTimeSlot())) {
+                            timeSlots.remove(requestedOrAppointmentObject.getTimeSlot());
+                        }
+                    }
+                }
+                if (appointmentRows.isEmpty()) {
+                    appointmentTextView.setText("No Appointments");
+                }
+                lookUpRequest();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void showRemainingSlots() {
+        if (!timeSlots.isEmpty()) {
+            String s = "";
+            for (int i = 0; i < timeSlots.size(); i++) {
+                s = s + timeSlots.get(i) + "\n";
+            }
+            timeSlotsTextView.setText(s);
+        } else {
+            timeSlotsTextView.setText("No time slots available");
+        }
     }
 
     @Override

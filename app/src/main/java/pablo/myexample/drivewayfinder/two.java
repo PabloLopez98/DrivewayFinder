@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +51,6 @@ public class two extends Fragment {
         return view;
     }
 
-    /*
-                            //test times by editting firebase times
-
-     */
-
     public void fillInFragment() {
 
         String[] strings = Calendar.getInstance().getTime().toString().split(" ");
@@ -86,7 +82,7 @@ public class two extends Fragment {
                             phone.setText(data.getDriverPhoneNumber());
                             location.setText(data.getLocation());
                             timeStartEnd.setText(data.getTimeSlot());
-                            countDownTimer();
+                            countDownTimer(currentT, endT);
                             break;
                         }
 
@@ -102,7 +98,36 @@ public class two extends Fragment {
 
     }
 
-    public void countDownTimer() {
-        Log.i("enteredInside", "yes");
+    public void countDownTimer(LocalTime currentT, LocalTime endT) {
+
+        long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
+        long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
+        long totalMilliSecOfCurrentTime = milliSecOfCurrentMinute + milliSecOfCurrentHour;
+
+        long milliSecOfEndMinute = endT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
+        long milliSecOfEndHour = endT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
+        long totalMilliSecOfEndTime = milliSecOfEndMinute + milliSecOfEndHour;
+
+        long total = totalMilliSecOfEndTime - totalMilliSecOfCurrentTime;
+
+        new CountDownTimer(total, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                long totalSeconds = millisUntilFinished / 1000;
+
+                long hours = totalSeconds / 3600;
+                long secondsLeft = totalSeconds - hours * 3600;//this is not displayed
+                long minutes = secondsLeft / 60;
+                long seconds = secondsLeft - minutes * 60;
+
+                timeRemaining.setText(String.valueOf(hours + " : " + minutes + " : " + seconds));
+            }
+
+            public void onFinish() {
+                timeStartEnd.setText("done!");
+            }
+        }.start();
     }
+
 }

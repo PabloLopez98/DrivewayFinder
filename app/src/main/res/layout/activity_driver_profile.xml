@@ -9,48 +9,41 @@
     tools:context=".DriverProfile">
 
     <TextView
-        android:id="@+id/textView148"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Status" />
-
-    <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/dpname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Driver Name" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/dpphone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Phone Number" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/dpplate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="License Plate" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/dpmodel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Car Model" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/dpacceptbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Accept" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/dpdenybutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Deny" />

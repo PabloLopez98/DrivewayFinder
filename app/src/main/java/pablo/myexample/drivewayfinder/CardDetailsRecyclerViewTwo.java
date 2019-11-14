@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-class CardDetailsRecyclerView extends RecyclerView.Adapter<CardDetailsRecyclerView.ViewHolder> {
+class CardDetailsRecyclerViewTwo extends RecyclerView.Adapter<CardDetailsRecyclerViewTwo.ViewHolder> {
 
     private ArrayList<CardDetailsRecyclerViewObject> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    CardDetailsRecyclerView(Context context, ArrayList<CardDetailsRecyclerViewObject> data) {
+    CardDetailsRecyclerViewTwo(Context context, ArrayList<CardDetailsRecyclerViewObject> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -61,7 +61,7 @@ class CardDetailsRecyclerView extends RecyclerView.Adapter<CardDetailsRecyclerVi
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClickTwo(view, getAdapterPosition());
         }
     }
 
@@ -77,6 +77,6 @@ class CardDetailsRecyclerView extends RecyclerView.Adapter<CardDetailsRecyclerVi
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClickTwo(View view, int position);
     }
 }

@@ -82,7 +82,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                         }
                     }
                 }
-                //
+
                 final DatabaseReference databaseReferenceTwo = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date.getText().toString());
                 databaseReferenceTwo.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -144,7 +144,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                 DriverProfileObject driverProfileObject = dataSnapshot.getValue(DriverProfileObject.class);
 
                 //Create Requested Object to be used both in : requested and appointment for both (driver and owner)
-                RequestedOrAppointmentObject requestedOrAppointmentObject = new RequestedOrAppointmentObject(date.getText().toString(), intent.getStringExtra("location"), intent.getStringExtra("url"), intent.getStringExtra("name"), ownerId, intent.getStringExtra("phone"), intent.getStringExtra("rate"), driverProfileObject.getDriverName(), driverProfileObject.getDriverCarModel(), driverProfileObject.getDriverLicensePlates(), driverProfileObject.getDriverPhoneNumber(), selectedTimeSlot);
+                RequestedOrAppointmentObject requestedOrAppointmentObject = new RequestedOrAppointmentObject(date.getText().toString(), intent.getStringExtra("location"), intent.getStringExtra("url"), intent.getStringExtra("name"), ownerId, intent.getStringExtra("phone"), intent.getStringExtra("rate"), driverProfileObject.getDriverName(), driverProfileObject.getDriverCarModel(), driverProfileObject.getDriverLicensePlates(), driverProfileObject.getDriverPhoneNumber(), driverId, selectedTimeSlot);
 
                 //for owner
                 DatabaseReference ownerRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);

@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +28,10 @@ import java.util.ArrayList;
 
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
-public class DateDetails extends AppCompatActivity implements CardDetailsRecyclerView.ItemClickListener {
+public class DateDetails extends AppCompatActivity implements CardDetailsRecyclerView.ItemClickListener, CardDetailsRecyclerViewTwo.ItemClickListener {
 
-    private CardDetailsRecyclerView cardDetailsRecyclerView;
+    private CardDetailsRecyclerView adapter;
+    private CardDetailsRecyclerViewTwo adapterTwo;
     private TextView location, rate, date, name, isActive, phone;
     private ImageView image;
     private Intent intent;
@@ -37,6 +39,8 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     private ArrayList<CardDetailsRecyclerViewObject> appointmentRows;
     private ArrayList<CardDetailsRecyclerViewObject> requestedRows;
     private TextView appointmentTextView, requestedTextView, timeSlotsTextView;
+    private RecyclerView recyclerView, recyclerView2;
+    private Intent intentTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,50 +72,17 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         requestedTextView = findViewById(R.id.rqappt);
         timeSlotsTextView = findViewById(R.id.timeSlotsTextView);
 
-        fetchThoseBooked();
-
-        RecyclerView recyclerView = findViewById(R.id.carddetailsrecyclerview);
+        recyclerView = findViewById(R.id.carddetailsrecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cardDetailsRecyclerView = new CardDetailsRecyclerView(this, appointmentRows);
-        cardDetailsRecyclerView.setClickListener(this);
-        recyclerView.setAdapter(cardDetailsRecyclerView);
 
-        RecyclerView recyclerView2 = findViewById(R.id.carddetailsrecyclerviewRequested);
+        recyclerView2 = findViewById(R.id.carddetailsrecyclerviewRequested);
         recyclerView2.setHasFixedSize(true);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        cardDetailsRecyclerView = new CardDetailsRecyclerView(this, requestedRows);
-        cardDetailsRecyclerView.setClickListener(this);
-        recyclerView2.setAdapter(cardDetailsRecyclerView);
 
-    }
+        intentTo = new Intent(this, DriverProfile.class);
 
-    public void lookUpRequest() {
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Requested").child(intent.getStringExtra("date"));
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
-                        RequestedOrAppointmentObject requestedOrAppointmentObject = timeSlot.getValue(RequestedOrAppointmentObject.class);
-                        requestedRows.add(new CardDetailsRecyclerViewObject(requestedOrAppointmentObject.getTimeSlot(), requestedOrAppointmentObject.getDriverName(), "Requested"));
-                        if (timeSlots.contains(requestedOrAppointmentObject.getTimeSlot())) {
-                            timeSlots.remove(requestedOrAppointmentObject.getTimeSlot());
-                        }
-                    }
-                }
-                if (requestedRows.isEmpty()) {
-                    requestedTextView.setText("No Request");
-                }
-                showRemainingSlots();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        fetchThoseBooked();
 
     }
 
@@ -144,6 +115,35 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
 
     }
 
+    public void lookUpRequest() {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Requested").child(intent.getStringExtra("date"));
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
+                        RequestedOrAppointmentObject requestedOrAppointmentObject = timeSlot.getValue(RequestedOrAppointmentObject.class);
+                        requestedRows.add(new CardDetailsRecyclerViewObject(requestedOrAppointmentObject.getTimeSlot(), requestedOrAppointmentObject.getDriverName(), "Requested"));
+                        if (timeSlots.contains(requestedOrAppointmentObject.getTimeSlot())) {
+                            timeSlots.remove(requestedOrAppointmentObject.getTimeSlot());
+                        }
+                    }
+                }
+                if (requestedRows.isEmpty()) {
+                    requestedTextView.setText("No Request");
+                }
+                showRemainingSlots();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     public void showRemainingSlots() {
         if (!timeSlots.isEmpty()) {
             String s = "";
@@ -154,6 +154,19 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         } else {
             timeSlotsTextView.setText("No time slots available");
         }
+        setBothAdapters();
+    }
+
+    public void setBothAdapters() {
+
+        adapter = new CardDetailsRecyclerView(this, appointmentRows);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        adapterTwo = new CardDetailsRecyclerViewTwo(this, requestedRows);
+        adapterTwo.setClickListener(this);
+        recyclerView2.setAdapter(adapterTwo);
+
     }
 
     @Override
@@ -178,7 +191,23 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, DriverProfile.class);
-        startActivity(intent);
+
+        intentTo.putExtra("requested", "no");
+        intentTo.putExtra("date", date.getText().toString());
+        intentTo.putExtra("time", appointmentRows.get(position).getTime());
+
+        startActivity(intentTo);
+
+    }
+
+    @Override
+    public void onItemClickTwo(View view, int position) {
+
+        intentTo.putExtra("requested", "yes");
+        intentTo.putExtra("date", date.getText().toString());
+        intentTo.putExtra("time", requestedRows.get(position).getTime());
+
+        startActivity(intentTo);
+
     }
 }

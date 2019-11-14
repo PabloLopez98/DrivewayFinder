@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -120,7 +121,20 @@ public class DriverProfile extends AppCompatActivity {
         DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date).child(time);
         deleteRequestedForDriver.removeValue();
 
-        startActivity(intentToHome);
+        Toast.makeText(getApplicationContext(), "Accepted Driver!", Toast.LENGTH_SHORT).show();
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2500);
+                    startActivity(intentToHome);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
 
     }
 
@@ -134,7 +148,20 @@ public class DriverProfile extends AppCompatActivity {
         DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date).child(time);
         deleteRequestedForDriver.removeValue();
 
-        startActivity(intentToHome);
+        Toast.makeText(getApplicationContext(), "Denied Driver!", Toast.LENGTH_SHORT).show();
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2500);
+                    startActivity(intentToHome);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
 
     }
 

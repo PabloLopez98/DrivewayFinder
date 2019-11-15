@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
+    android:background="@android:color/white"
+    android:gravity="center"
     tools:context=".MainActivityTwo">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
@@ -21,10 +22,19 @@
             android:onClick="driverRoute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittexttwo"
             android:text="Driver" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text=" "
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/button4"
+            android:background="@drawable/rounded_edittexttwo"
             android:onClick="ownerRoute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

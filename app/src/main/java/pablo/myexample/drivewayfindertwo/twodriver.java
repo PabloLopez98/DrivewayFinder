@@ -69,7 +69,7 @@ public class twodriver extends Fragment {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM").withLocale(Locale.ENGLISH);
         TemporalAccessor temporalAccessor = dateTimeFormatter.parse(strings[1]);
         String month = String.valueOf(temporalAccessor.get(ChronoField.MONTH_OF_YEAR));
-        String currentDate = "2019 11 15";//year + " " + month + " " + day;
+        String currentDate = year + " " + month + " " + day;
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(currentDate);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -64,10 +64,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
         recyclerView = view.findViewById(R.id.recyclerViewForFour);
         recyclerView.setHasFixedSize(false);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(llm);
-        arrayListAppointmentsDatesOrRequested = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         retrieveAppointmentDates();
 
@@ -77,50 +74,20 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
     public void retrieveAppointmentDates() {
 
+        arrayListAppointmentsDatesOrRequested = new ArrayList<>();
+
         //if an appointment exists, store it in the displaying arrayList 'arrayListAppointmentsDatesOrRequested'
         DatabaseReference driverAppointmentDates = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments");
         driverAppointmentDates.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot DateObj : dataSnapshot.getChildren()) {
                         if (DateObj.exists()) {
                             arrayListAppointmentsDatesOrRequested.add(DateObj.getKey());
-                        } else {
-                            break;
                         }
                     }
                 }
-
-                //if a request or request(s) exists than we can add it to the displaying arrayList 'arrayListAppointmentsDatesOrRequested'
-                DatabaseReference driverRequestedDates = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested");
-                driverRequestedDates.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot dateObj : dataSnapshot.getChildren()) {
-                                if (dateObj.exists()) {
-                                    arrayListAppointmentsDatesOrRequested.add("Requested Appointments");
-                                    myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
-                                    myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
-                                    break;
-                                } else {
-                                    myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
-                                    myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
-                                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
             }
 
             @Override
@@ -128,6 +95,39 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
             }
         });
+        retrieveRequested(arrayListAppointmentsDatesOrRequested);
+    }
+
+    public void retrieveRequested(final ArrayList<String> arrayListAppointmentsDatesOrRequested) {
+
+        //if a request or request(s) exists than we can add it to the displaying arrayList 'arrayListAppointmentsDatesOrRequested'
+        DatabaseReference driverRequestedDates = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested");
+        driverRequestedDates.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot dateObj : dataSnapshot.getChildren()) {
+                        if (dateObj.exists()) {
+                            arrayListAppointmentsDatesOrRequested.add("Requested Appointments");
+                            break;
+                        }
+                    }
+                    myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
+                    myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
+                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                } else {
+                    myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
+                    myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
+                    recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 

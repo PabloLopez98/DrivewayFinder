@@ -2,11 +2,14 @@ package pablo.myexample.drivewayfinder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,7 +35,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //change status bar icons to dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        //change status bar color to white
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         firebaseAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.emailInput);
         password = findViewById(R.id.passwordInput);
@@ -82,10 +91,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     //send to driver activity
-                   Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
-                   startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
+                    startActivity(intent);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint="Email"
+        android:hint="bobjones@gmail.com"
         android:inputType="textEmailAddress"
         android:padding="8dp" />
 
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
-        android:hint="Password"
+        android:hint="Password more than 5 characters"
         android:padding="8dp" />
 
     <TextView
@@ -106,16 +106,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Car Model"
+        android:text=" "
         android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/signup"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edittexttwo"
+        android:background="@drawable/rounded_edittext"
         android:onClick="registerDriver"
         android:padding="8dp"
-        android:text="Create Account" />
+        android:text="Create Account"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>

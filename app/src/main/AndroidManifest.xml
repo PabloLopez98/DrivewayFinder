@@ -13,34 +13,44 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen"
+            android:screenOrientation="portrait" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
-            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity" />
+            android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            android:label="@string/title_activity_the_driver" />
+            android:label="@string/title_activity_the_driver"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DriverProfile"
-            android:parentActivityName=".DateDetails" />
+            android:parentActivityName=".DateDetails"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DateDetails"
-            android:parentActivityName=".OwnerActivity" />
+            android:parentActivityName=".OwnerActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddDate"
-            android:parentActivityName=".OwnerActivity" />
+            android:parentActivityName=".OwnerActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EditProfile"
-            android:parentActivityName=".OwnerActivity" />
+            android:parentActivityName=".OwnerActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OwnerActivity"
-            android:label="@string/title_activity_owner" />
+            android:label="@string/title_activity_owner"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DriverRoute"
             android:parentActivityName=".MainActivityTwo"
@@ -49,15 +59,16 @@
             android:name=".OwnerRoute"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivityTwo"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeForMain"
-            >
+            android:theme="@style/AppThemeForMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

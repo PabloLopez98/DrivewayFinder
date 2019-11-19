@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:padding="10dp"
     tools:context=".OwnerRoute">
 
     <LinearLayout
@@ -25,10 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="8dp"
             android:background="@drawable/rounded_edittext"
             android:onClick="openFileChooser"
-            android:padding="8dp"
-           android:src="@android:drawable/picture_frame" />
+            android:src="@android:drawable/picture_frame" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:hint="City"
+            android:hint="Fresno"
             android:inputType="textPostalAddress"
             android:padding="8dp" />
 
@@ -78,96 +79,122 @@
             android:inputType="textPostalAddress"
             android:padding="8dp" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text=" "
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
             android:onClick="validateAddress"
             android:padding="8dp"
-            android:text="Verify location" />
+            android:text="Verify Address"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="4dp"
+            android:padding="8dp"
+            android:text=" "
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/verifiedLocationShown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:padding="8dp"
             android:text="Verified location will be shown here."
             android:textColor="@android:color/background_dark" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text=" "
+            android:textColor="@android:color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Input email and password for login."
+            android:text="Email"
             android:textColor="@android:color/background_dark" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/white"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
-            android:hint="Email"
+            android:hint="bobjones@gmail.com"
             android:inputType="textEmailAddress"
             android:padding="8dp" />
-
-        <EditText
-            android:id="@+id/passWord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/white"
-            android:hint="Password"
-            android:padding="8dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Input your full name."
+            android:text="Password"
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:id="@+id/passWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Password"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Full Name"
             android:textColor="@android:color/background_dark" />
 
         <EditText
             android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/white"
+            android:background="@drawable/rounded_edittext"
             android:hint="Full Name"
             android:padding="8dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Input your phone number"
+            android:text="Phone Number"
             android:textColor="@android:color/background_dark" />
 
         <EditText
             android:id="@+id/phoneNumberInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/white"
+            android:background="@drawable/rounded_edittext"
             android:hint="(123)-456-7890"
             android:inputType="phone"
             android:padding="8dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text=" " />
+
         <Button
             android:id="@+id/button3"
+            android:background="@drawable/rounded_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="finish"

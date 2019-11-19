@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="20dp"
     tools:context=".DriverRoute">
 
     <TextView
@@ -111,16 +111,15 @@
 
     <Button
         android:id="@+id/signup"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
+        android:gravity="center"
         android:onClick="registerDriver"
         android:padding="8dp"
         android:text="Create Account"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 </LinearLayout>

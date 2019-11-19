@@ -1,52 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".OwnerActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/twoClientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Client Name" />
+            android:padding="8dp"
+            android:hint="Client Name"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="157dp"
+            tools:layout_editor_absoluteY="328dp" />
 
         <TextView
             android:id="@+id/twoDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="date" />
+            android:padding="8dp"
+            android:hint="date"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="16dp" />
 
         <TextView
             android:id="@+id/twoPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="client phone number" />
+            android:padding="8dp"
+            android:hint="client phone number"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="86dp" />
 
         <TextView
             android:id="@+id/twoDrivewayLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="driveway location" />
+            android:padding="8dp"
+            android:hint="driveway location"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="242dp" />
 
         <TextView
             android:id="@+id/twoTimeRemaining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time Remaining for client" />
+            android:hint="Time Remaining for client"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="6dp"
+            tools:layout_editor_absoluteY="136dp" />
 
         <TextView
             android:id="@+id/twoTimeStartEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="arrive, leave at" />
+            android:padding="8dp"
+            android:hint="arrive, leave at"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="58dp"
+            tools:layout_editor_absoluteY="434dp" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -50,18 +50,22 @@
         <activity
             android:name=".OwnerActivity"
             android:label="@string/title_activity_owner"
+            android:theme="@style/OwnerTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".DriverRoute"
+            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OwnerRoute"
+            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".MainActivityTwo"
+            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 

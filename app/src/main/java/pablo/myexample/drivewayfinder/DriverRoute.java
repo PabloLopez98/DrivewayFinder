@@ -33,15 +33,13 @@ public class DriverRoute extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_route);
 
-        setTitle("Fill out your driver info");
+        setTitle("Fill Out Driver Info");
 
-        //change status bar icons to dark
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        //change status bar color to white
+        //change status bar color to dark
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
 
         name = findViewById(R.id.fullNameDriver);
         phone = findViewById(R.id.phoneNumberInputDriver);

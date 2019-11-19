@@ -60,15 +60,13 @@ public class OwnerRoute extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_route);
-        setTitle("Fill out your driveway owner info");
+        setTitle("Fill Out Owner Info");
 
-        //change status bar icons to dark
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        //change status bar color to white
+        //change status bar color to dark
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
 
         email = findViewById(R.id.email);
         passWord = findViewById(R.id.passWord);
@@ -185,7 +183,7 @@ public class OwnerRoute extends AppCompatActivity {
                                 final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 //erase history stacks and start fresh
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                Thread thread = new Thread(){
+                                Thread thread = new Thread() {
                                     @Override
                                     public void run() {
                                         try {

@@ -96,7 +96,6 @@
             android:padding="8dp"
             android:text="Verify Address"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -198,6 +197,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="finish"
+            android:textStyle="bold"
             android:padding="8dp"
             android:text="Finish" />
 

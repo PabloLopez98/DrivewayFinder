@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
     tools:context=".AddDate">
 
     <LinearLayout
@@ -16,25 +16,54 @@
 
         <ImageView
             android:id="@+id/drivewayImageShown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
-
-        <TextView
-            android:id="@+id/drivewayLocationShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Located at: "
-            tools:layout_editor_absoluteX="104dp"
-            tools:layout_editor_absoluteY="433dp" />
+            android:background="@drawable/rounded_edittext"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_on_black_24dp"
+                />
+
+            <TextView
+                android:id="@+id/drivewayLocationShown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:text="Located at: "
+                tools:layout_editor_absoluteX="104dp"
+                tools:layout_editor_absoluteY="433dp" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_account_circle_24px"
+            />
 
         <TextView
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             android:id="@+id/drivewayNameShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +72,25 @@
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="433dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone_android_black_24dp"
+            />
+
+
         <TextView
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:id="@+id/drivewayPhoneNumberShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,10 +99,8 @@
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="433dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
+    </LinearLayout>
+
 
         <CalendarView
             android:id="@+id/calendarView"
@@ -64,10 +109,6 @@
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="32dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".10"
                 android:gravity="end"
+                android:textStyle="bold"
                 android:text="$"
                 android:textColor="@android:color/background_dark" />
 
@@ -102,36 +144,39 @@
                 android:layout_weight=".10"
                 android:gravity="start"
                 android:text="/Hr"
+                android:textStyle="bold"
                 android:textColor="@android:color/background_dark" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
 
         <LinearLayout
-            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="showTimePicker"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
                 android:text="00:00 AM" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
                 android:text=" - " />
 
             <TextView
                 android:id="@+id/endTime"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="showTimePicker"
@@ -152,9 +197,9 @@
                 android:textColor="@android:color/background_dark" />
 
             <EditText
+                android:id="@+id/dividingNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/dividingNumber"
                 android:background="@android:color/white"
                 android:hint="60"
                 android:inputType="number" />
@@ -168,23 +213,31 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
                 android:onClick="divideTime"
-                android:text="Create Time" />
+                android:padding="8dp"
+                android:text="Create Time"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/timeRecyclerView"
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             tools:listitem="@android:layout/activity_list_item" />
 
         <Button
-            android:onClick="addDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finish" />
+            android:background="@drawable/rounded_edittext"
+            android:onClick="addDate"
+            android:padding="8dp"
+            android:text="Finish"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

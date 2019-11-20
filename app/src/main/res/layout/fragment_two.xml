@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Driveway Location"
                 android:padding="8dp"
+                android:textStyle="bold"
                 android:textColor="@android:color/black" />
 
 
@@ -98,6 +99,7 @@
             android:id="@+id/twoDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:hint="Date"
             android:padding="8dp"
             android:textColor="@android:color/black"
@@ -128,12 +130,14 @@
             android:layout_height="wrap_content"
             android:tint="@color/colorAccent"
             android:src="@drawable/ic_account_circle_24px" />
+
         <TextView
             android:id="@+id/twoClientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Client Name"
             android:padding="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             tools:layout_editor_absoluteX="29dp"
             tools:layout_editor_absoluteY="395dp" />
@@ -167,6 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Client Phone Number"
+            android:textStyle="bold"
             android:padding="8dp"
             android:textColor="@android:color/black"
             tools:layout_editor_absoluteX="16dp"
@@ -203,6 +208,7 @@
             android:layout_height="wrap_content"
             android:hint="Arrive - Leave"
             android:padding="8dp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="266dp" />

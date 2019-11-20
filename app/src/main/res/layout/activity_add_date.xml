@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="20dp">
 
         <ImageView
+            android:padding="8dp"
             android:id="@+id/drivewayImageShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +68,7 @@
             android:id="@+id/drivewayNameShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="8dp"
             android:text="My Name: "
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="433dp" />
@@ -87,20 +88,24 @@
             android:src="@drawable/ic_phone_android_black_24dp"
             />
 
-
         <TextView
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:id="@+id/drivewayPhoneNumberShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="8dp"
             android:text="My Number: "
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="433dp" />
 
     </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            />
 
         <CalendarView
             android:id="@+id/calendarView"
@@ -109,13 +114,20 @@
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="32dp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            />
 
         <LinearLayout
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:padding="16dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,15 +135,18 @@
                 android:layout_weight=".10"
                 android:gravity="end"
                 android:textStyle="bold"
+                android:padding="8dp"
                 android:text="$"
                 android:textColor="@android:color/background_dark" />
 
             <EditText
                 android:id="@+id/inputRate"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".20"
-                android:background="@android:color/white"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edittext"
                 android:gravity="center_horizontal"
                 android:hint="15"
                 android:inputType="number"
@@ -139,6 +154,7 @@
                 tools:layout_editor_absoluteY="495dp" />
 
             <TextView
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".10"
@@ -149,6 +165,11 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -184,31 +205,46 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            />
+
+
         <LinearLayout
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
+                android:textStyle="bold"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Divide time by every: "
-                android:textColor="@android:color/background_dark" />
+                android:text="Divide time by every:"
+                android:textColor="@android:color/black" />
 
             <EditText
+                android:padding="8dp"
+                android:textColor="@android:color/black"
                 android:id="@+id/dividingNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@drawable/rounded_edittext"
                 android:hint="60"
                 android:inputType="number" />
 
             <TextView
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" minutes "
-                android:textColor="@android:color/background_dark" />
+                android:text="minutes"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
 
             <Button
                 android:layout_width="wrap_content"

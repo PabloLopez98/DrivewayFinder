@@ -22,21 +22,16 @@
             android:tint="@color/colorAccent" />
 
         <TextView
-            android:padding="8dp"
             android:id="@+id/dpname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="8dp"
             android:text="Driver Name"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="8dp"
-        android:padding="8dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,16 +50,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Phone Number"
             android:padding="8dp"
+            android:text="Phone Number"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="8dp"
-        android:padding="8dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -76,8 +67,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/colorAccent"
-            android:src="@drawable/ic_call_to_action_24px" />
+            android:src="@drawable/ic_call_to_action_24px"
+            android:tint="@color/colorAccent" />
 
         <TextView
             android:id="@+id/dpplate"
@@ -91,11 +82,6 @@
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="8dp"
-        android:padding="8dp" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,45 +92,51 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/colorAccent"
-            android:src="@drawable/ic_directions_car_24px" />
+            android:src="@drawable/ic_directions_car_24px"
+            android:tint="@color/colorAccent" />
 
         <TextView
             android:id="@+id/dpmodel"
-            android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="8dp"
             android:text="Car Model"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="8dp"
-        android:padding="8dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=" " />
 
     <Button
         android:id="@+id/dpacceptbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
+        android:padding="8dp"
         android:text="Accept"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="4dp"
-        android:padding="8dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=" " />
 
     <Button
         android:id="@+id/dpdenybutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
+        android:padding="8dp"
         android:text="Deny"
         android:textColor="@android:color/black"
         android:textStyle="bold" />

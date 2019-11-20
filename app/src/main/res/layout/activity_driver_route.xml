@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Email"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/emailDriver"
@@ -24,14 +25,17 @@
         android:ems="10"
         android:hint="bobjones@gmail.com"
         android:inputType="textEmailAddress"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Password"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/passWordDriver"
@@ -39,14 +43,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:hint="Password more than 5 characters"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Full Name"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/fullNameDriver"
@@ -54,14 +61,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:hint="Bob Jones"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Phone Number"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/phoneNumberInputDriver"
@@ -70,14 +80,17 @@
         android:background="@drawable/rounded_edittext"
         android:hint="1234567890"
         android:inputType="phone"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="License Plates"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/licensePlatesDriver"
@@ -85,14 +98,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:hint="WJ5751"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Car Model"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/carModelDriver"
@@ -100,14 +116,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
         android:hint="White Honda Accord"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text=" "
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/signup"

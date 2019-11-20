@@ -39,9 +39,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterForTimes.ItemClickListener {
 
-    private MyRecyclerViewAdapter myRecyclerViewAdapter;
+    private MyRecyclerViewAdapterForTimes myRecyclerViewAdapter;
     private RecyclerView recyclerView;
     private TextView startTime, endTime;
     private EditText dividingNumber;
@@ -205,9 +205,10 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapter.
         //allows recyclerview to expand completely
         recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myRecyclerViewAdapter = new MyRecyclerViewAdapter(AddDate.this, timeSlots);
+        myRecyclerViewAdapter = new MyRecyclerViewAdapterForTimes(AddDate.this, timeSlots);
         myRecyclerViewAdapter.setClickListener(this);
         recyclerView.setAdapter(myRecyclerViewAdapter);
+
     }
 
     public void divideTime(View view) {

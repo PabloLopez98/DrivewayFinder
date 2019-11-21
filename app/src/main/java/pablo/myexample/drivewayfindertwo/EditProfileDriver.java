@@ -32,12 +32,6 @@ public class EditProfileDriver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_driver);
 
-        //change status bar color to dark
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
-
         intent = getIntent();
         dname = findViewById(R.id.profileDisplayName);
         dname.setText(dname.getText().toString() + " " + intent.getStringExtra("name"));

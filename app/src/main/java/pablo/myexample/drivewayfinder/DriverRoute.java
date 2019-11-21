@@ -35,12 +35,6 @@ public class DriverRoute extends AppCompatActivity {
 
         setTitle("Fill Out Driver Info");
 
-        //change status bar color to dark
-        Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
-
         name = findViewById(R.id.fullNameDriver);
         phone = findViewById(R.id.phoneNumberInputDriver);
         plates = findViewById(R.id.licensePlatesDriver);

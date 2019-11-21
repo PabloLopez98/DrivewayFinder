@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,9 +57,10 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     private OneDriverAdapter oneDriverAdapter;
     private TransferObjectInterface listener;
     private ArrayList<SpotObjectClass> spotObjects;
-    private EditText editText;
+    private String searchString;
     private TextView date;
     private EditText rate;
+    private SearchView searchView;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -89,19 +91,37 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
+
+        searchView = view.findViewById(R.id.searchB);
+        searchString = "";
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchString = query;
+                retrieveFormalAddress();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);
-        editText = view.findViewById(R.id.searchInput);
         recyclerView = view.findViewById(R.id.fragmentonerecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        view.findViewById(R.id.searchB).setOnClickListener(new View.OnClickListener() {
+
+        view.findViewById(R.id.calendarButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retrieveFormalAddress();
+                dialogCalendar();
             }
         });
-        view.findViewById(R.id.calendarButton).setOnClickListener(new View.OnClickListener() {
+
+        view.findViewById(R.id.date).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogCalendar();
@@ -111,10 +131,10 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     }
 
     public void retrieveFormalAddress() {
-        if (editText.getText().toString().matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
+        if (searchString.matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
             Toast.makeText(getContext(), "Please in all fields.", Toast.LENGTH_SHORT).show();
         } else {
-            String input = editText.getText().toString();
+            String input = searchString;//.getText().toString();
             String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
             RequestQueue queue = Volley.newRequestQueue(getContext());
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

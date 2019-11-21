@@ -10,12 +10,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,25 +39,25 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     private SpotObjectClass spotObject;
 
     public void switchToFragmentDriverOne() {
-        setTitle("Driver Home");
+        setTitle("Search");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new onedriver()).commit();
     }
 
     public void switchToFragmentDriverTwo() {
-        setTitle("Driver Activity");
+        setTitle("Activity");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new twodriver()).commit();
     }
 
     public void switchToFragmentDriverThree() {
-        setTitle("Driver Profile");
+        setTitle("Profile");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new threedriver()).commit();
     }
 
     public void switchToFragmentDriverFour() {
-        setTitle("Driver Card List");
+        setTitle("Scheduled");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new fourdriver()).commit();
     }
@@ -84,6 +87,13 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_driver);
+
+        //change status bar color to dark
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorStatusBar));
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentDriverOne();

@@ -5,20 +5,21 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@drawable/rounded_edittext"
         >
 
-    <ImageView
-        android:id="@+id/cardImage"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        app:srcCompat="@android:color/white" />
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:padding="4dp"
+            app:srcCompat="@android:color/white" />
 
     <LinearLayout
         android:layout_height="match_parent"

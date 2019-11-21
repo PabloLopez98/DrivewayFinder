@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,54 +7,22 @@
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="horizontal"
-            >
-
-            <EditText
-                android:id="@+id/searchInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Search a location."
-                android:inputType="textPersonName" />
-
-            <Button
-                android:id="@+id/searchB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/white"
-                android:shadowColor="@android:color/black"
-                android:text="Search" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search Filters:"
-                android:layout_weight="1"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
                 android:text="Under $"
                 android:textColor="@android:color/black" />
 
@@ -61,50 +30,107 @@
                 android:id="@+id/rate"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/hr"
+                android:inputType="textPersonName"
+                android:singleLine="true"
                 android:textColor="@android:color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="/hr"
+                android:textColor="@android:color/black" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text=" "
+                android:textColor="@android:color/black" />
 
             <ImageButton
                 android:id="@+id/calendarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:src="@android:drawable/ic_menu_my_calendar" />
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_calendar_empty_page_outline" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="YYYY MM DD"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="YYYY MM DD"
                 android:textColor="@android:color/black" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:background="@color/colorAccent" />
+
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_24px" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:layout_height="2dp"
+            android:background="@color/colorAccent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentonerecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp" />
+            android:padding="20dp" />
 
     </LinearLayout>
 
+    <!--
+
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Search Location"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:textColor="@android:color/black" />
+
+
+<androidx.appcompat.widget.SearchView
+    android:id="@+id/searchB"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="57dp"
+    android:layout_marginEnd="74dp"
+    android:background="@color/colorPrimary"
+    android:src="@drawable/ic_search_24px"
+    android:text="Search"
+    android:textStyle="bold"
+    android:tint="@color/colorAccent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    -->
 </FrameLayout>

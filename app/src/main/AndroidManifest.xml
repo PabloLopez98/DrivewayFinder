@@ -14,65 +14,70 @@
         <activity
             android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:label="@string/title_activity_the_driver"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".DriverProfile"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".DateDetails"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".DateDetails"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".OwnerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".AddDate"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".OwnerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".EditProfile"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".OwnerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".OwnerActivity"
             android:label="@string/title_activity_owner"
-            android:theme="@style/OwnerTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
         <activity
             android:name=".DriverRoute"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivityTwo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
 
         <activity
             android:name=".OwnerRoute"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivityTwo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
 
         <activity
             android:name=".MainActivityTwo"
-            android:theme="@style/OwnerTheme"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/OwnerTheme" />
 
         <activity
             android:name=".MainActivity"

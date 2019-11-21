@@ -4,76 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="20dp"
     tools:context="pablo.myexample.drivewayfindertwo.EditProfileDriver">
 
     <TextView
         android:id="@+id/profileDisplayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/background_dark"
-        android:text="Current Name:" />
+        android:padding="8dp"
+        android:text="Current Name:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/newName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
         android:hint="Full Name"
-        android:background="@android:color/transparent"
-        />
+        android:padding="8dp"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/profileDisplayPhoneNumber"
-        android:textColor="@android:color/background_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Phone Number:" />
+        android:padding="8dp"
+        android:text="Current Phone Number:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/newPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
         android:hint="(123)-465-3787"
-        android:background="@android:color/transparent"
-        />
+        android:padding="8dp"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/profileDisplayCarModel"
-        android:textColor="@android:color/background_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Car Model:" />
+        android:padding="8dp"
+        android:text="Current Car Model:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/newCarModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
         android:hint="Honda Accord"
-        android:background="@android:color/transparent"
-        />
+        android:padding="8dp"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/profileDisiplayPlate"
-        android:textColor="@android:color/background_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current License Plate:" />
+        android:padding="8dp"
+        android:text="Current License Plate:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/newPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
         android:hint="5JW232"
-        android:background="@android:color/transparent"
-        />
+        android:padding="8dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text=" " />
 
     <Button
         android:id="@+id/button5"
-        android:onClick="editProfileDriverConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm" />
+        android:background="@drawable/rounded_edittext"
+        android:onClick="editProfileDriverConfirm"
+        android:padding="8dp"
+        android:text="Confirm"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

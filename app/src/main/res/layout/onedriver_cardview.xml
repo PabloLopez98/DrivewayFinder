@@ -10,15 +10,14 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:background="@color/colorAccent"
         android:orientation="horizontal"
-        android:background="@drawable/rounded_edittext"
         >
 
         <ImageView
             android:id="@+id/cardImage"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            android:padding="4dp"
             app:srcCompat="@android:color/white" />
 
     <LinearLayout
@@ -31,7 +30,7 @@
         <TextView
             android:id="@+id/locationAddress"
             android:padding="5dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="11223 Laurel Ave, Whittier CA 90605"
@@ -39,7 +38,7 @@
 
         <TextView
             android:id="@+id/locationRate"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +47,7 @@
 
         <TextView
             android:id="@+id/locationDate"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -39,7 +39,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     private SpotObjectClass spotObject;
 
     public void switchToFragmentDriverOne() {
-        setTitle("Search");
+        setTitle("Search For Parking");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new onedriver()).commit();
     }

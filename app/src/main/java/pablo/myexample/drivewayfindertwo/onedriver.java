@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -90,9 +91,12 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
+        final View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
+
+        //
 
         searchView = view.findViewById(R.id.searchB);
+
         searchString = "";
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -107,6 +111,8 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                 return false;
             }
         });
+
+        //
 
         rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);

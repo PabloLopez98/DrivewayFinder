@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver">
 
     <ImageView
@@ -49,10 +50,14 @@
         android:layout_height="wrap_content"
         android:text="Phone Number" />
 
+    <!--
+
     <Button
         android:id="@+id/cancelButtonDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="don't worry about cancelling yet" />
+
+        -->
 
 </LinearLayout>

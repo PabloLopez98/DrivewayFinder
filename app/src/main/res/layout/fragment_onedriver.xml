@@ -96,8 +96,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:background="@drawable/rounded_edittexttwo"
@@ -105,8 +105,15 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchB"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:searchIcon="@drawable/ic_search_24px"
+                app:iconifiedByDefault="false"
+                app:closeIcon="@drawable/ic_close_black_24dp"
+                app:queryBackground="@android:color/transparent"
+                />
 
         </LinearLayout>
 

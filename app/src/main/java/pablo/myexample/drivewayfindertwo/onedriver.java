@@ -93,8 +93,6 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
 
-        //
-
         searchView = view.findViewById(R.id.searchB);
 
         searchString = "";
@@ -111,8 +109,6 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                 return false;
             }
         });
-
-        //
 
         rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);

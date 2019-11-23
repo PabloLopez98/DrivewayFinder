@@ -10,9 +10,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -170,7 +172,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     @Override
     public void transferSpotObject(SpotObjectClass spotObject) {
-            this.spotObject = spotObject;
+        this.spotObject = spotObject;
     }
 
     @Override

@@ -197,8 +197,6 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     @Override
     public void onItemClick(View view, int position) {
 
-        Log.i("onItemClick","Yes");
-
         intentTo.putExtra("requested", "no");
         intentTo.putExtra("date", date.getText().toString());
         intentTo.putExtra("time", appointmentRows.get(position).getTime());

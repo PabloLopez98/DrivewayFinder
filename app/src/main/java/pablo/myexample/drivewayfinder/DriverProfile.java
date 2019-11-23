@@ -46,6 +46,27 @@ public class DriverProfile extends AppCompatActivity {
         intent = getIntent();
 
         result = intent.getStringExtra("requested");
+
+        //if appointment then hide buttons
+        if (result.matches("no")) {
+            findViewById(R.id.dpacceptbutton).setVisibility(View.GONE);
+            findViewById(R.id.dpdenybutton).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.dpacceptbutton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    acceptDriver();
+                }
+            });
+
+            findViewById(R.id.dpdenybutton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    denyDriver();
+                }
+            });
+        }
+
         date = intent.getStringExtra("date");
         time = intent.getStringExtra("time");
 
@@ -53,20 +74,6 @@ public class DriverProfile extends AppCompatActivity {
         phone = findViewById(R.id.dpphone);
         plate = findViewById(R.id.dpplate);
         model = findViewById(R.id.dpmodel);
-
-        findViewById(R.id.dpacceptbutton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acceptDriver();
-            }
-        });
-
-        findViewById(R.id.dpdenybutton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                denyDriver();
-            }
-        });
 
         ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

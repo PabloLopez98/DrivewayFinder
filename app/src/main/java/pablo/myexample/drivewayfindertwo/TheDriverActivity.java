@@ -18,6 +18,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.work.Constraints;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +33,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.concurrent.TimeUnit;
 
 import pablo.myexample.drivewayfinder.AddDate;
 import pablo.myexample.drivewayfinder.EditProfile;
@@ -44,10 +51,10 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     private DriverProfileObject driverProfileObject;
     private SpotObjectClass spotObject;
-    //testing
-    private String CHANNEL_ID = "theChannelId";
-    private int notificationId = 1;
-    //testing
+
+     /* OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class).setInitialDelay(5, TimeUnit.SECONDS).build();
+                        //inside a button etc.
+                        WorkManager.getInstance(getApplicationContext()).enqueue(request);*/
 
     public void switchToFragmentDriverOne() {
         setTitle("Search For Parking");
@@ -98,11 +105,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_driver);
-
-        //TESTING//
-        createNotificationChannel();
-        //TESTING//
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentDriverOne();
@@ -116,18 +118,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         return true;
     }
 
-    //TESTING//
-    public void createNotificationChannel() {
-        CharSequence name = "theChannel";
-        String description = "theChannelDescription";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-        channel.setDescription(description);
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-    }
-    //TESTING//
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -136,21 +126,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 alertDialog.setTitle("Logout?");
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
-                        //TESTING//
-
-                        //for clicking
-                        Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-                        //builds notification with autocancel and vibrate,noise, etc.
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID).setSmallIcon(R.drawable.ic_location_on_black_24dp).setContentTitle("Reminder!").setContentText("Check Time Slot!").setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent).setOnlyAlertOnce(true).setAutoCancel(true);
-                        //displays notification
-                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-                        notificationManager.notify(notificationId, builder.build());
-
-                        //TESTING//
-
                         dialog.dismiss();
                     }
                 });

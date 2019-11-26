@@ -95,7 +95,6 @@ public class twodriver extends Fragment {
                             countDownTimer(currentT, endT);
                             break;
                         }
-
                     }
                 }
             }

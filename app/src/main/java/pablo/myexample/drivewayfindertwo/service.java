@@ -1,16 +1,22 @@
 package pablo.myexample.drivewayfindertwo;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -35,13 +41,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import pablo.myexample.drivewayfinder.MainActivity;
+import pablo.myexample.drivewayfinder.R;
 
-/*
-    If any data changes under driver id, then a notification will be displayed.
-    This works as long as driver is logged in to app.
-
-    The ending times are retrieved and notifications are scheduled to be set off accordingly.
- */
 
 public class service extends Service {
 
@@ -59,19 +60,19 @@ public class service extends Service {
         databaseReferenceListener = databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                if (dataSnapshot.getKey().matches("ProfileInfo")) {
+                } else if (dataSnapshot.getKey().matches("Requested")) {
+                } else {
+                    notifyDriver(dataSnapshot.getKey());
+                }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                //to create the notification
-                OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class).setInitialDelay(1, TimeUnit.SECONDS).build();
-                WorkManager.getInstance(getApplicationContext()).enqueue(request);
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
 
             @Override
@@ -84,6 +85,20 @@ public class service extends Service {
 
             }
         });
+    }
+
+    public void notifyDriver(String s) {
+        NotificationManager manager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("channel", "channel", NotificationManager.IMPORTANCE_DEFAULT);
+            manager.createNotificationChannel(channel);
+        }
+        Intent resultIntent = new Intent(getApplicationContext(), TheDriverActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+        stackBuilder.addNextIntentWithParentStack(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel").setContentTitle("Alert:").setContentText(s).setSmallIcon(R.drawable.ic_location_on_black_24dp).setAutoCancel(true).setContentIntent(resultPendingIntent);
+        manager.notify(1, builder.build());
     }
 
     public void onStartCommandFirstMethod() {

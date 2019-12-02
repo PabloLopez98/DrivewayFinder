@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import pablo.myexample.drivewayfindertwo.DriverProfileObject;
+import pablo.myexample.drivewayfindertwo.TheDriverActivity;
+import pablo.myexample.drivewayfindertwo.service;
 import pablo.myexample.drivewayfindertwo.threedriver;
 
 import static android.nfc.NfcAdapter.EXTRA_ID;
@@ -75,6 +77,13 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+        //TESTING
+
+        Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
+        startService(new Intent(OwnerActivity.this, servicetwo.class));
+
+        //TESTING
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -165,7 +174,15 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
+
+                //TESTING
+
+                Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
+                stopService(new Intent(OwnerActivity.this, service.class));
+
+                //TESTING
+
+                //Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

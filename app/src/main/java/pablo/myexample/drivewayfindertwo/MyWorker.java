@@ -42,7 +42,7 @@ public class MyWorker extends Worker {
         stackBuilder.addNextIntentWithParentStack(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel").setContentTitle("Reminder:").setContentText("Check Time Slot!").setSmallIcon(R.drawable.ic_location_on_black_24dp).setAutoCancel(true).setContentIntent(resultPendingIntent);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel").setContentTitle("Alert:").setContentText("Action needed!").setSmallIcon(R.drawable.ic_location_on_black_24dp).setAutoCancel(true).setContentIntent(resultPendingIntent);
         manager.notify(1, builder.build());
 
     }

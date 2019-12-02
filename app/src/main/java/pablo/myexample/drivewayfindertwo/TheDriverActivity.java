@@ -52,10 +52,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     private DriverProfileObject driverProfileObject;
     private SpotObjectClass spotObject;
 
-     /* OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class).setInitialDelay(5, TimeUnit.SECONDS).build();
-                        //inside a button etc.
-                        WorkManager.getInstance(getApplicationContext()).enqueue(request);*/
-
     public void switchToFragmentDriverOne() {
         setTitle("Search For Parking");
         FragmentManager manager = getSupportFragmentManager();
@@ -105,6 +101,14 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_driver);
+
+        //TESTING
+
+        Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
+        startService(new Intent(TheDriverActivity.this, service.class));
+
+        //TESTING
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentDriverOne();
@@ -132,7 +136,15 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
+
+                        //TESTING
+
+                        Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
+                        stopService(new Intent(TheDriverActivity.this, service.class));
+
+                        //TESTING
+
+                        //Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
                         FirebaseAuth.getInstance().signOut();
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

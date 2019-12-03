@@ -17,7 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import pablo.myexample.drivewayfinder.R;
 import pablo.myexample.drivewayfinder.TransferObjectInterface;
@@ -35,15 +41,33 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
     @Override
     public void onItemClick(View view, int position) {
 
+        //new below
         RequestedOrAppointmentObject reservationInfo = requestedOrAppointmentObjectArrayList.get(position);
-        toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
-        toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
-        toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
-        toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
-        toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
-        toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
-        toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
-        startActivity(toDetailsOfReservation);
+
+        DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
+        String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
+        LocalTime currentT = LocalTime.parse(currentTime, dtf);
+        LocalTime endT = LocalTime.parse(reservationInfo.getTimeSlot().substring(11, 19), dtf);
+
+        if (currentT.isAfter(endT)) {
+
+            displayLocations.remove(position);
+            myRecyclerViewAdapterDriver.notifyDataSetChanged();
+
+        } else {
+
+            //new above
+
+            toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
+            toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
+            toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
+            toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
+            toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
+            toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
+            toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
+            startActivity(toDetailsOfReservation);
+
+        }
 
     }
 

@@ -49,6 +49,7 @@ public class service extends Service {
     private String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(userId);
     private ChildEventListener databaseReferenceListener;
+    private boolean initialListen;
 
     @Nullable
     @Override
@@ -56,23 +57,33 @@ public class service extends Service {
         return null;
     }
 
+    //only notify driver when appointment is added, worry about request deny, and time is up later.
     public void onStartCommandSecondMethod() {
+        initialListen = true;
         databaseReferenceListener = databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.getKey().matches("ProfileInfo")) {
+                    //do nothing
                 } else if (dataSnapshot.getKey().matches("Requested")) {
+                    //do nothing
                 } else {
-                    notifyDriver(dataSnapshot.getKey());
+                    if (initialListen == true) {
+                        initialListen = false;
+                    } else {
+                        notifyDriver("Check Appointment(s)");
+                    }
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
             }
 
             @Override

@@ -42,6 +42,7 @@ public class servicetwo extends Service {
     private String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId);
     private ChildEventListener databaseReferenceListener;
+    private boolean initialListen;
 
     @Nullable
     @Override
@@ -49,24 +50,33 @@ public class servicetwo extends Service {
         return null;
     }
 
+    //only notify owner when a request is added, worry about time is up later.
     public void onStartCommandSecondMethod() {
+        initialListen = true;
         databaseReferenceListener = databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.getKey().matches("ProfileInfo")) {
+                    //do nothing
+                } else if (dataSnapshot.getKey().matches("Appointments")) {
+                    //do nothing
                 } else {
-                    notifyOwner(dataSnapshot.getKey());
+                    if (initialListen == true) {
+                        initialListen = false;
+                    } else {
+                        notifyOwner("Check Request(s)");
+                    }
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                /*OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(MyWorker.class).setInitialDelay(1, TimeUnit.SECONDS).build();
-                WorkManager.getInstance(getApplicationContext()).enqueue(request);*/
+
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
             }
 
             @Override

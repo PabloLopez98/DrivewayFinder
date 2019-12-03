@@ -104,8 +104,8 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
         //TESTING
 
-        Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
-        startService(new Intent(TheDriverActivity.this, service.class));
+       /* Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
+        startService(new Intent(TheDriverActivity.this, service.class));*/
 
         //TESTING
 
@@ -139,12 +139,12 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
                         //TESTING
 
-                        Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
-                        stopService(new Intent(TheDriverActivity.this, service.class));
+                      /*  Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
+                        stopService(new Intent(TheDriverActivity.this, service.class));*/
 
                         //TESTING
 
-                        //Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
                         FirebaseAuth.getInstance().signOut();
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

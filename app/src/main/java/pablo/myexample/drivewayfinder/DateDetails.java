@@ -27,7 +27,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
@@ -197,11 +203,30 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     @Override
     public void onItemClick(View view, int position) {
 
-        intentTo.putExtra("requested", "no");
-        intentTo.putExtra("date", date.getText().toString());
-        intentTo.putExtra("time", appointmentRows.get(position).getTime());
+        //new below
 
-        startActivity(intentTo);
+        CardDetailsRecyclerViewObject cardDetailsRecyclerViewObject = appointmentRows.get(position);
+
+        DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
+        String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
+        LocalTime currentT = LocalTime.parse(currentTime, dtf);
+        LocalTime endT = LocalTime.parse(cardDetailsRecyclerViewObject.getTime().substring(11, 19), dtf);
+
+        if (currentT.isAfter(endT)) {
+
+            appointmentRows.remove(position);
+            adapter.notifyDataSetChanged();
+
+        } else {
+
+            //new above
+
+            intentTo.putExtra("requested", "no");
+            intentTo.putExtra("date", date.getText().toString());
+            intentTo.putExtra("time", appointmentRows.get(position).getTime());
+            startActivity(intentTo);
+
+        }
 
     }
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +23,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -41,19 +43,33 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
     @Override
     public void onItemClick(View view, int position) {
 
-        //new below
         RequestedOrAppointmentObject reservationInfo = requestedOrAppointmentObjectArrayList.get(position);
+
+        //new below
+
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        boolean theYear = year >= Integer.parseInt(reservationInfo.getDate().substring(0, 4));
+        boolean theMonth = month >= Integer.parseInt(reservationInfo.getDate().substring(5, 7));
 
         DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(reservationInfo.getTimeSlot().substring(11, 19), dtf);
 
-        if (currentT.isAfter(endT)) {
-
-            displayLocations.remove(position);
-            myRecyclerViewAdapterDriver.notifyDataSetChanged();
-
+        if (currentT.isAfter(endT) && theMonth && theYear) {
+            if (currentT.isAfter(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
+                Log.i("a", "a");
+                displayLocations.remove(position);
+                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+            } else if (currentT.isBefore(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
+                Log.i("b", "b");
+            } else {
+                displayLocations.remove(position);
+                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+            }
         } else {
 
             //new above

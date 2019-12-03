@@ -32,6 +32,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -203,20 +204,35 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     @Override
     public void onItemClick(View view, int position) {
 
+        CardDetailsRecyclerViewObject cardDetailsRecyclerViewObject = appointmentRows.get(position);
+
         //new below
 
-        CardDetailsRecyclerViewObject cardDetailsRecyclerViewObject = appointmentRows.get(position);
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        boolean theYear = (year >= Integer.parseInt(date.getText().toString().substring(0, 4)));
+        boolean theMonth = (month >= Integer.parseInt(date.getText().toString().substring(5, 7)));
 
         DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(cardDetailsRecyclerViewObject.getTime().substring(11, 19), dtf);
 
-        if (currentT.isAfter(endT)) {
-
-            appointmentRows.remove(position);
-            adapter.notifyDataSetChanged();
-
+        //if on or after appointment date
+        if (theMonth && theYear) {
+            //if current date is same day as appointment and after appt time
+            if (currentT.isAfter(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
+                Log.i("a", "a");
+                appointmentRows.remove(position);
+                adapterTwo.notifyDataSetChanged();
+            } else if (currentT.isBefore(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
+                Log.i("b", "b");
+            } else {
+                appointmentRows.remove(position);
+                adapterTwo.notifyDataSetChanged();
+            }
         } else {
 
             //new above

@@ -80,7 +80,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(reservationInfo.getTimeSlot().substring(11, 19), dtf);
 
-        if (currentT.isAfter(endT) && theMonth && theYear) {
+        if (theMonth && theYear) {
             if (currentT.isAfter(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
                 String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
                 deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));

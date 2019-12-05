@@ -1,11 +1,13 @@
 package pablo.myexample.drivewayfinder;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -201,6 +204,25 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         }
     }
 
+    public void deleteOldAppointment(final String timeSlot, final int position) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Delete old appointment?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                appointmentRows.remove(position);
+                adapter.notifyDataSetChanged();
+                FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Appointments").child(date.getText().toString()).child(timeSlot).removeValue();
+            }
+        });
+        alertDialog.show();
+    }
+
     @Override
     public void onItemClick(View view, int position) {
 
@@ -224,16 +246,15 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         if (theMonth && theYear) {
             //if current date is same day as appointment and after appt time
             if (currentT.isAfter(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
-                Log.i("a", "a");
-                appointmentRows.remove(position);
-                adapterTwo.notifyDataSetChanged();
+                String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                deleteOldAppointment(timeSlot, position);
             } else if (currentT.isBefore(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
-                Log.i("b", "b");
             } else {
-                appointmentRows.remove(position);
-                adapterTwo.notifyDataSetChanged();
+                String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                deleteOldAppointment(timeSlot, position);
             }
         } else {
+            Log.i("d", "d");
 
             //new above
 

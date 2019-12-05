@@ -1,11 +1,13 @@
 package pablo.myexample.drivewayfindertwo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +42,25 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
     private RecyclerView recyclerView;
     private Intent toDetailsOfReservation;
 
+    public void deleteOldAppointmentDriver(final String timeSlot, final int position, final String date) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Delete old appointment?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                displayLocations.remove(position);
+                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+                FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(date).child(timeSlot).removeValue();
+            }
+        });
+        alertDialog.show();
+    }
+
     @Override
     public void onItemClick(View view, int position) {
 
@@ -61,14 +82,12 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
 
         if (currentT.isAfter(endT) && theMonth && theYear) {
             if (currentT.isAfter(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
-                Log.i("a", "a");
-                displayLocations.remove(position);
-                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+                String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
             } else if (currentT.isBefore(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
-                Log.i("b", "b");
             } else {
-                displayLocations.remove(position);
-                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+                String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
             }
         } else {
 

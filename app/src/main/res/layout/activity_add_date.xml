@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
+    android:scrollbars="none"
+    android:paddingTop="20dp"
+    android:paddingLeft="26dp"
+    android:paddingRight="26dp"
+    android:paddingBottom="20dp"
     tools:context=".AddDate">
 
     <LinearLayout
@@ -12,17 +17,21 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="20dp">
+       >
 
         <ImageView
             android:padding="8dp"
+            android:maxWidth="350dp"
+            android:maxHeight="350dp"
+            android:adjustViewBounds="true"
             android:id="@+id/drivewayImageShown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:background="@android:drawable/gallery_thumb"
+            android:backgroundTint="@color/colorAccent" />
 
         <LinearLayout
+            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_gravity="start"
             android:layout_height="wrap_content"
@@ -95,37 +104,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="My Number: "
+            android:text="My Phone Number: "
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="433dp" />
 
     </LinearLayout>
 
-        <View
+      <!--  <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/colorAccent"
-            />
+            />-->
 
         <CalendarView
+            android:layout_marginTop="30dp"
             android:id="@+id/calendarView"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="32dp" />
 
-        <View
+     <!--   <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/colorAccent"
-            />
+            />-->
 
         <LinearLayout
+            android:layout_marginTop="30dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="horizontal"
             >
 
@@ -165,20 +178,22 @@
 
         </LinearLayout>
 
-        <View
+       <!-- <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/colorAccent"
-            />
+            />-->
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <TextView
+                android:background="@drawable/rounded_edittext"
+                android:padding="8dp"
                 android:id="@+id/startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -195,6 +210,8 @@
                 android:text=" - " />
 
             <TextView
+                android:background="@drawable/rounded_edittext"
+                android:padding="8dp"
                 android:id="@+id/endTime"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -205,12 +222,11 @@
 
         </LinearLayout>
 
-        <View
+      <!--  <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/colorAccent"
-            />
-
+            />-->
 
         <LinearLayout
             android:paddingTop="8dp"
@@ -225,7 +241,7 @@
                 android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Divide time by every:"
+                android:text="Divide time into "
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -242,23 +258,25 @@
                 android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="minutes"
+                android:text=" minute intervals"
                 android:textStyle="bold"
                 android:textColor="@android:color/black" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:onClick="divideTime"
-                android:padding="8dp"
-                android:text="Create Time"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
         </LinearLayout>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:onClick="divideTime"
+            android:padding="8dp"
+            android:text="Create Time"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:id="@+id/timeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -266,6 +284,7 @@
             tools:listitem="@android:layout/activity_list_item" />
 
         <Button
+            android:layout_marginBottom="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"

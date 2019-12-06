@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="200dp"
-    app:cardBackgroundColor="@color/colorAccent"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -20,7 +19,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="10dp"
-            android:tint="@color/colorPrimary"
             android:src="@drawable/ic_calendar_empty_page_outline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +28,7 @@
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:text="July 31, 2019"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

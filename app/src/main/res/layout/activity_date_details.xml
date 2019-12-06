@@ -5,13 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingLeft="26dp"
+    android:paddingRight="26dp"
+    android:paddingBottom="20dp"
+    android:scrollbars="none"
     tools:context=".DateDetails">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp">
+        >
 
         <ImageView
             android:id="@+id/dateDetailsImage"
@@ -172,8 +177,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorAccent"
-            />
+            android:background="@color/colorAccent" />
 
         <TextView
             android:id="@+id/appt"
@@ -192,8 +196,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorAccent"
-            />
+            android:background="@color/colorAccent" />
 
 
         <TextView
@@ -213,8 +216,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorAccent"
-            />
+            android:background="@color/colorAccent" />
 
         <TextView
             android:layout_width="match_parent"
@@ -229,9 +231,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textStyle="italic"
+            android:text=""
             android:textColor="@android:color/black"
-            android:text="" />
+            android:textStyle="italic" />
 
     </LinearLayout>
 

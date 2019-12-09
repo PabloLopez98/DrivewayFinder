@@ -29,12 +29,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import pablo.myexample.drivewayfinder.MyRecyclerViewAdapterForTimes;
 import pablo.myexample.drivewayfinder.R;
 import pablo.myexample.drivewayfinder.TransferObjectInterface;
 
-public class LocationsScreen extends AppCompatActivity implements MyRecyclerViewAdapterDriver.ItemClickListener {
+public class LocationsScreen extends AppCompatActivity implements MyRecyclerViewAdapterForTimes.ItemClickListener {
 
-    private MyRecyclerViewAdapterDriver myRecyclerViewAdapterDriver;
+    private MyRecyclerViewAdapterForTimes myRecyclerViewAdapterForTimes;
     private Intent intent;
     private ArrayList<String> displayLocations;
     private ArrayList<RequestedOrAppointmentObject> requestedOrAppointmentObjectArrayList;
@@ -54,7 +55,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 displayLocations.remove(position);
-                myRecyclerViewAdapterDriver.notifyDataSetChanged();
+                myRecyclerViewAdapterForTimes.notifyDataSetChanged();
                 FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(date).child(timeSlot).removeValue();
             }
         });
@@ -148,9 +149,9 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
                         requestedOrAppointmentObjectArrayList.add(requestedOrAppointmentObject);
                     }
                 }
-                myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getApplicationContext(), displayLocations);
-                myRecyclerViewAdapterDriver.setClickListener(LocationsScreen.this);
-                recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                myRecyclerViewAdapterForTimes = new MyRecyclerViewAdapterForTimes(getApplicationContext(), displayLocations);
+                myRecyclerViewAdapterForTimes.setClickListener(LocationsScreen.this);
+                recyclerView.setAdapter(myRecyclerViewAdapterForTimes);
             }
 
             @Override
@@ -170,9 +171,9 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
                     displayLocations.add(requestedOrAppointmentObject.getLocation() + "\n" + requestedOrAppointmentObject.getTimeSlot());
                     requestedOrAppointmentObjectArrayList.add(requestedOrAppointmentObject);
                 }
-                myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getApplicationContext(), displayLocations);
-                myRecyclerViewAdapterDriver.setClickListener(LocationsScreen.this);
-                recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                myRecyclerViewAdapterForTimes = new MyRecyclerViewAdapterForTimes(getApplicationContext(), displayLocations);
+                myRecyclerViewAdapterForTimes.setClickListener(LocationsScreen.this);
+                recyclerView.setAdapter(myRecyclerViewAdapterForTimes);
             }
 
             @Override

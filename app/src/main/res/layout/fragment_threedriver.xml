@@ -8,20 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/ic_account_circle_24px" />
+                android:src="@drawable/ic_account_circle_24px"
+                android:tint="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/profileDriverName"
@@ -34,15 +39,12 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text=" " />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -62,80 +64,71 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text=" " />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/ic_directions_car_24px" />
+                android:src="@drawable/ic_directions_car_24px"
+                android:tint="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/profileDriverCarModel"
-                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:text="Car Model"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text=" " />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/ic_call_to_action_24px" />
+                android:src="@drawable/ic_call_to_action_24px"
+                android:tint="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/profileDriverLicensePlate"
-                android:textStyle="bold"
-                android:padding="8dp"
-                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="License Plate" />
+                android:padding="8dp"
+                android:text="License Plate"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text=" " />
 
         <Button
             android:id="@+id/editDriverProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toEditProfileDriver"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/rounded_edittext"
+            android:onClick="toEditProfileDriver"
             android:padding="8dp"
-            android:text="Edit" />
+            android:text="Edit"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </FrameLayout>

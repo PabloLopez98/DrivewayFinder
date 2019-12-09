@@ -100,7 +100,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchString = query;
-                retrieveFormalAddress();
+                //retrieveFormalAddress();
+                searchFirebaseAndPopulateRecyclerView("11223 Laurel Ave, Whittier, CA 90605, USA");
+
                 return false;
             }
 
@@ -175,9 +177,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         String spotRate = spot.getRate();
                         String spotDate = spot.getDate();
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
-                        if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
+                        //if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
                             spotObjects.add(spot);
-                        }
+                        //}
                     }
                 }
                 oneDriverAdapter = new OneDriverAdapter(getContext(), spotObjects);

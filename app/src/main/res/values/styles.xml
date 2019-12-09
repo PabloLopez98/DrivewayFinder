@@ -24,4 +24,10 @@
         <item name="android:statusBarColor">@color/colorStatusBar</item>
     </style>
 
+    <style name="SearchViewTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+        <item name="android:editTextColor">@color/colorPrimary</item>
+    </style>
+
+
 </resources>

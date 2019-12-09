@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:padding="20dp"
     tools:context="pablo.myexample.drivewayfindertwo.EditProfileDriver">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +21,8 @@
         android:textStyle="bold" />
 
     <EditText
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/newName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +32,8 @@
         android:textColor="@android:color/black" />
 
     <TextView
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +43,8 @@
         android:textStyle="bold" />
 
     <EditText
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/newPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +54,8 @@
         android:textColor="@android:color/black" />
 
     <TextView
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayCarModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +65,8 @@
         android:textStyle="bold" />
 
     <EditText
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/newCarModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,6 +76,8 @@
         android:textColor="@android:color/black" />
 
     <TextView
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisiplayPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +87,8 @@
         android:textStyle="bold" />
 
     <EditText
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/newPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,13 +97,10 @@
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text=" " />
-
     <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

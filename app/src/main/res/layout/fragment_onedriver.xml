@@ -6,6 +6,25 @@
     android:background="@color/colorPrimary"
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
+    <!--    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text=" " />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text=" " />-->
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -17,30 +36,30 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorStatusBar"
-            />
+            android:background="@color/colorStatusBar" />
 
         <LinearLayout
             android:id="@+id/linLayOut"
-           android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:gravity="center"
             android:orientation="horizontal"
-            >
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="8dp"
-                android:text="Under $"
+                android:text="Under $:"
                 android:textColor="@android:color/white" />
 
             <EditText
                 android:id="@+id/rate"
                 android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:gravity="center"
@@ -48,88 +67,76 @@
                 android:singleLine="true"
                 android:textColor="@android:color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:text="/hr"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text=" " />
-
             <View
-                android:layout_width="1dp"
-                android:layout_height="30dp"
-                android:background="@color/colorPrimary" />
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text=" " />
+                android:background="@drawable/rounded_edittexttwo"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
-            <ImageButton
-                android:id="@+id/calendarButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:src="@drawable/ic_calendar_empty_page_outline"
-                android:tint="@color/colorPrimary" />
+                <ImageButton
+                    android:id="@+id/calendarButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:src="@drawable/ic_calendar_empty_page_outline"
+                    android:tint="@color/colorPrimary" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="YYYY MM DD"
-                android:textColor="@android:color/white" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="YYYY MM DD"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:layout_marginBottom="8dp"
-            android:gravity="center"
             android:background="@drawable/rounded_edittexttwo"
-            >
+            android:gravity="center">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:searchIcon="@drawable/ic_search_24px"
-                app:iconifiedByDefault="false"
+                android:theme="@style/SearchViewTheme"
                 app:closeIcon="@drawable/ic_close_black_24dp"
+                app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                />
+                app:searchIcon="@drawable/ic_search_24px" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorStatusBar"
-            />
+            android:background="@color/colorStatusBar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentonerecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
-            android:padding="20dp"
-            />
+            android:padding="20dp" />
 
     </LinearLayout>
 

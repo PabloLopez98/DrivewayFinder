@@ -179,6 +179,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
                         //if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
                             spotObjects.add(spot);
+                            spotObjects.add(spot);
+                            spotObjects.add(spot);
+                            spotObjects.add(spot);
                         //}
                     }
                 }

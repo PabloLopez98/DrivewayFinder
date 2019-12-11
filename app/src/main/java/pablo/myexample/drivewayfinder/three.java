@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class three extends Fragment {
 
-    TransferObjectInterface listener;
-    OwnerProfileObject ownerProfileObject;
+    private TransferObjectInterface listener;
+    private OwnerProfileObject ownerProfileObject;
+    private View view;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -45,7 +48,7 @@ public class three extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_three, container, false);
+        view = inflater.inflate(R.layout.fragment_three, container, false);
 
         final ImageView drivewayImage = view.findViewById(R.id.profileDisplayImage);
         final TextView name = view.findViewById(R.id.profileDisplayName);
@@ -59,7 +62,19 @@ public class three extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     ownerProfileObject = dataSnapshot.getValue(OwnerProfileObject.class);
-                    Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(drivewayImage);
+                    Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(drivewayImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            //hide progress circle, show layout
+                            view.findViewById(R.id.fragthreecircle).setVisibility(View.INVISIBLE);
+                            view.findViewById(R.id.fragthreelayout).setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+
+                        }
+                    });
                     name.setText(ownerProfileObject.getFullName());
                     phone.setText(ownerProfileObject.getPhoneNumber());
                     location.setText(ownerProfileObject.getDrivewayLocation());
@@ -67,6 +82,7 @@ public class three extends Fragment {
                     listener.transferOwnerProfileObject(ownerProfileObject);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

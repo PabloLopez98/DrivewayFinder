@@ -10,7 +10,18 @@
     android:paddingRight="26dp"
     tools:context=".OwnerActivity">
 
+    <ProgressBar
+        android:id="@+id/fragtwocircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:visibility="visible"
+        />
+
     <LinearLayout
+        android:id="@+id/fragtwolayout"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

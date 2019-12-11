@@ -7,7 +7,18 @@
     app:barrierDirection="bottom"
     tools:context=".OwnerActivity">
 
+    <ProgressBar
+        android:id="@+id/fragonecircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:visibility="visible"
+        />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragonelayout"
+        android:visibility="invisible"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

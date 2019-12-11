@@ -36,10 +36,11 @@ public class two extends Fragment {
 
     private TextView name, date, phone, location, timeRemaining, timeStartEnd;
     private String ownerId;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_two, container, false);
+        view = inflater.inflate(R.layout.fragment_two, container, false);
         ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         name = view.findViewById(R.id.twoClientName);
         date = view.findViewById(R.id.twoDate);
@@ -87,6 +88,10 @@ public class two extends Fragment {
                         }
 
                     }
+                } else {
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
                 }
             }
 
@@ -99,6 +104,10 @@ public class two extends Fragment {
     }
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
+
+        //hide progress circle, show layout
+        view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
 
         long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
         long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000

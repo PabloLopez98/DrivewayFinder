@@ -9,6 +9,15 @@
     android:background="@android:color/white"
     tools:context=".OwnerActivity">
 
+    <ProgressBar
+        android:id="@+id/fragthreecircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:visibility="visible"
+        />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,6 +27,8 @@
         android:layout_marginEnd="10dp">
 
         <LinearLayout
+            android:id="@+id/fragthreelayout"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">

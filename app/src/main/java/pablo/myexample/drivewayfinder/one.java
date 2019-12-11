@@ -35,6 +35,7 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
     private ArrayList<String> spots;
     private ArrayList<SpotObjectClass> spotObjects;
     private TransferObjectInterface listener;
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        view = inflater.inflate(R.layout.fragment_one, container, false);
         spotObjects = new ArrayList<>();
         spots = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -90,13 +91,14 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                             String[] date = spotObject.getDate().split(" ");
                             Log.i("datedate", String.valueOf(date));
                             String dateShow = date[0] + "-" + date[1] + "-" + date[2];
-                            Log.i("dateShow",dateShow);
+                            Log.i("dateShow", dateShow);
                             spots.add(dateShow);
                         }
                     }
                     adapter = new MyRecyclerViewAdapter(getContext(), spots);
                     adapter.setClickListener(one.this);
                     recyclerView.setAdapter(adapter);
+
                 }
             }
 
@@ -104,6 +106,10 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+        //hide progress circle, show layout
+        view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
     }
 
 }

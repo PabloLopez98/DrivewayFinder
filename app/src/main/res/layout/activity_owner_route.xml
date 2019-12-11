@@ -26,16 +26,16 @@
 
         <ImageView
             android:id="@+id/drivewayImageInput"
-            android:background="@android:drawable/gallery_thumb"
-            android:backgroundTint="@color/colorAccent"
-            android:adjustViewBounds="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxHeight="225dp"
-            android:maxWidth="225dp"
             android:layout_gravity="center"
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
+            android:adjustViewBounds="true"
+            android:background="@android:drawable/gallery_thumb"
+            android:backgroundTint="@color/colorAccent"
+            android:maxWidth="225dp"
+            android:maxHeight="225dp"
             android:onClick="openFileChooser"
             android:padding="8dp" />
 
@@ -222,7 +222,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="(123)-456-7890"
+            android:hint="1234567890"
             android:inputType="phone"
             android:padding="8dp"
             android:singleLine="true"

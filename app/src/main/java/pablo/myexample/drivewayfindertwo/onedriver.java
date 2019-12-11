@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -178,10 +179,10 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         String spotDate = spot.getDate();
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
                         //if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
-                            spotObjects.add(spot);
-                            spotObjects.add(spot);
-                            spotObjects.add(spot);
-                            spotObjects.add(spot);
+                        spotObjects.add(spot);
+                        spotObjects.add(spot);
+                        spotObjects.add(spot);
+                        spotObjects.add(spot);
                         //}
                     }
                 }

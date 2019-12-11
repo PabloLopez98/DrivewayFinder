@@ -47,6 +47,7 @@
             <TextView
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:padding="8dp"
                 android:id="@+id/iconClickLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,6 +75,7 @@
                 android:id="@+id/iconClickDate"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date" />
@@ -100,6 +102,7 @@
                 android:id="@+id/iconClickRate"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$15/hr" />
@@ -127,6 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
+                android:padding="8dp"
                 android:textStyle="bold"
                 android:text="Driveway Owner Full Name" />
 
@@ -152,6 +156,7 @@
                 android:id="@+id/iconClickPhone"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Phone Number" />

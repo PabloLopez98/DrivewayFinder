@@ -5,27 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:paddingLeft="26dp"
-    android:paddingTop="20dp"
-    android:paddingRight="26dp"
-    android:paddingBottom="4dp"
     android:scrollbars="none"
     tools:context=".EditProfile">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:text="Current image: "
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
         <ImageView
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/currentImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,8 +40,10 @@
             android:padding="8dp" />
 
         <TextView
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/currentLocation"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Current location: "
@@ -48,6 +51,8 @@
             android:textStyle="bold" />
 
         <EditText
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/streetAddressEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,6 +68,8 @@
             android:layout_height="4dp" />
 
         <EditText
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/citytAddressEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,6 +85,8 @@
             android:layout_height="4dp" />
 
         <EditText
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/stateAddressEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,6 +98,8 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -107,6 +118,8 @@
             android:text=" " />
 
         <TextView
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/currentVerifiedLocationShown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,6 +131,8 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/currentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,6 +143,8 @@
             android:textStyle="bold" />
 
         <EditText
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/fullNameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,6 +155,8 @@
             android:textColor="@android:color/black" />
 
         <TextView
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/currentPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,6 +166,8 @@
             android:textStyle="bold" />
 
         <EditText
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/phoneNumberInputEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,11 +179,13 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_edittext"
             android:onClick="finish"
             android:padding="8dp"

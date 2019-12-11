@@ -1,180 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    android:paddingLeft="26dp"
-    android:paddingTop="20dp"
-    android:paddingRight="26dp"
-    android:paddingBottom="20dp"
     tools:context="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver">
 
-    <ImageView
-        android:id="@+id/imageDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:background="@android:drawable/gallery_thumb"
-        android:backgroundTint="@color/colorAccent"
-        android:maxWidth="350dp"
-        android:maxHeight="350dp"
-        android:padding="8dp" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_location_on_black_24dp"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/locationDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_attach_money_black_24dp"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/rateDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="$15/hr" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_timer_24px"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/timeDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_date_range_24px"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/dateDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_account_circle_24px"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/ownerNameDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Full name of driveway owner" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_phone_android_black_24dp"
-            android:tint="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/ownerPhoneDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone Number" />
-
-    </LinearLayout>
-
-    <!--
-
-    <Button
-        android:id="@+id/cancelButtonDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="don't worry about cancelling yet" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="20dp">
 
-        -->
+        <ImageView
+            android:id="@+id/imageDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@android:drawable/gallery_thumb"
+            android:backgroundTint="@color/colorAccent"
+            android:maxWidth="350dp"
+            android:maxHeight="350dp"
+            android:padding="8dp" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/locationDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Location"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_attach_money_black_24dp"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/rateDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="$15/hr"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_timer_24px"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/timeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_date_range_24px"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/dateDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_account_circle_24px"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/ownerNameDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full name of driveway owner"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_phone_android_black_24dp"
+                android:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/ownerPhoneDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!--
+
+        <Button
+            android:id="@+id/cancelButtonDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="don't worry about cancelling yet" />
+
+            -->
+
+    </LinearLayout>
+
+</ScrollView>

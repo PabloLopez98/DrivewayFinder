@@ -61,31 +61,48 @@
 
             <EditText
                 android:id="@+id/rate"
-                android:layout_width="48dp"
+                android:theme="@style/SearchViewTheme"
+                android:layout_width="45dp"
                 android:layout_height="30dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/rounded_edittexttwo"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:singleLine="true"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorPrimary" />
 
-            <View
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="~"
+                android:textSize="24dp"
+                />
+
+           <!-- <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
-                />
+                />-->
 
             <LinearLayout
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittexttwo"
                 android:orientation="horizontal"
-                android:padding="4dp">
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
 
                 <ImageButton
+                    android:layout_gravity="center"
                     android:id="@+id/calendarButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,13 +111,14 @@
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_height="30dp"
                     android:textStyle="bold"
                     android:text="YYYY MM DD"
+                    android:paddingLeft="8dp"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>

@@ -26,8 +26,9 @@ import pablo.myexample.drivewayfinder.TransferObjectInterface;
 
 public class threedriver extends Fragment {
 
-    TransferObjectInterface listener;
-    TextView name, phone, model, plate;
+    private TransferObjectInterface listener;
+    private TextView name, phone, model, plate;
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class threedriver extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_threedriver, container, false);
+        view = inflater.inflate(R.layout.fragment_threedriver, container, false);
         name = view.findViewById(R.id.profileDriverName);
         phone = view.findViewById(R.id.profileDriverPhone);
         model = view.findViewById(R.id.profileDriverCarModel);
@@ -72,6 +73,9 @@ public class threedriver extends Fragment {
                     //transfer profile object from this fragment into parent activity
                     listener.transferDriverProfileObject(driverProfileObject);
                 }
+                //hide progress circle, show layout
+                view.findViewById(R.id.theCircle).setVisibility(View.INVISIBLE);
+                view.findViewById(R.id.fragThreeDriverLayout).setVisibility(View.VISIBLE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

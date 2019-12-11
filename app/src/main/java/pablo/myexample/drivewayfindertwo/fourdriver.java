@@ -35,6 +35,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
     private RecyclerView recyclerView;
     private String driverId;
     private ArrayList<String> arrayListAppointmentsDatesOrRequested;
+    private View view;
 
     @Override
     public void onItemClick(View view, int position) {
@@ -58,7 +59,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_fourdriver, container, false);
+        view = inflater.inflate(R.layout.fragment_fourdriver, container, false);
 
         driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -128,7 +129,9 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
             }
         });
 
-
+        //hide progress circle, show layout
+        view.findViewById(R.id.theCircleInFragFour).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.recyclerViewForFour).setVisibility(View.VISIBLE);
     }
 
 }

@@ -36,6 +36,7 @@ public class twodriver extends Fragment {
 
     private TextView name, date, phone, location, timeRemaining, timeStartEnd;
     private String driverId;
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class twodriver extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_twodriver, container, false);
+        view = inflater.inflate(R.layout.fragment_twodriver, container, false);
         driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         name = view.findViewById(R.id.fragtwoname);
@@ -96,6 +97,10 @@ public class twodriver extends Fragment {
                             break;
                         }
                     }
+                } else {
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
                 }
             }
 
@@ -108,6 +113,10 @@ public class twodriver extends Fragment {
     }
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
+
+        //hide progress circle, show layout
+        view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
 
         long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
         long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000

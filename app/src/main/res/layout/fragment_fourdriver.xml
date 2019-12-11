@@ -7,8 +7,18 @@
     android:padding="10dp"
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
+    <ProgressBar
+        android:id="@+id/theCircleInFragFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:visibility="visible"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewForFour"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

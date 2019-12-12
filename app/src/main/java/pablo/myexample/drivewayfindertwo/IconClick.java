@@ -44,6 +44,8 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icon_click);
 
+        setTitle("Reservation Preview");
+
         intent = getIntent();
 
         driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();

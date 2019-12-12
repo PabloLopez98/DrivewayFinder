@@ -32,6 +32,8 @@ public class EditProfileDriver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_driver);
 
+        setTitle("Edit Profile");
+
         intent = getIntent();
         dname = findViewById(R.id.profileDisplayName);
         dname.setText(dname.getText().toString() + " " + intent.getStringExtra("name"));

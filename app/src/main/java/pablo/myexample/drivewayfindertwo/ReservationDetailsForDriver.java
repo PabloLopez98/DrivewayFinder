@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import pablo.myexample.drivewayfinder.R;
@@ -24,6 +26,8 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_details_for_driver);
 
+        setTitle("Reservation Details");
+
         //for getting info
         intent = getIntent();
         //for going back
@@ -31,7 +35,19 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         backTODisplayLocations.putExtra("checkRequested", intent.getStringExtra("checkRequested"));
         //for showing info
         image = findViewById(R.id.imageDetail);
-        Picasso.get().load(intent.getStringExtra("url")).into(image);
+        Picasso.get().load(intent.getStringExtra("url")).into(image, new Callback() {
+            @Override
+            public void onSuccess() {
+                //hide progress circle, show layout
+                findViewById(R.id.resdetfordrivercircle).setVisibility(View.INVISIBLE);
+                findViewById(R.id.resdetfordriverlayout).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
         location = findViewById(R.id.locationDetail);
         location.setText(intent.getStringExtra("location"));
         rate = findViewById(R.id.rateDetail);

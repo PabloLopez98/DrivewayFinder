@@ -112,6 +112,8 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locations_screen);
 
+        setTitle("Time Slots");
+
         toDetailsOfReservation = new Intent(this, ReservationDetailsForDriver.class);
 
         driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();

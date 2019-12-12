@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -188,7 +189,7 @@ public class EditProfile extends AppCompatActivity {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
                     databaseReference.setValue(ownerProfileObject);
 
-                    Toast.makeText(getApplicationContext(), "Edit Successful!", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.editprofileroot), "Successfully Updated Profile!", Snackbar.LENGTH_LONG).show();
 
                 }
             });

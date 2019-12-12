@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,7 +60,7 @@ public class EditProfileDriver extends AppCompatActivity {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(userId).child("ProfileInfo");
             databaseReference.setValue(driverProfileObject);
-            Toast.makeText(getApplicationContext(), "Successful update.", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.editprofiledriverroot), "Successfully Updated Profile!", Snackbar.LENGTH_LONG).show();
             final Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Thread thread = new Thread() {

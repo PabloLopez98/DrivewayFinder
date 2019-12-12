@@ -178,8 +178,10 @@ public class OwnerRoute extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
                                 OwnerProfileObject ownerProfileObject = new OwnerProfileObject(fullName.getText().toString(), phone.getText().toString(), displayLocationVerification.getText().toString(), downloadUri.toString());
+
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
                                 databaseReference.setValue(ownerProfileObject);
+
                                 Snackbar.make(findViewById(R.id.ownerRouteScrollView), "Successfully Created Account!", Snackbar.LENGTH_LONG).show();
                                 final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

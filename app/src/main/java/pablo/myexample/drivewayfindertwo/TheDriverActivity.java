@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AlertDialog;
@@ -144,7 +145,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
                         //TESTING
 
-                        Toast.makeText(getApplicationContext(), "Logging out.", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().signOut();
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

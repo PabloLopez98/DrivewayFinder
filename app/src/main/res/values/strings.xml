@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Driveway Finder</string>
+    <string name="app_name">Driveway</string>
     <string name="title_activity_owner">OwnerActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

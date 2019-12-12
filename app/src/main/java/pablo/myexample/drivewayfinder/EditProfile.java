@@ -164,7 +164,6 @@ public class EditProfile extends AppCompatActivity {
             ownerProfileObject = new OwnerProfileObject(nameInput.getText().toString(), phoneInput.getText().toString(), verifiedLocation.getText().toString(), intent.getStringExtra("imageUrl"));
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
             databaseReference.setValue(ownerProfileObject);
-            Toast.makeText(getApplicationContext(), "Edit Successful!", Toast.LENGTH_SHORT).show();
 
         } else {
 
@@ -184,26 +183,24 @@ public class EditProfile extends AppCompatActivity {
 
                     Uri downloadUri = task.getResult();
 
-                    ownerProfileObject = new OwnerProfileObject(nameInput.getText().toString(), phoneInput.getText().toString(), verifiedLocation.getText().toString(), downloadUri.toString());
+                    ownerProfileObject = new OwnerProfileObject(nameInput.getText().toString(), phoneInput.getText().toString(), verifiedLocation.getText().toString(), String.valueOf(downloadUri));
 
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
                     databaseReference.setValue(ownerProfileObject);
-
-                    Snackbar.make(findViewById(R.id.editprofileroot), "Successfully Updated Profile!", Snackbar.LENGTH_LONG).show();
 
                 }
             });
 
         }
 
+        Snackbar.make(findViewById(R.id.editprofileroot), "Successfully Updated Profile!", Snackbar.LENGTH_LONG).show();
         final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
-        //erase history stacks and start fresh
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                    Thread.sleep(3500);
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();

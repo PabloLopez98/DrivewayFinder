@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:scrollbars="none"
+    android:id="@+id/iconClickRoot"
     tools:context="pablo.myexample.drivewayfindertwo.IconClick">
 
     <LinearLayout

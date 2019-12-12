@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -133,13 +134,13 @@ public class DriverProfile extends AppCompatActivity {
         DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date).child(time);
         deleteRequestedForDriver.removeValue();
 
-        Toast.makeText(getApplicationContext(), "Accepted Driver!", Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.driverprofileroot), "Successfully Accepted Driver!", Snackbar.LENGTH_LONG).show();
 
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2500);
+                    Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -160,13 +161,13 @@ public class DriverProfile extends AppCompatActivity {
         DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date).child(time);
         deleteRequestedForDriver.removeValue();
 
-        Toast.makeText(getApplicationContext(), "Denied Driver!", Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.driverprofileroot), "Denied Driver", Snackbar.LENGTH_LONG).show();
 
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2500);
+                    Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
                     e.printStackTrace();

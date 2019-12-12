@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -66,8 +67,8 @@ public class DriverRoute extends AppCompatActivity {
                     DriverProfileObject driverProfileObject = new DriverProfileObject(name.getText().toString(), phone.getText().toString(), plates.getText().toString(), model.getText().toString());
                     databaseReference.setValue(driverProfileObject);
 
-                    Toast.makeText(getApplicationContext(), "Creation Successful!", Toast.LENGTH_SHORT).show();
-                    final Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
+                    Snackbar.make(findViewById(R.id.driverRouteRoot), "Successfully Created Account!", Snackbar.LENGTH_LONG).show();
+                    final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Thread thread = new Thread() {
                         @Override

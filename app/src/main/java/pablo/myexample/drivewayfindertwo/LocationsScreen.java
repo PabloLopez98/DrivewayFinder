@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +58,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
                 displayLocations.remove(position);
                 myRecyclerViewAdapterForTimes.notifyDataSetChanged();
                 FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(date).child(timeSlot).removeValue();
+                Snackbar.make(findViewById(R.id.locationScreenRoot), "Deleted Old Appointment", Snackbar.LENGTH_LONG).show();
             }
         });
         alertDialog.show();

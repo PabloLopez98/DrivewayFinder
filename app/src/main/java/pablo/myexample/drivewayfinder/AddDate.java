@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -128,7 +129,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
     }
 
     //'Finish button' uses this method
-    public void addDate(View view) {
+    public void addDate(final View view) {
 
         if (chosenDate.matches("") || rate.getText().toString().matches("") || timeSlots.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
@@ -150,10 +151,23 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
                     else {
                         SpotObjectClass spotObject = new SpotObjectClass(timeSlots, userId, ownerProfileObject.getFullName(), ownerProfileObject.getPhoneNumber(), ownerProfileObject.getDrivewayLocation(), ownerProfileObject.getDrivwayImageUrl(), rate.getText().toString(), chosenDate, "Inactive");
                         databaseReference.setValue(spotObject);
-                        //go back to owner activity and erase back stacks
-                        Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                        final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+
+                        Snackbar.make(view, "Successfully Added Opening!", Snackbar.LENGTH_LONG).show();
+                        Thread thread = new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        thread.start();
+
                     }
                 }
 

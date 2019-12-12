@@ -22,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -235,14 +236,14 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                     DatabaseReference deleteEmptyDateRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Spots").child(spotDate);
                     deleteEmptyDateRef.removeValue();
 
-                    Toast.makeText(getApplicationContext(), "Deleted Driveway Opening.", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.datedetailsrootlayout), "Deleted Opening", Snackbar.LENGTH_LONG).show();
                     final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
                             try {
-                                Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                                Thread.sleep(3500); //As I am using LENGTH_LONG in Toast
                                 startActivity(intent);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -279,6 +280,7 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                 appointmentRows.remove(position);
                 adapter.notifyDataSetChanged();
                 FirebaseDatabase.getInstance().getReference().child("Owners").child(intent.getStringExtra("ownerId")).child("Appointments").child(date.getText().toString()).child(timeSlot).removeValue();
+                Snackbar.make(findViewById(R.id.datedetailsrootlayout), "Deleted Old Appointment", Snackbar.LENGTH_LONG).show();
             }
         });
         alertDialog.show();
@@ -315,7 +317,6 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                 deleteOldAppointment(timeSlot, position);
             }
         } else {
-            Log.i("d", "d");
 
             //new above
 

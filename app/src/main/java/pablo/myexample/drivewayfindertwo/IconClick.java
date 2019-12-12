@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -163,14 +164,14 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
             }
         });
 
-        Toast.makeText(getApplicationContext(), "Spot Requested", Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.iconClickRoot), "Successfully Requested Driveway Opening!", Snackbar.LENGTH_LONG).show();
         final Intent toTDA = new Intent(getApplicationContext(), TheDriverActivity.class);
         toTDA.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000); // As I am using LENGTH_LONG in Toast
+                    Thread.sleep(3500);
                     startActivity(toTDA);
                 } catch (Exception e) {
                     e.printStackTrace();

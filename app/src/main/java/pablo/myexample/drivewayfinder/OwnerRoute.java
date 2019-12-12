@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -179,9 +180,8 @@ public class OwnerRoute extends AppCompatActivity {
                                 OwnerProfileObject ownerProfileObject = new OwnerProfileObject(fullName.getText().toString(), phone.getText().toString(), displayLocationVerification.getText().toString(), downloadUri.toString());
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
                                 databaseReference.setValue(ownerProfileObject);
-                                Toast.makeText(getApplicationContext(), "Creation Successful!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(findViewById(R.id.ownerRouteScrollView), "Successfully Created Account!", Snackbar.LENGTH_LONG).show();
                                 final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                //erase history stacks and start fresh
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 Thread thread = new Thread() {
                                     @Override

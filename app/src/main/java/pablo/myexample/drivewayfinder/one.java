@@ -90,8 +90,7 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                         } else {
                             String[] date = spotObject.getDate().split(" ");
                             Log.i("datedate", String.valueOf(date));
-                            String dateShow = date[0] + "-" + date[1] + "-" + date[2];
-                            Log.i("dateShow", dateShow);
+                            String dateShow = date[0] + " " + date[1] + " " + date[2];
                             spots.add(dateShow);
                         }
                     }

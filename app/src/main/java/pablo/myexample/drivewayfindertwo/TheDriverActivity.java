@@ -184,7 +184,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         intent.putExtra("location", spotObject.getDrivewayLocation());
         intent.putExtra("url", spotObject.getDrivwayImageUrl());
         intent.putExtra("name", spotObject.getFullName());
-        intent.putExtra("active", spotObject.getIsActive());
+        //intent.putExtra("active", spotObject.getIsActive());
         intent.putExtra("id", spotObject.getOwnerId());
         intent.putExtra("phone", spotObject.getPhoneNumber());
         intent.putExtra("rate", spotObject.getRate());

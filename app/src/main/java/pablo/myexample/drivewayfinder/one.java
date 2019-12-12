@@ -85,14 +85,13 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         SpotObjectClass spotObject = ds.getValue(SpotObjectClass.class);
                         spotObjects.add(spotObject);
-                        if (spotObject.getIsActive().matches("Active")) {
+                      /*  if (spotObject.getIsActive().matches("Active")) {
                             spots.add("Active");
-                        } else {
-                            String[] date = spotObject.getDate().split(" ");
-                            Log.i("datedate", String.valueOf(date));
-                            String dateShow = date[0] + " " + date[1] + " " + date[2];
-                            spots.add(dateShow);
-                        }
+                        } else { */
+                        String[] date = spotObject.getDate().split(" ");
+                        String dateShow = date[0] + " " + date[1] + " " + date[2];
+                        spots.add(dateShow);
+                        // }
                     }
                     adapter = new MyRecyclerViewAdapter(getContext(), spots);
                     adapter.setClickListener(one.this);

@@ -142,7 +142,7 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         intent.putExtra("location", spotObject.getDrivewayLocation());
         intent.putExtra("imageUrl", spotObject.getDrivwayImageUrl());
         intent.putExtra("name", spotObject.getFullName());
-        intent.putExtra("isActive", spotObject.getIsActive());
+        //intent.putExtra("isActive", spotObject.getIsActive());
         intent.putExtra("ownerId", spotObject.getOwnerId());
         intent.putExtra("phone", spotObject.getPhoneNumber());
         intent.putExtra("rate", spotObject.getRate());

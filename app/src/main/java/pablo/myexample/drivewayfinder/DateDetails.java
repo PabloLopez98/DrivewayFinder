@@ -91,8 +91,8 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         name.setText(intent.getStringExtra("name"));
         phone = findViewById(R.id.dateDetailsPhone);
         phone.setText(intent.getStringExtra("phone"));
-        isActive = findViewById(R.id.dateDetailsIsActive);
-        isActive.setText(intent.getStringExtra("isActive"));
+        //isActive = findViewById(R.id.dateDetailsIsActive);
+        //isActive.setText(intent.getStringExtra("isActive"));
 
         appointmentRows = new ArrayList<>();
         requestedRows = new ArrayList<>();

@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -65,7 +66,20 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
         intent = getIntent();
 
         image = findViewById(R.id.dateDetailsImage);
-        Picasso.get().load(intent.getStringExtra("imageUrl")).into(image);
+        Picasso.get().load(intent.getStringExtra("imageUrl")).into(image, new Callback() {
+            @Override
+            public void onSuccess() {
+                //hide progress circle, show layout
+                findViewById(R.id.datedetailsCircle).setVisibility(View.INVISIBLE);
+                findViewById(R.id.datedetailsscrollview).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+
         location = findViewById(R.id.dateDetailsLocation);
         location.setText(intent.getStringExtra("location"));
         rate = findViewById(R.id.dateDetailsRate);
@@ -196,11 +210,58 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete:
-                Intent intent = new Intent(this, OwnerActivity.class);
-                startActivity(intent);
+                deleteEmptyDate();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void deleteEmptyDate() {
+        if (appointmentTextView.getText().toString().matches("No Appointments") && requestedTextView.getText().toString().matches("No Request")) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Are you sure you want to delete this driveway opening?");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    String ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String spotDate = intent.getStringExtra("date");
+                    DatabaseReference deleteEmptyDateRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Spots").child(spotDate);
+                    deleteEmptyDateRef.removeValue();
+
+                    Toast.makeText(getApplicationContext(), "Deleted Driveway Opening.", Toast.LENGTH_SHORT).show();
+                    final Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                                startActivity(intent);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    thread.start();
+                }
+            });
+            alertDialog.show();
+        } else {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Driveway opening is still in use.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Dismiss", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.show();
         }
     }
 

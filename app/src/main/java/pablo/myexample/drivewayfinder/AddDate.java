@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -254,7 +255,19 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
                 ownerProfileObject = dataSnapshot.getValue(OwnerProfileObject.class);
                 //display image
                 ImageView imageView = findViewById(R.id.drivewayImageShown);
-                Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(imageView);
+                Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        //hide progress circle, show layout
+                        findViewById(R.id.adddatecircle).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.adddatescrollview).setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
                 //display location
                 TextView textView = findViewById(R.id.drivewayLocationShown);
                 String l = textView.getText().toString();

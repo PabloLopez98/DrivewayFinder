@@ -24,8 +24,10 @@
         <item name="android:statusBarColor">@color/colorStatusBar</item>
     </style>
 
-    <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="splashTheme" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:windowDisablePreview">true</item>
+
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

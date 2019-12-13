@@ -8,9 +8,9 @@
     android:orientation="vertical"
     android:paddingLeft="26dp"
     android:paddingTop="20dp"
+    android:id="@+id/datedetailsrootlayout"
     android:paddingRight="26dp"
     android:paddingBottom="20dp"
-    android:id="@+id/datedetailsrootlayout"
     tools:context=".DateDetails">
 
     <ProgressBar
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

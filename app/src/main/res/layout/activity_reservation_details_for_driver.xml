@@ -55,7 +55,6 @@
                 android:padding="8dp" />
 
             <LinearLayout
-                android:background="@drawable/rounded_edittext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -68,17 +67,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_on_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:src="@drawable/ic_location_on_black_24dp" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/locationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -100,7 +97,6 @@
                     android:tint="@color/colorAccent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/rateDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,7 +124,6 @@
                     android:tint="@color/colorAccent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/timeDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,7 +151,6 @@
                     android:tint="@color/colorAccent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/dateDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,7 +178,6 @@
                     android:tint="@color/colorAccent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/ownerNameDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -199,7 +192,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/rounded_edittext"
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -212,13 +204,12 @@
                     android:tint="@color/colorAccent" />
 
                 <TextView
-                    android:gravity="center"
                     android:id="@+id/ownerPhoneDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 
             </LinearLayout>

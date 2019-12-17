@@ -28,6 +28,7 @@
 
         <TextView
             android:id="@+id/textView"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,11 +39,11 @@
             tools:layout_editor_absoluteX="126dp" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/twoTimeRemaining"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:gravity="center"
             android:hint="00 : 00 : 00"
             android:padding="8dp"
             android:textColor="@android:color/black"
@@ -72,8 +73,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Driveway Location"
                 android:padding="8dp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
 
@@ -97,7 +97,6 @@
 
             <TextView
                 android:id="@+id/twoDate"
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Date"
@@ -133,14 +132,12 @@
                 android:padding="8dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:gravity="center"
                 tools:layout_editor_absoluteX="29dp"
                 tools:layout_editor_absoluteY="395dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:background="@drawable/rounded_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -159,10 +156,9 @@
                 android:id="@+id/twoPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:hint="Client Phone Number"
                 android:padding="8dp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="446dp" />
@@ -191,7 +187,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Arrive - Leave"
                 android:padding="8dp"
-                android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="16dp"

@@ -127,7 +127,7 @@
             android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Verified location will be shown here."
+            android:text="Verified Location Shown Here"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 

@@ -177,7 +177,7 @@ public class OwnerRoute extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-                                OwnerProfileObject ownerProfileObject = new OwnerProfileObject(fullName.getText().toString(), phone.getText().toString(), displayLocationVerification.getText().toString(), downloadUri.toString());
+                                OwnerProfileObject ownerProfileObject = new OwnerProfileObject(fullName.getText().toString(), phone.getText().toString(), displayLocationVerification.getText().toString(), String.valueOf(downloadUri));
 
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(userId).child("ProfileInfo");
                                 databaseReference.setValue(ownerProfileObject);

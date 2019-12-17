@@ -139,19 +139,21 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    public String getFileExtension(Uri uri) {
+ /*   public String getFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
+    }*/
 
     public void finish(View view) {
         String Name = nameInput.getText().toString();
         String displayedLocation = verifiedLocation.getText().toString();
         String phoneNumber = phoneInput.getText().toString();
         //check if any field is empty
-        if (displayedLocation.matches("") || phoneNumber.matches("") || Name.matches("")) {
+        if (phoneNumber.matches("") || Name.matches("")) {
             Toast.makeText(getApplicationContext(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
+        } else if (displayedLocation.matches("Verified Location Shown Here")) {
+            Toast.makeText(getApplicationContext(), "Please verify address.", Toast.LENGTH_LONG).show();
         } else {
             editAccount();
         }
@@ -167,15 +169,23 @@ public class EditProfile extends AppCompatActivity {
 
         } else {
 
+            //Use same old image reference to update it, not delete it!
+            String oldPhotoRefUrl = intent.getStringExtra("imageUrl");
+            final StorageReference oldPhotoRef = FirebaseStorage.getInstance().getReferenceFromUrl(oldPhotoRefUrl);
+
+            /*
+            //add new image with new reference
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("Uploads");
             final StorageReference filereference = storageReference.child("images/").child(userId).child(System.currentTimeMillis() + "." + getFileExtension(uri));
-            filereference.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            switch 'filereference' with 'oldPhotoRef'
+            */
+            oldPhotoRef.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
                         throw task.getException();
                     }
-                    return filereference.getDownloadUrl();
+                    return oldPhotoRef.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override

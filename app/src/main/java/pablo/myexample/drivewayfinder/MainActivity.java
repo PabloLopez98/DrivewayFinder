@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Signed In.", Toast.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.theMainLayout), "Signed In!", Snackbar.LENGTH_LONG).show();
                         routeChooser(firebaseAuth.getCurrentUser().getUid());
                     } else {
-                        Toast.makeText(getApplicationContext(), "Error: Please Try Again", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.theMainLayout), "Error, Please Try Again", Snackbar.LENGTH_LONG).show();
                     }
                 }
             });
@@ -70,14 +71,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
+ /*   @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null) {
             routeChooser(firebaseUser.getUid());
         }
-    }
+    }*/
 
     public void routeChooser(String id) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

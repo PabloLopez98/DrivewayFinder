@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -73,6 +74,14 @@ public class DriverProfile extends AppCompatActivity {
 
         name = findViewById(R.id.dpname);
         phone = findViewById(R.id.dpphone);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phone.getText().toString()));
+                startActivity(intent);
+            }
+        });
         plate = findViewById(R.id.dpplate);
         model = findViewById(R.id.dpmodel);
 

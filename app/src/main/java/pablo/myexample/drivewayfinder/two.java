@@ -1,6 +1,8 @@
 package pablo.myexample.drivewayfinder;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,18 @@ public class two extends Fragment {
         name = view.findViewById(R.id.twoClientName);
         date = view.findViewById(R.id.twoDate);
         phone = view.findViewById(R.id.twoPhoneNumber);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (phone.getText().toString().matches("")) {
+                    //do nothing
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + phone.getText().toString()));
+                    startActivity(intent);
+                }
+            }
+        });
         location = view.findViewById(R.id.twoDrivewayLocation);
         timeRemaining = view.findViewById(R.id.twoTimeRemaining);
         timeStartEnd = view.findViewById(R.id.twoTimeStartEnd);
@@ -83,11 +97,17 @@ public class two extends Fragment {
                             phone.setText(data.getDriverPhoneNumber());
                             location.setText(data.getLocation());
                             timeStartEnd.setText(data.getTimeSlot());
+                            //hide progress circle, show layout
+                            view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
+                            view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
                             countDownTimer(currentT, endT);
                             break;
                         }
 
                     }
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
                 } else {
                     //hide progress circle, show layout
                     view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
@@ -104,10 +124,6 @@ public class two extends Fragment {
     }
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
-
-        //hide progress circle, show layout
-        view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
 
         long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
         long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000

@@ -49,6 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
+                android:maxWidth="350dp"
+                android:maxHeight="350dp"
                 android:background="@android:drawable/gallery_thumb"
                 android:backgroundTint="@color/colorAccent"
                 android:padding="8dp" />

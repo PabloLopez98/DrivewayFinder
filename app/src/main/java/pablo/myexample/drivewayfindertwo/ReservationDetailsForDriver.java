@@ -3,6 +3,7 @@ package pablo.myexample.drivewayfindertwo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,21 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         });
         location = findViewById(R.id.locationDetail);
         location.setText(intent.getStringExtra("location"));
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] strings = location.getText().toString().split(" ");
+                String address = strings[0];
+                String street = strings[1] + " " + strings[2];
+                String addyStrt = address + " " + street;
+                String city = strings[3];
+                String state = strings[4];
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + addyStrt + " " + city + " " + state);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
         rate = findViewById(R.id.rateDetail);
         rate.setText(intent.getStringExtra("rate"));
         time = findViewById(R.id.timeDetail);
@@ -60,6 +76,14 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         ownerName.setText(intent.getStringExtra("ownerName"));
         ownerPhone = findViewById(R.id.ownerPhoneDetail);
         ownerPhone.setText(intent.getStringExtra("ownerPhone"));
+        ownerPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + ownerPhone.getText().toString()));
+                startActivity(intent);
+            }
+        });
 
     }
 

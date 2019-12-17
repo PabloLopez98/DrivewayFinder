@@ -1,6 +1,7 @@
 package pablo.myexample.drivewayfindertwo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,18 +43,49 @@ public class twodriver extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_twodriver, container, false);
+
         driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         name = view.findViewById(R.id.fragtwoname);
         date = view.findViewById(R.id.fragtwodate);
         phone = view.findViewById(R.id.fragtwophone);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (phone.getText().toString().matches("")) {
+                    //do nothing
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + phone.getText().toString()));
+                    startActivity(intent);
+                }
+            }
+        });
         location = view.findViewById(R.id.fragtwolocation);
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (location.getText().toString().matches("")) {
+                    //do nothing
+                } else {
+                    String[] strings = location.getText().toString().split(" ");
+                    String address = strings[0];
+                    String street = strings[1] + " " + strings[2];
+                    String addyStrt = address + " " + street;
+                    String city = strings[3];
+                    String state = strings[4];
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + addyStrt + " " + city + " " + state);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            }
+        });
         timeRemaining = view.findViewById(R.id.fragtwotimeremaining);
         timeStartEnd = view.findViewById(R.id.fragtwostartendtime);
 
@@ -93,10 +126,16 @@ public class twodriver extends Fragment {
                             phone.setText(data.getDriverPhoneNumber());
                             location.setText(data.getLocation());
                             timeStartEnd.setText(data.getTimeSlot());
+                            //hide progress circle, show layout
+                            view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
+                            view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
                             countDownTimer(currentT, endT);
                             break;
                         }
                     }
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
                 } else {
                     //hide progress circle, show layout
                     view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
@@ -113,10 +152,6 @@ public class twodriver extends Fragment {
     }
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
-
-        //hide progress circle, show layout
-        view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
 
         long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
         long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000

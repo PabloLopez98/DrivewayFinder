@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Driver;
+
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
 public class DriverProfile extends AppCompatActivity {
@@ -49,9 +51,21 @@ public class DriverProfile extends AppCompatActivity {
 
         result = intent.getStringExtra("requested");
 
-        //if appointment then hide buttons
+        /*
+         if its an appointment,
+         then hide 'deny' button,
+         and change 'accept' button to 'cancel appointment' button
+        */
         if (result.matches("no")) {
-            findViewById(R.id.dpacceptbutton).setVisibility(View.GONE);
+            //findViewById(R.id.dpacceptbutton).setVisibility(View.GONE);
+            Button button = findViewById(R.id.dpacceptbutton);
+            button.setText("End Appointment");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(DriverProfile.this, "End Appointment", Toast.LENGTH_SHORT).show();
+                }
+            });
             findViewById(R.id.dpdenybutton).setVisibility(View.GONE);
         } else {
             findViewById(R.id.dpacceptbutton).setOnClickListener(new View.OnClickListener() {
@@ -60,7 +74,6 @@ public class DriverProfile extends AppCompatActivity {
                     acceptDriver();
                 }
             });
-
             findViewById(R.id.dpdenybutton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

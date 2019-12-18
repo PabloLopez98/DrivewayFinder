@@ -145,4 +145,18 @@
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
+    <!--<Button
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/endAppointmentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:padding="8dp"
+        android:text="End Appointment"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />-->
+
 </LinearLayout>

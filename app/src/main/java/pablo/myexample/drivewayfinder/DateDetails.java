@@ -295,15 +295,22 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
+        Log.i("checkEndT", String.valueOf(year));
+        int month = c.get(Calendar.MONTH) + 1;
+        Log.i("checkEndT", String.valueOf(month));
         int day = c.get(Calendar.DAY_OF_MONTH);
+        Log.i("checkEndT", String.valueOf(day));
         boolean theYear = (year >= Integer.parseInt(date.getText().toString().substring(0, 4)));
+        Log.i("checkEndT", String.valueOf(theYear));
         boolean theMonth = (month >= Integer.parseInt(date.getText().toString().substring(5, 7)));
+        Log.i("checkEndT", String.valueOf(theMonth));
 
         DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(cardDetailsRecyclerViewObject.getTime().substring(11, 19), dtf);
+
+        Log.i("checkEndT", String.valueOf(endT));
 
         //if on or after appointment date
         if (theMonth && theYear) {

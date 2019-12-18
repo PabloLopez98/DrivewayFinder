@@ -44,7 +44,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
     private RecyclerView recyclerView;
     private Intent toDetailsOfReservation;
 
-    public void deleteOldAppointmentDriver(final String timeSlot, final int position, final String date) {
+    private void deleteOldAppointmentDriver(final String timeSlot, final int position, final String date) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Delete old appointment?");
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
@@ -73,7 +73,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
+        int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         boolean theYear = year >= Integer.parseInt(reservationInfo.getDate().substring(0, 4));
         boolean theMonth = month >= Integer.parseInt(reservationInfo.getDate().substring(5, 7));

@@ -63,7 +63,7 @@ public class DriverProfile extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(DriverProfile.this, "End Appointment", Toast.LENGTH_SHORT).show();
+                    endAppointment();
                 }
             });
             findViewById(R.id.dpdenybutton).setVisibility(View.GONE);
@@ -102,6 +102,33 @@ public class DriverProfile extends AppCompatActivity {
 
         retrieveDriverInfo();
 
+    }
+
+    private void endAppointment() {
+
+        DatabaseReference deleteRequestedForOwner = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Appointments").child(date).child(time);
+        deleteRequestedForOwner.removeValue();
+
+        DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(date).child(time);
+        deleteRequestedForDriver.removeValue();
+
+        Snackbar.make(findViewById(R.id.driverprofileroot), "Ended Appointment", Snackbar.LENGTH_LONG).show();
+
+        final Intent intentToHome = new Intent(getApplicationContext(), OwnerActivity.class);
+        intentToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3500);
+                    startActivity(intentToHome);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 
     public void retrieveDriverInfo() {

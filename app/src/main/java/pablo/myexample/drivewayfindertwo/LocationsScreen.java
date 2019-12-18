@@ -96,6 +96,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
 
             //new above
 
+            toDetailsOfReservation.putExtra("ownerId", reservationInfo.getOwnerId());
             toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
             toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
             toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());

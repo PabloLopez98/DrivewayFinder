@@ -7,12 +7,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import pablo.myexample.drivewayfinder.OwnerActivity;
 import pablo.myexample.drivewayfinder.R;
 
 public class ReservationDetailsForDriver extends AppCompatActivity {
@@ -85,6 +92,49 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
             }
         });
 
+        //if 'yes' requested
+        if (intent.getStringExtra("checkRequested").matches("yes")) {
+            Button cancelButton = findViewById(R.id.cancelRequestButton);
+            cancelButton.setVisibility(View.VISIBLE);
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cancelRequest();
+                }
+            });
+        }
+    }
+
+    private void cancelRequest() {
+
+        String ownerId = intent.getStringExtra("ownerId");
+        String driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String dte = date.getText().toString();
+        String tme = time.getText().toString();
+
+        DatabaseReference deleteRequestedForOwner = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(dte).child(tme);
+        deleteRequestedForOwner.removeValue();
+
+        DatabaseReference deleteRequestedForDriver = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(dte).child(tme);
+        deleteRequestedForDriver.removeValue();
+
+        Snackbar.make(findViewById(R.id.resdetfordriverlayout), "Cancelled Request", Snackbar.LENGTH_LONG).show();
+
+        final Intent intentToHome = new Intent(this, OwnerActivity.class);
+        intentToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3500);
+                    startActivity(intentToHome);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 
     @Override

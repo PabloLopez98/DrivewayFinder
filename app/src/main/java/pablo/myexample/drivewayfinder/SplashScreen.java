@@ -49,7 +49,6 @@ public class SplashScreen extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();

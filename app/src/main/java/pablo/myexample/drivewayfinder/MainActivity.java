@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
+        Snackbar.make(findViewById(R.id.theMainLayout), "Signing In!", Snackbar.LENGTH_LONG).show();
         if (email.getText().toString().matches("") || password.getText().toString().matches("")) {
             Toast.makeText(getApplicationContext(), "Missing Input.", Toast.LENGTH_SHORT).show();
         } else {
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Snackbar.make(findViewById(R.id.theMainLayout), "Signed In!", Snackbar.LENGTH_LONG).show();
                         routeChooser(firebaseAuth.getCurrentUser().getUid());
                     } else {
                         Snackbar.make(findViewById(R.id.theMainLayout), "Error, Please Try Again", Snackbar.LENGTH_LONG).show();

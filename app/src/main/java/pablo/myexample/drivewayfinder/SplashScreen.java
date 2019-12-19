@@ -24,7 +24,7 @@ import pablo.myexample.drivewayfindertwo.TheDriverActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    //private static int SPASH_TIME_OUT = 2000;
+    private static int SPASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +52,36 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         if (isNetworkAvailable()) {
+
             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
             if (firebaseUser != null) {
+
+                //too slow, will see splash screen
                 routeChooser(firebaseUser.getUid());
+
             } else {
-                Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(toMain);
-                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
-                finish();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(toMain);
+                        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
+                        finish();
+                    }
+                }, SPASH_TIME_OUT);
+
             }
+
         } else {
+
             Snackbar.make(findViewById(R.id.splashLayout), "No Internet Connection", Snackbar.LENGTH_LONG).show();
+
         }
+
     }
 
     public void routeChooser(String id) {
@@ -96,4 +113,5 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
     }
+
 }

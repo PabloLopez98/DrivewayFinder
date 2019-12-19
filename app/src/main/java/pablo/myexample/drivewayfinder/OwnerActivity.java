@@ -1,7 +1,10 @@
 package pablo.myexample.drivewayfinder;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -11,27 +14,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import pablo.myexample.drivewayfindertwo.DriverProfileObject;
-import pablo.myexample.drivewayfindertwo.TheDriverActivity;
-import pablo.myexample.drivewayfindertwo.service;
-import pablo.myexample.drivewayfindertwo.threedriver;
+import java.security.acl.Owner;
 
-import static android.nfc.NfcAdapter.EXTRA_ID;
+import pablo.myexample.drivewayfindertwo.DriverProfileObject;
 
 public class OwnerActivity extends AppCompatActivity implements TransferObjectInterface {
 
@@ -79,16 +76,28 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
 
-        //TESTING
-
-      /*  Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
-        startService(new Intent(OwnerActivity.this, servicetwo.class));*/
-
-        //TESTING
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentOne();
+
+        /*SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("5623873924", null, "smsText", null, null);*/
+        findViewById(R.id.sendSmsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String readSms = Manifest.permission.READ_SMS;
+                String receiveSms = Manifest.permission.RECEIVE_SMS;
+                int grant = ContextCompat.checkSelfPermission(OwnerActivity.this, readSms) + ContextCompat.checkSelfPermission(OwnerActivity.this, receiveSms);
+                if (grant != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(OwnerActivity.this, new String[]{readSms, receiveSms}, 1);
+                }else{
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage("5623873924", null, "smsText", null, null);
+                }
+
+            }
+        });
     }
 
     @Override
@@ -175,13 +184,6 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                //TESTING
-
-              /*  Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
-                stopService(new Intent(OwnerActivity.this, service.class));*/
-
-                //TESTING
 
                 Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
                 FirebaseAuth.getInstance().signOut();

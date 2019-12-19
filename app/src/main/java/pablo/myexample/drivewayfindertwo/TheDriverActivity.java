@@ -103,13 +103,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_driver);
 
-        //TESTING
-
-       /* Toast.makeText(getApplicationContext(), "Started Service!", Toast.LENGTH_SHORT).show();
-        startService(new Intent(TheDriverActivity.this, service.class));*/
-
-        //TESTING
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentDriverOne();
@@ -137,13 +130,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        //TESTING
-
-                      /*  Toast.makeText(getApplicationContext(), "Stopped Service!", Toast.LENGTH_SHORT).show();
-                        stopService(new Intent(TheDriverActivity.this, service.class));*/
-
-                        //TESTING
 
                         Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
                         FirebaseAuth.getInstance().signOut();

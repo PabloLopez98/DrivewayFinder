@@ -7,6 +7,15 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +35,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.acl.Owner;
+import java.util.HashMap;
+import java.util.Map;
 
 import pablo.myexample.drivewayfindertwo.DriverProfileObject;
 
@@ -34,6 +48,53 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
 
     OwnerProfileObject ownerProfileObject;
     SpotObjectClass spotObject;
+
+    private void sendFCMPush() {
+        final String Legacy_SERVER_KEY = ; String token = ;
+        String msg = "this is test message,.,,.,.";
+        String title = "my title";
+        JSONObject obj = null;
+        JSONObject objData = null;
+        JSONObject dataobjData = null;
+        try {
+            obj = new JSONObject();
+            objData = new JSONObject();
+            objData.put("body", msg);
+            objData.put("title", title);
+            objData.put("tag", token);
+            objData.put("priority", "high");
+            dataobjData = new JSONObject();
+            dataobjData.put("text", msg);
+            dataobjData.put("title", title);
+            obj.put("to", token);
+            obj.put("notification", objData);
+            obj.put("data", dataobjData);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "https://fcm.googleapis.com/fcm/send", obj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "key=" + Legacy_SERVER_KEY);
+                params.put("Content-Type", "application/json");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        int socketTimeout = 1000 * 60;// 60 seconds
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        jsObjRequest.setRetryPolicy(policy);
+        requestQueue.add(jsObjRequest);
+    }
 
     public void switchToFragmentOne() {
         setTitle("Scheduled");
@@ -76,28 +137,17 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
 
+        findViewById(R.id.notifySamsungPhone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendFCMPush();
+            }
+        });
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToFragmentOne();
 
-        /*SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("5623873924", null, "smsText", null, null);*/
-        findViewById(R.id.sendSmsButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String readSms = Manifest.permission.READ_SMS;
-                String receiveSms = Manifest.permission.RECEIVE_SMS;
-                int grant = ContextCompat.checkSelfPermission(OwnerActivity.this, readSms) + ContextCompat.checkSelfPermission(OwnerActivity.this, receiveSms);
-                if (grant != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(OwnerActivity.this, new String[]{readSms, receiveSms}, 1);
-                }else{
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage("5623873924", null, "smsText", null, null);
-                }
-
-            }
-        });
     }
 
     @Override

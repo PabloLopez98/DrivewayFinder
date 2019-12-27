@@ -133,6 +133,7 @@ public class DriverProfile extends AppCompatActivity {
             }
         };
         thread.start();
+
     }
 
     public void retrieveDriverInfo() {

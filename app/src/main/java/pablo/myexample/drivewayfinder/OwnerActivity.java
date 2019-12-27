@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,53 +49,6 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
 
     OwnerProfileObject ownerProfileObject;
     SpotObjectClass spotObject;
-
-    private void sendFCMPush() {
-        final String Legacy_SERVER_KEY = ; String token = ;
-        String msg = "this is test message,.,,.,.";
-        String title = "my title";
-        JSONObject obj = null;
-        JSONObject objData = null;
-        JSONObject dataobjData = null;
-        try {
-            obj = new JSONObject();
-            objData = new JSONObject();
-            objData.put("body", msg);
-            objData.put("title", title);
-            objData.put("tag", token);
-            objData.put("priority", "high");
-            dataobjData = new JSONObject();
-            dataobjData.put("text", msg);
-            dataobjData.put("title", title);
-            obj.put("to", token);
-            obj.put("notification", objData);
-            obj.put("data", dataobjData);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, "https://fcm.googleapis.com/fcm/send", obj, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Authorization", "key=" + Legacy_SERVER_KEY);
-                params.put("Content-Type", "application/json");
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        int socketTimeout = 1000 * 60;// 60 seconds
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        jsObjRequest.setRetryPolicy(policy);
-        requestQueue.add(jsObjRequest);
-    }
 
     public void switchToFragmentOne() {
         setTitle("Scheduled");
@@ -136,13 +90,6 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
-
-        findViewById(R.id.notifySamsungPhone).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendFCMPush();
-            }
-        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -234,8 +181,12 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
+
+                //set FCM TOKEN TO 'NA'
+                String ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Token").setValue("NA");
+
                 FirebaseAuth.getInstance().signOut();
                 final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

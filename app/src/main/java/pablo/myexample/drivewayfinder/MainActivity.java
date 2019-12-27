@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import pablo.myexample.drivewayfindertwo.TheDriverActivity;
 
@@ -80,17 +83,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }*/
 
-    public void routeChooser(String id) {
+    public void routeChooser(final String id) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference ownerRef = firebaseDatabase.getReference().child("Owners").child(id);
+        final DatabaseReference ownerRef = firebaseDatabase.getReference().child("Owners").child(id);
         ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    //generate new FCM TOKEN for owner
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                        @Override
+                        public void onSuccess(InstanceIdResult instanceIdResult) {
+                            String newOwnerToken = instanceIdResult.getToken();
+                            ownerRef.child("Token").setValue(newOwnerToken);
+                        }
+                    });
+
                     //send to owner activity
                     Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
                     startActivity(intent);
                 } else {
+                    //generate new FCM TOKEN for driver
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                        @Override
+                        public void onSuccess(InstanceIdResult instanceIdResult) {
+                            String newDriverToken = instanceIdResult.getToken();
+                            FirebaseDatabase.getInstance().getReference().child("Drivers").child(id).child("Token").setValue(newDriverToken);
+                        }
+                    });
+
                     //send to driver activity
                     Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
                     startActivity(intent);

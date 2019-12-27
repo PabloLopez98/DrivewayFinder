@@ -26,7 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Driver;
 
+import pablo.myexample.drivewayfindertwo.IconClick;
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
+import pablo.myexample.drivewayfindertwo.SendPush;
 
 public class DriverProfile extends AppCompatActivity {
 
@@ -114,6 +116,8 @@ public class DriverProfile extends AppCompatActivity {
 
         Snackbar.make(findViewById(R.id.driverprofileroot), "Ended Appointment", Snackbar.LENGTH_LONG).show();
 
+        new SendPush().sendFCMPush(DriverProfile.this, "Drivers", driverId, date + " | " + time, "Appointment Ended For:");
+
         final Intent intentToHome = new Intent(getApplicationContext(), OwnerActivity.class);
         intentToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -185,6 +189,8 @@ public class DriverProfile extends AppCompatActivity {
 
         Snackbar.make(findViewById(R.id.driverprofileroot), "Successfully Accepted Driver!", Snackbar.LENGTH_LONG).show();
 
+        new SendPush().sendFCMPush(DriverProfile.this, "Drivers", driverId, date + " | " + time, "Request Accepted For:");
+
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -211,6 +217,8 @@ public class DriverProfile extends AppCompatActivity {
         deleteRequestedForDriver.removeValue();
 
         Snackbar.make(findViewById(R.id.driverprofileroot), "Denied Driver", Snackbar.LENGTH_LONG).show();
+
+        new SendPush().sendFCMPush(DriverProfile.this, "Drivers", driverId, date + " | " + time, "Request Denied For:");
 
         Thread thread = new Thread() {
             @Override

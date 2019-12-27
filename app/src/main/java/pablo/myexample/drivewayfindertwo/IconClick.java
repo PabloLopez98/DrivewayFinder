@@ -164,7 +164,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
             }
         });
 
-        new SendPush().sendFCMPush(IconClick.this, "Owners", ownerId);
+        new SendPush().sendFCMPush(IconClick.this, "Owners", ownerId, date.getText().toString() + " | " + selectedTimeSlot, "Request For:");
 
         Snackbar.make(findViewById(R.id.iconClickRoot), "Successfully Requested Driveway Opening!", Snackbar.LENGTH_LONG).show();
         final Intent toTDA = new Intent(getApplicationContext(), TheDriverActivity.class);

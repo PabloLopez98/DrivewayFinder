@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class SendPush {
 
-    public void sendFCMPush(final Context context, String ownersOrDrivers, String ownerOrDriverId) {
+    public void sendFCMPush(final Context context, String ownersOrDrivers, String ownerOrDriverId, final String message, final String theTitle) {
 
         //Listen for other users FCM Token
         DatabaseReference tokenRef = FirebaseDatabase.getInstance().getReference().child(ownersOrDrivers).child(ownerOrDriverId).child("Token");
@@ -37,13 +37,10 @@ public class SendPush {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 final String token = (String) dataSnapshot.getValue(String.class);
-                Log.i("theToken", token);
 
                 if (token.matches("NA")) {
-                    Log.i("insideIf", "yes");
                     //Do nothing
                 } else {
-                    Log.i("insideElse", "yes");
                     //Listen for server legacy key
                     DatabaseReference Legacy_SERVER_KEY_REF = FirebaseDatabase.getInstance().getReference().child("Legacy").child("key");
                     Legacy_SERVER_KEY_REF.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -52,8 +49,8 @@ public class SendPush {
 
                             final String Legacy_SERVER_KEY = (String) dataSnapshot.getValue(String.class);
 
-                            String msg = "this is test message,.,,.,.";
-                            String title = "my title";
+                            String msg = message;
+                            String title = theTitle;
 
                             JSONObject obj = null;
                             JSONObject objData = null;

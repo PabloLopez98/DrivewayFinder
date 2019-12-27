@@ -120,6 +120,8 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
 
         Snackbar.make(findViewById(R.id.resdetfordriverlayout), "Cancelled Request", Snackbar.LENGTH_LONG).show();
 
+        new SendPush().sendFCMPush(ReservationDetailsForDriver.this, "Owners", ownerId, dte + " | " + tme, "Cancelled Request For:");
+
         final Intent intentToHome = new Intent(this, OwnerActivity.class);
         intentToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
-        android:hint="Full Name"
+        android:hint="Bob Jones"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext"
-        android:hint="(123)-465-3787"
+        android:hint="1234653787"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 

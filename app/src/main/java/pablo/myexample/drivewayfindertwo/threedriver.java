@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,9 +33,16 @@ public class threedriver extends Fragment {
     private View view;
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem item = menu.findItem(R.id.searchViewOption);
+        if (item != null) item.setVisible(false);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -77,6 +86,7 @@ public class threedriver extends Fragment {
                 view.findViewById(R.id.theCircle).setVisibility(View.INVISIBLE);
                 view.findViewById(R.id.fragThreeDriverLayout).setVisibility(View.VISIBLE);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

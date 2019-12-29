@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +40,13 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
     private View view;
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem item = menu.findItem(R.id.searchViewOption);
+        if (item != null) item.setVisible(false);
+    }
+
+    @Override
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(getContext(), LocationsScreen.class);
         if (arrayListAppointmentsDatesOrRequested.get(position).matches("Requested Appointments")) {
@@ -54,6 +63,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override

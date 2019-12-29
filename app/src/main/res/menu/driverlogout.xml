@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/searchViewOption"
+        android:icon="@drawable/ic_search_24px"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/driverLogout"
         android:icon="@drawable/ic_exit_to_app_24px"
         android:title="Logout"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,7 +95,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_onedriver, container, false);
 
-        searchView = view.findViewById(R.id.searchB);
+        /* ******************************************************************************************** */
+
+       /* searchView = view.findViewById(R.id.searchB);
 
         searchString = "";
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -112,19 +115,14 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                 return false;
             }
         });
+*/
+        /* ******************************************************************************************** */
 
         rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);
         recyclerView = view.findViewById(R.id.fragmentonerecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        view.findViewById(R.id.calendarButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogCalendar();
-            }
-        });
 
         view.findViewById(R.id.date).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +148,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String formal_address = jsonObject.getString("formatted_address");
 
-                        searchFirebaseAndPopulateRecyclerView(formal_address);
+                        //searchFirebaseAndPopulateRecyclerView(formal_address);
 
                     } catch (Exception e) {
                         Log.i("VolleyError", e.getLocalizedMessage());

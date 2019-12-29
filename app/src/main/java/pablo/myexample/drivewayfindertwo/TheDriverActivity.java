@@ -31,6 +31,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.work.Constraints;
@@ -130,6 +131,25 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.driverlogout, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.searchViewOption);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search By City...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //String searchForThis = query;
+                onedriver onedriver = (onedriver) getSupportFragmentManager().findFragmentById(R.id.TheFragmentHolderDriver);
+                //onedriver.searchFirebaseAndPopulateRecyclerView("11223 Laurel Ave, Whittier, CA 90605, USA");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return true;
     }
 

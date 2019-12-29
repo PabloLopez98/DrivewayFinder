@@ -319,6 +319,7 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                 String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
                 deleteOldAppointment(timeSlot, position);
             } else if (currentT.isBefore(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
+                //do nothing
             } else {
                 String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
                 deleteOldAppointment(timeSlot, position);

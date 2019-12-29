@@ -113,7 +113,41 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
                 startActivity(intent);
                 return true;
             case R.id.logout:
-                alertInfo();
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle("Logout?");
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
+
+                        //set FCM TOKEN TO 'NA'
+                        String ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Token").setValue("NA");
+
+                        FirebaseAuth.getInstance().signOut();
+                        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        Thread thread = new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        thread.start();
+                    }
+                });
+                alertDialog.show();
+                //alertInfo();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -167,10 +201,11 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
 
     @Override
     public void onBackPressed() {
-        alertInfo();
+        //do nothing for now
+        //alertInfo();
     }
 
-    private void alertInfo() {
+/*    private void alertInfo() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Logout?");
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
@@ -205,6 +240,6 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
             }
         });
         alertDialog.show();
-    }
+    }*/
 
 }

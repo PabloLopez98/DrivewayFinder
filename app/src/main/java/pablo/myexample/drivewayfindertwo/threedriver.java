@@ -36,7 +36,9 @@ public class threedriver extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem item = menu.findItem(R.id.searchViewOption);
+        MenuItem item1 = menu.findItem(R.id.filterSearch);
         if (item != null) item.setVisible(false);
+        if (item1 != null) item1.setVisible(false);
     }
 
     @Override

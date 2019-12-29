@@ -134,6 +134,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
         MenuItem menuItem = menu.findItem(R.id.searchViewOption);
         SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(android.R.attr.maxWidth);
         searchView.setQueryHint("Search By City...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -128,10 +128,11 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
 
      /*   rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);
+        */
         recyclerView = view.findViewById(R.id.fragmentonerecyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+/*
         view.findViewById(R.id.date).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,9 +142,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
         return view;
     }
 
-    public void retrieveFormalAddress(String searchString) {
-        if (searchString.matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
-            Toast.makeText(getContext(), "Please in all fields.", Toast.LENGTH_SHORT).show();
+    public void retrieveFormalAddress(String searchString, final String date, final String rate) {
+        if (searchString.matches("")) {
+            Toast.makeText(getContext(), "Empty Search", Toast.LENGTH_SHORT).show();
         } else {
             String input = searchString;//.getText().toString();
             String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + input + "&key=AIzaSyCIdCaG2CZmkG0yezN3RSGc-eNFpnUireM";
@@ -155,8 +156,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         JSONArray jsonArray = response.getJSONArray("results");
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String formal_address = jsonObject.getString("formatted_address");
-
-                        searchFirebaseAndPopulateRecyclerView(formal_address);
+                        Log.i("a", rate);
+                        Log.i("b", date);
+                        searchFirebaseAndPopulateRecyclerView(formal_address, date, rate);
 
                     } catch (Exception e) {
                         Log.i("VolleyError", e.getLocalizedMessage());
@@ -172,7 +174,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
         }
     }
 
-    public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
+    public void searchFirebaseAndPopulateRecyclerView(final String formal_address, final String date, final String rate) {
         spotObjects = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -184,7 +186,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         String spotRate = spot.getRate();
                         String spotDate = spot.getDate();
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
-                        if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) <= Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
+                        if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) <= Integer.valueOf(rate)) && date.matches(spotDate)) {
                             spotObjects.add(spot);
                         }
                     }

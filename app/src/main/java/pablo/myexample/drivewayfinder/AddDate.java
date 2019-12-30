@@ -242,7 +242,6 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
                 Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         }
-
     }
 
     public void displayInfo() {

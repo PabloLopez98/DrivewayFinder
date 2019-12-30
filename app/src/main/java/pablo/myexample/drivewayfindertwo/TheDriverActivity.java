@@ -47,6 +47,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -54,6 +56,7 @@ import android.widget.Toolbar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -73,6 +76,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     private DriverProfileObject driverProfileObject;
     private SpotObjectClass spotObject;
+    private String rate, date;
 
     public void switchToFragmentDriverOne() {
         setTitle("Search For Parking");
@@ -125,6 +129,14 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         setContentView(R.layout.activity_the_driver);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //give default values for rate and date
+        Calendar instance = Calendar.getInstance();
+        String m = String.valueOf(instance.get(Calendar.MONTH) + 1);
+        String y = String.valueOf(instance.get(Calendar.YEAR));
+        String d = String.valueOf(instance.get(Calendar.DAY_OF_MONTH));
+        rate = "100";
+        date = y + " " + m + " " + d;
         switchToFragmentDriverOne();
     }
 
@@ -143,7 +155,11 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
             public boolean onQueryTextSubmit(String query) {
                 String searchForThis = query;
                 onedriver fragObj = (onedriver) getSupportFragmentManager().findFragmentById(R.id.TheFragmentHolderDriver);
-                fragObj.retrieveFormalAddress(searchForThis);//("11223 Laurel Ave, Whittier, CA 90605, USA");
+                //date is never empty, just check the input rate
+                if (rate.matches("")) {
+                    rate = "100";
+                }
+                fragObj.retrieveFormalAddress(searchForThis, date, rate);//("11223 Laurel Ave, Whittier, CA 90605, USA");
                 return false;
             }
 
@@ -152,7 +168,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 return false;
             }
         });
-
         return true;
     }
 
@@ -200,16 +215,26 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 final Dialog dialog = new Dialog(TheDriverActivity.this);
                 dialog.setContentView(R.layout.custom_dialog);
                 dialog.show();
-
+                //for calendarview
+                CalendarView calendarView = dialog.findViewById(R.id.dialogCalendar);
+                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                    @Override
+                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                        int newMonth = month + 1;
+                        date = year + " " + newMonth + " " + dayOfMonth;
+                    }
+                });
                 dialog.findViewById(R.id.dialogCancel).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
+                final EditText editText = dialog.findViewById(R.id.dialogInput);
                 dialog.findViewById(R.id.dialogApply).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        rate = editText.getText().toString();
                         dialog.dismiss();
                     }
                 });

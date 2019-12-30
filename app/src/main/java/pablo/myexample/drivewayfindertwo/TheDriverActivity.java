@@ -141,9 +141,9 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //String searchForThis = query;
-                onedriver onedriver = (onedriver) getSupportFragmentManager().findFragmentById(R.id.TheFragmentHolderDriver);
-                //onedriver.searchFirebaseAndPopulateRecyclerView("11223 Laurel Ave, Whittier, CA 90605, USA");
+                String searchForThis = query;
+                onedriver fragObj = (onedriver) getSupportFragmentManager().findFragmentById(R.id.TheFragmentHolderDriver);
+                fragObj.retrieveFormalAddress(searchForThis);//("11223 Laurel Ave, Whittier, CA 90605, USA");
                 return false;
             }
 
@@ -200,6 +200,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 final Dialog dialog = new Dialog(TheDriverActivity.this);
                 dialog.setContentView(R.layout.custom_dialog);
                 dialog.show();
+
                 dialog.findViewById(R.id.dialogCancel).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -209,7 +210,6 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 dialog.findViewById(R.id.dialogApply).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(TheDriverActivity.this, "It works!", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                 });

@@ -141,7 +141,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
         return view;
     }
 
-    /*public void retrieveFormalAddress() {
+    public void retrieveFormalAddress(String searchString) {
         if (searchString.matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
             Toast.makeText(getContext(), "Please in all fields.", Toast.LENGTH_SHORT).show();
         } else {
@@ -156,7 +156,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String formal_address = jsonObject.getString("formatted_address");
 
-                        //searchFirebaseAndPopulateRecyclerView(formal_address);
+                        searchFirebaseAndPopulateRecyclerView(formal_address);
 
                     } catch (Exception e) {
                         Log.i("VolleyError", e.getLocalizedMessage());
@@ -170,9 +170,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             });
             queue.add(stringRequest);
         }
-    }*/
+    }
 
-   /* public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
+    public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
         spotObjects = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -184,12 +184,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         String spotRate = spot.getRate();
                         String spotDate = spot.getDate();
                         String spotCity = spot.getDrivewayLocation().split(" ")[3]; //Whittier,
-                        //if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) < Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
-                        spotObjects.add(spot);
-                        spotObjects.add(spot);
-                        spotObjects.add(spot);
-                        spotObjects.add(spot);
-                        //}
+                        if (formal_address.contains(spotCity) && (Integer.valueOf(spotRate) <= Integer.valueOf(rate.getText().toString())) && date.getText().toString().matches(spotDate)) {
+                            spotObjects.add(spot);
+                        }
                     }
                 }
                 oneDriverAdapter = new OneDriverAdapter(getContext(), spotObjects);
@@ -201,7 +198,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }*/
+    }
 
     public void dialogCalendar() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));

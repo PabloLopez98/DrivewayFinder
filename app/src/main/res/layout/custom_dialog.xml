@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <CalendarView
+            android:id="@+id/dialogCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -32,6 +33,7 @@
                 android:textColor="@android:color/black" />
 
             <EditText
+                android:id="@+id/dialogInput"
                 android:gravity="center"
                 android:layout_marginEnd="16dp"
                 android:hint="17"

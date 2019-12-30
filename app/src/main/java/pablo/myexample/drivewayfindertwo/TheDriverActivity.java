@@ -158,8 +158,10 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 //date is never empty, just check the input rate
                 if (rate.matches("")) {
                     rate = "100";
+                    fragObj.retrieveFormalAddress(searchForThis, date, rate);//("11223 Laurel Ave, Whittier, CA 90605, USA");
+                } else {
+                    fragObj.retrieveFormalAddress(searchForThis, date, rate);
                 }
-                fragObj.retrieveFormalAddress(searchForThis, date, rate);//("11223 Laurel Ave, Whittier, CA 90605, USA");
                 return false;
             }
 

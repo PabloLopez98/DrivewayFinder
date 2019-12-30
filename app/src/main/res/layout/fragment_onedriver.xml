@@ -6,92 +6,123 @@
     android:background="@color/colorPrimary"
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
+<!--    <LinearLayout
+        android:id="@+id/emptyFragHintDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_24px"
+            android:tint="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Searches"
+            android:textColor="@android:color/darker_gray"
+            android:textStyle="bold" />
+
+    </LinearLayout>-->
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="vertical">
 
-       <!-- <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorStatusBar" />-->
-        <!--
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/rounded_edittextthree"
-                    android:gravity="center">
+        <!-- <View
+             android:layout_width="match_parent"
+             android:layout_height="4dp"
+             android:background="@color/colorStatusBar" />-->
 
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/searchB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/SearchViewTheme"
-                        app:searchIcon="@drawable/ic_search_24px"
-                        app:queryHint="City or Zip Code"
-                        app:closeIcon="@drawable/ic_close_black_24dp"
-                        app:iconifiedByDefault="false"
-                        app:queryBackground="@android:color/transparent"
-                        />
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="8dp"
+             android:layout_marginStart="26dp"
+             android:layout_marginEnd="26dp"
+             android:layout_marginBottom="8dp"
+             android:background="@drawable/rounded_edittextthree"
+             android:gravity="center">
 
-                </LinearLayout>-->
+             <androidx.appcompat.widget.SearchView
+                 android:id="@+id/searchB"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:theme="@style/SearchViewTheme"
+                 app:searchIcon="@drawable/ic_search_24px"
+                 app:queryHint="City or Zip Code"
+                 app:closeIcon="@drawable/ic_close_black_24dp"
+                 app:iconifiedByDefault="false"
+                 app:queryBackground="@android:color/transparent"
+                 />
+
+         </LinearLayout>-->
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/linLayOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="start"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingRight="8dp"
-                android:text="Under $:"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/rate"
-                android:layout_width="45dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/rounded_edittexttwo"
-                android:ems="10"
-                android:gravity="center"
-                android:inputType="number"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimary"
-                android:theme="@style/SearchViewTheme" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingRight="8dp"
-                android:text="Date:"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+            android:padding="8dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/rounded_edittexttwo"
+                android:background="@drawable/rounded_edittextforfilter"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sort_24px"
+                    android:tint="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:text="Most Expensive"
+                    android:tint="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/rate"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:theme="@style/SearchViewTheme" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittextforfilter"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="8dp"
@@ -104,17 +135,32 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="YYYY MM DD"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/black"
+                    />
 
             </LinearLayout>
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_edittextforfilter"
+                android:text="Reset"
+                android:textColor="@android:color/black" />
+
         </LinearLayout>
 
-       <!-- <View
+        <View
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorStatusBar" />-->
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentonerecyclerview"

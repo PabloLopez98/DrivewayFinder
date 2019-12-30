@@ -87,8 +87,16 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
     }
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem item = menu.findItem(R.id.driverLogout);
+        if (item != null) item.setVisible(false);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -118,7 +126,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
 */
         /* ******************************************************************************************** */
 
-        rate = view.findViewById(R.id.rate);
+     /*   rate = view.findViewById(R.id.rate);
         date = view.findViewById(R.id.date);
         recyclerView = view.findViewById(R.id.fragmentonerecyclerview);
         recyclerView.setHasFixedSize(true);
@@ -129,11 +137,11 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             public void onClick(View v) {
                 dialogCalendar();
             }
-        });
+        });*/
         return view;
     }
 
-    public void retrieveFormalAddress() {
+    /*public void retrieveFormalAddress() {
         if (searchString.matches("") || rate.getText().toString().matches("") || date.getText().toString().matches("")) {
             Toast.makeText(getContext(), "Please in all fields.", Toast.LENGTH_SHORT).show();
         } else {
@@ -162,9 +170,9 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             });
             queue.add(stringRequest);
         }
-    }
+    }*/
 
-    public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
+   /* public void searchFirebaseAndPopulateRecyclerView(final String formal_address) {
         spotObjects = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -193,7 +201,7 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
+    }*/
 
     public void dialogCalendar() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));

@@ -1,5 +1,6 @@
 package pablo.myexample.drivewayfindertwo;
 
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -48,6 +49,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -193,6 +195,24 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                     }
                 });
                 alertDialog.show();
+                return true;
+            case R.id.filterSearch:
+                final Dialog dialog = new Dialog(TheDriverActivity.this);
+                dialog.setContentView(R.layout.custom_dialog);
+                dialog.show();
+                dialog.findViewById(R.id.dialogCancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.findViewById(R.id.dialogApply).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(TheDriverActivity.this, "It works!", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                });
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

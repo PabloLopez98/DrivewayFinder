@@ -133,7 +133,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
     public void addDate(final View view) {
 
         if (chosenDate.matches("") || rate.getText().toString().matches("") || timeSlots.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
+            //do nothing
         } else {
 
             String[] stringChunk = ownerProfileObject.getDrivewayLocation().split(" ");
@@ -146,7 +146,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //date already exists
                     if (dataSnapshot.exists()) {
-                        Toast.makeText(getApplicationContext(), "The chosen date is already in place!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.rootAddDate), "The chosen date is already used!", Snackbar.LENGTH_LONG).show();
                     }
                     //date doesn't exists, so add it
                     else {
@@ -190,6 +190,13 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         displayInfo();
+
+        Calendar instance = Calendar.getInstance();
+        String d = String.valueOf(instance.get(Calendar.DAY_OF_MONTH));
+        String m = String.valueOf(instance.get(Calendar.MONTH) + 1);
+        String y = String.valueOf(instance.get(Calendar.YEAR));
+
+        chosenDate = y + " " + m + " " + d;
 
         CalendarView calendarView = findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -239,7 +246,7 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
                 }
                 myRecyclerViewAdapter.notifyDataSetChanged();
             } catch (NumberFormatException e) {
-                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                //do nothing
             }
         }
     }

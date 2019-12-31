@@ -97,6 +97,16 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
                     adapter.setClickListener(one.this);
                     recyclerView.setAdapter(adapter);
 
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
+
+                } else {
+
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
+
                 }
             }
 
@@ -105,9 +115,7 @@ public class one extends Fragment implements MyRecyclerViewAdapter.ItemClickList
             }
         });
 
-        //hide progress circle, show layout
-        view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
+
     }
 
 }

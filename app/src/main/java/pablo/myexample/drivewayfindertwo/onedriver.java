@@ -35,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -161,13 +162,13 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         searchFirebaseAndPopulateRecyclerView(formal_address, date, rate);
 
                     } catch (Exception e) {
-                        Log.i("VolleyError", e.getLocalizedMessage());
+                        //do nothing
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(), "Please Try Again.", Toast.LENGTH_SHORT).show();
+                    //do nothing
                 }
             });
             queue.add(stringRequest);

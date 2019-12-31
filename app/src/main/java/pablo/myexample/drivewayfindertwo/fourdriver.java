@@ -128,10 +128,16 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
                     recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
                 } else {
                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
                     recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+                    //hide progress circle, show layout
+                    view.findViewById(R.id.fragonecircle).setVisibility(View.INVISIBLE);
+                    view.findViewById(R.id.fragonelayout).setVisibility(View.VISIBLE);
                 }
             }
 
@@ -144,6 +150,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         //hide progress circle, show layout
         view.findViewById(R.id.theCircleInFragFour).setVisibility(View.INVISIBLE);
         view.findViewById(R.id.recyclerViewForFour).setVisibility(View.VISIBLE);
+
     }
 
 }

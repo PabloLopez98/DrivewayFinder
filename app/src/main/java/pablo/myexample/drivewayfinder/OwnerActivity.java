@@ -123,6 +123,7 @@ public class OwnerActivity extends AppCompatActivity implements TransferObjectIn
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
 
                         //set FCM TOKEN TO 'NA'

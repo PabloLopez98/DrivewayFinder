@@ -21,7 +21,10 @@ public class Service extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        showNotification(getApplicationContext(), "nTitle", "nBody");
+
+        String title = remoteMessage.getData().get("title");
+        String body = remoteMessage.getData().get("text");
+        showNotification(getApplicationContext(), title, body);
     }
 
     private void showNotification(Context context, String title, String body) {

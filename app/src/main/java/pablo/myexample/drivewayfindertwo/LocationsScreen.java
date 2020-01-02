@@ -75,15 +75,63 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
-        boolean theYear = year >= Integer.parseInt(reservationInfo.getDate().substring(0, 4));
-        boolean theMonth = month >= Integer.parseInt(reservationInfo.getDate().substring(5, 7));
+
+        int theYear = Integer.parseInt(reservationInfo.getDate().substring(0, 4));
+        int theMonth = Integer.parseInt(reservationInfo.getDate().substring(5, 7));
+        int theDay = Integer.parseInt(reservationInfo.getDate().substring(8, 10));
+
+       /* boolean theYear = year >= Integer.parseInt(reservationInfo.getDate().substring(0, 4));
+        boolean theMonth = month >= Integer.parseInt(reservationInfo.getDate().substring(5, 7));*/
 
         DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(reservationInfo.getTimeSlot().substring(11, 19), dtf);
 
-        if (theMonth && theYear) {
+        if (year <= theYear) {
+            if (month < theMonth) {
+                toDetailsOfReservation.putExtra("ownerId", reservationInfo.getOwnerId());
+                toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
+                toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
+                toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
+                toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
+                toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
+                toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
+                toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
+                startActivity(toDetailsOfReservation);
+            } else if (month == theMonth) {
+                if (day < theDay) {
+                    String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                    deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+                } else if (day == theDay) {
+                    if (currentT.isBefore(endT)) {
+                        toDetailsOfReservation.putExtra("ownerId", reservationInfo.getOwnerId());
+                        toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
+                        toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
+                        toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
+                        toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
+                        toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
+                        toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
+                        toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
+                        startActivity(toDetailsOfReservation);
+                    } else {
+                        String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                        deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+                    }
+                } else {
+                    String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                    deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+                }
+            } else {
+                String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+                deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+            }
+        } else {
+            String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
+            deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+        }
+
+      /*  if (theMonth && theYear) {
             if (currentT.isAfter(endT) && (Integer.parseInt(reservationInfo.getDate().substring(8, 10)) == day)) {
                 String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
                 deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
@@ -107,7 +155,7 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
             toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
             startActivity(toDetailsOfReservation);
 
-        }
+        }*/
 
     }
 

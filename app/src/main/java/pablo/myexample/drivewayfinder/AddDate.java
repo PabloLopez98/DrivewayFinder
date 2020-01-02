@@ -196,14 +196,36 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
         String m = String.valueOf(instance.get(Calendar.MONTH) + 1);
         String y = String.valueOf(instance.get(Calendar.YEAR));
 
+        if (Integer.parseInt(m) < 10) {
+            m = "0" + m;
+        }
+
+        if (Integer.parseInt(d) < 10) {
+            d = "0" + d;
+        }
+
         chosenDate = y + " " + m + " " + d;
 
         CalendarView calendarView = findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                String m = "0";
+                String d = "0";
+
                 int newMonth = month + 1;
-                chosenDate = year + " " + newMonth + " " + dayOfMonth;
+
+                if (newMonth < 10) {
+                    m = m + newMonth;
+                }
+
+                if (dayOfMonth < 10) {
+                    d = d + dayOfMonth;
+                }
+
+                chosenDate = year + " " + m + " " + d;
+
             }
         });
 

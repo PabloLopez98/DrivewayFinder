@@ -45,6 +45,7 @@ import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
 public class DateDetails extends AppCompatActivity implements CardDetailsRecyclerView.ItemClickListener, CardDetailsRecyclerViewTwo.ItemClickListener {
 
+    private static String LOG_TAG = DateDetails.class.getSimpleName();
     private CardDetailsRecyclerView adapter;
     private CardDetailsRecyclerViewTwo adapterTwo;
     private TextView location, rate, date, name, isActive, phone;
@@ -295,25 +296,51 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        Log.i("checkEndT", String.valueOf(year));
         int month = c.get(Calendar.MONTH) + 1;
-        Log.i("checkEndT", String.valueOf(month));
         int day = c.get(Calendar.DAY_OF_MONTH);
-        Log.i("checkEndT", String.valueOf(day));
-        boolean theYear = (year >= Integer.parseInt(date.getText().toString().substring(0, 4)));
-        Log.i("checkEndT", String.valueOf(theYear));
-        boolean theMonth = (month >= Integer.parseInt(date.getText().toString().substring(5, 7)));
-        Log.i("checkEndT", String.valueOf(theMonth));
+        int theYear = Integer.parseInt(date.getText().toString().substring(0, 4));
+        int theMonth = Integer.parseInt(date.getText().toString().substring(5, 7));
+        int theDay = Integer.parseInt(date.getText().toString().substring(8, 10));
 
         DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
         LocalTime currentT = LocalTime.parse(currentTime, dtf);
         LocalTime endT = LocalTime.parse(cardDetailsRecyclerViewObject.getTime().substring(11, 19), dtf);
 
-        Log.i("checkEndT", String.valueOf(endT));
+        if (year <= theYear) {
+            if (month < theMonth) {
+                intentTo.putExtra("requested", "no");
+                intentTo.putExtra("date", date.getText().toString());
+                intentTo.putExtra("time", appointmentRows.get(position).getTime());
+                startActivity(intentTo);
+            } else if (month == theMonth) {
+                if (day < theDay) {
+                    String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                    deleteOldAppointment(timeSlot, position);
+                } else if (day == theDay) {
+                    if (currentT.isBefore(endT)) {
+                        intentTo.putExtra("requested", "no");
+                        intentTo.putExtra("date", date.getText().toString());
+                        intentTo.putExtra("time", appointmentRows.get(position).getTime());
+                        startActivity(intentTo);
+                    } else {
+                        String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                        deleteOldAppointment(timeSlot, position);
+                    }
+                } else {
+                    String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                    deleteOldAppointment(timeSlot, position);
+                }
+            } else {
+                String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+                deleteOldAppointment(timeSlot, position);
+            }
+        } else {
+            String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
+            deleteOldAppointment(timeSlot, position);
+        }
 
-        //if on or after appointment date
-        if (theMonth && theYear) {
+      /*  if (theMonth && theYear) {
             //if current date is same day as appointment and after appt time
             if (currentT.isAfter(endT) && (Integer.parseInt(date.getText().toString().substring(8, 10)) == day)) {
                 String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
@@ -333,7 +360,7 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
             intentTo.putExtra("time", appointmentRows.get(position).getTime());
             startActivity(intentTo);
 
-        }
+        }*/
 
     }
 

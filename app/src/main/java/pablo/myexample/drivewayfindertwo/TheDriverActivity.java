@@ -136,6 +136,15 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         String y = String.valueOf(instance.get(Calendar.YEAR));
         String d = String.valueOf(instance.get(Calendar.DAY_OF_MONTH));
         rate = "100";
+
+        if (Integer.parseInt(m) < 10) {
+            m = "0" + m;
+        }
+
+        if (Integer.parseInt(d) < 10) {
+            d = "0" + d;
+        }
+
         date = y + " " + m + " " + d;
         switchToFragmentDriverOne();
     }
@@ -188,7 +197,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.container), "Logging Out", Snackbar.LENGTH_INDEFINITE).show();
 
                         //set FCM TOKEN TO 'NA'
                         String driverId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -223,7 +232,19 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                     @Override
                     public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                         int newMonth = month + 1;
-                        date = year + " " + newMonth + " " + dayOfMonth;
+
+                        String m = "0";
+                        String d = "0";
+
+                        if (newMonth < 10) {
+                            m = m + newMonth;
+                        }
+
+                        if (dayOfMonth < 10) {
+                            d = d + dayOfMonth;
+                        }
+
+                        date = year + " " + m + " " + d;
                     }
                 });
                 dialog.findViewById(R.id.dialogCancel).setOnClickListener(new View.OnClickListener() {

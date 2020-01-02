@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Driver;
@@ -62,7 +63,19 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
         rate = findViewById(R.id.iconClickRate);
         rate.setText(intent.getStringExtra("rate"));
         imageView = findViewById(R.id.iconClickImage);
-        Picasso.get().load(intent.getStringExtra("url")).into(imageView);
+        Picasso.get().load(intent.getStringExtra("url")).into(imageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                //hide progress circle, show layout
+                findViewById(R.id.iconclickcircle).setVisibility(View.INVISIBLE);
+                findViewById(R.id.scrollviewroot).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
 
         retrieveTimeSlotsFromFirebase();
 

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         routeChooser(firebaseAuth.getCurrentUser().getUid());
                     } else {
-                        Snackbar.make(findViewById(R.id.theMainLayout), "Error, Please Try Again", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.theMainLayout), "Error, Please Try Again", Snackbar.LENGTH_INDEFINITE).show();
                     }
                 }
             });

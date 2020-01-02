@@ -24,7 +24,7 @@ import pablo.myexample.drivewayfindertwo.TheDriverActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPASH_TIME_OUT = 2000;
+    //private static int SPASH_TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +64,17 @@ public class SplashScreen extends AppCompatActivity {
 
             } else {
 
-                new Handler().postDelayed(new Runnable() {
+               /* new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(toMain);
-                        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
-                        finish();
-                    }
-                }, SPASH_TIME_OUT);
-
+                    public void run() {*/
+                Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(toMain);
+                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
+                finish();
             }
+            //}, SPASH_TIME_OUT);
+
+            //}
 
         } else {
 

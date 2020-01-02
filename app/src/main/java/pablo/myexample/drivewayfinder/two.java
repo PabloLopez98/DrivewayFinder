@@ -75,7 +75,17 @@ public class two extends Fragment {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM").withLocale(Locale.ENGLISH);
         TemporalAccessor temporalAccessor = dateTimeFormatter.parse(strings[1]);
         String month = String.valueOf(temporalAccessor.get(ChronoField.MONTH_OF_YEAR));
+
+        /*if (Integer.parseInt(day) < 10) {
+            day = "0" + day;
+        }*/
+
+        if (Integer.parseInt(month) < 10) {
+            month = "0" + month;
+        }
+
         String currentDate = year + " " + month + " " + day;
+        Log.i("currentDate", currentDate);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Appointments").child(currentDate);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

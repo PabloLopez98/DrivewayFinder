@@ -29,18 +29,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
-                android:text="Maximum dollars($) per hour:"
+                android:text="@string/maximum_dollars_per_hour"
                 android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/dialogInput"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"
-                android:hint="17"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/rounded_edittexforcardviewone"
                 android:ems="10"
+                android:gravity="center"
+                android:hint="@string/_17"
                 android:singleLine="true"
                 android:textColor="@android:color/black" />
 
@@ -56,19 +56,19 @@
 
             <TextView
                 android:id="@+id/dialogCancel"
-                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Cancel"
+                android:clickable="true"
+                android:text="@string/cancel"
                 android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/dialogApply"
-                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apply"
+                android:clickable="true"
+                android:text="@string/apply"
                 android:textColor="@color/colorAccent" />
 
         </LinearLayout>

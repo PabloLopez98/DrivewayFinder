@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/datedetailsrootlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:paddingLeft="26dp"
     android:paddingTop="20dp"
-    android:id="@+id/datedetailsrootlayout"
     android:paddingRight="26dp"
     android:paddingBottom="20dp"
     tools:context=".DateDetails">
@@ -49,10 +49,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:maxWidth="350dp"
-                android:maxHeight="350dp"
                 android:background="@android:drawable/gallery_thumb"
                 android:backgroundTint="@color/colorAccent"
+                android:maxWidth="350dp"
+                android:maxHeight="350dp"
                 android:padding="8dp" />
 
             <LinearLayout
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Location"
+                    android:text="@string/location"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="$15/hr"
+                    android:text="@string/_15_hr"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Date"
+                    android:text="@string/date"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Owner Name"
+                    android:text="@string/owner_name"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -170,37 +170,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Phone Number"
+                    android:text="@string/phone_number"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
             </LinearLayout>
-
-            <!--  <LinearLayout
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:gravity="center"
-                  android:orientation="horizontal">
-
-                  <ImageView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:src="@drawable/ic_account_circle_24px"
-                      android:tint="@color/colorAccent" />
-
-                  <TextView
-                      android:id="@+id/dateDetailsIsActive"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="center"
-                      android:padding="8dp"
-                      android:text="No"
-                      android:textColor="@android:color/black"
-                      android:textStyle="bold" />
-
-            </LinearLayout>
-
-            -->
 
             <View
                 android:layout_width="match_parent"
@@ -213,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Appointments"
+                android:text="@string/appointments"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -234,7 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Requested Appointments"
+                android:text="@string/requested_appointments"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -253,7 +227,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Time slots available"
+                android:text="@string/time_slots_available"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 

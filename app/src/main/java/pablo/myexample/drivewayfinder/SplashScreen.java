@@ -22,87 +22,64 @@ import com.google.firebase.database.ValueEventListener;
 
 import pablo.myexample.drivewayfindertwo.TheDriverActivity;
 
-public class SplashScreen extends AppCompatActivity {
 
-    //private static int SPASH_TIME_OUT = 1500;
+/*
+Summary:
+
+SplashScreen.java represents the opening splash screen.
+First, it checks if there is a network connection.
+Second, it checks if a user is signed in and routes the user to the correct screen.
+ */
+
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-       /* new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(toMain);
-                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
-                finish();
-            }
-        }, SPASH_TIME_OUT);*/
-
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        if (isNetworkAvailable()) {
+        if (isNetworkAvailable()) {//if phone is connected to internet
 
             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser != null) {//if user is signed in
 
-            if (firebaseUser != null) {
-
-                //too slow, will see splash screen
                 routeChooser(firebaseUser.getUid());
+            } else {//else, send to sign in screen
 
-            } else {
-
-               /* new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {*/
                 Intent toMain = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(toMain);
                 overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
                 finish();
             }
-            //}, SPASH_TIME_OUT);
-
-            //}
-
         } else {
 
-            Snackbar.make(findViewById(R.id.splashLayout), "No Internet Connection", Snackbar.LENGTH_LONG).show();
-
+            Snackbar.make(findViewById(R.id.splashLayout), "No Internet Connection", Snackbar.LENGTH_INDEFINITE).show();
         }
-
     }
 
     public void routeChooser(String id) {
+
         DatabaseReference ownerRef = FirebaseDatabase.getInstance().getReference().child("Owners").child(id);
+
         ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    //send to owner activity
-                   /* Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
-                    startActivity(intent);*/
-                    Intent toMain = new Intent(getApplicationContext(), OwnerActivity.class);
-                    startActivity(toMain);
+
+                if (dataSnapshot.exists()) {//if id exists under owners, send to owner activity
+
+                    Intent toOwner = new Intent(getApplicationContext(), OwnerActivity.class);
+                    startActivity(toOwner);
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
                     finish();
-                } else {
-                    //send to driver activity
-                   /* Intent intent = new Intent(getApplicationContext(), TheDriverActivity.class);
-                    startActivity(intent);*/
-                    Intent toMain = new Intent(getApplicationContext(), TheDriverActivity.class);
-                    startActivity(toMain);
+                } else {//send to driver activity
+
+                    Intent toDriver = new Intent(getApplicationContext(), TheDriverActivity.class);
+                    startActivity(toDriver);
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
                     finish();
                 }
@@ -112,6 +89,14 @@ public class SplashScreen extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

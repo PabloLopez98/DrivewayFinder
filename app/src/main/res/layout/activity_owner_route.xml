@@ -2,11 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ownerRouteScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:scrollbars="none"
-    android:id="@+id/ownerRouteScrollView"
     tools:context=".OwnerRoute">
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Select an image for your driveway"
+            android:text="@string/select_an_image_for_your_driveway"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Street Address"
+            android:text="@string/street_address"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="12345 Street Ave"
+            android:hint="@string/_12345_street_ave"
             android:inputType="textPostalAddress"
             android:padding="8dp"
             android:singleLine="true"
@@ -69,7 +69,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="City"
+            android:text="@string/city"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="Fresno"
+            android:hint="@string/fresno"
             android:inputType="textPostalAddress"
             android:padding="8dp"
             android:singleLine="true"
@@ -92,7 +92,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="State"
+            android:text="@string/state"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -103,7 +103,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="CA"
+            android:hint="@string/ca"
             android:inputType="textPostalAddress"
             android:padding="8dp"
             android:singleLine="true"
@@ -120,7 +120,7 @@
             android:gravity="center"
             android:onClick="validateAddress"
             android:padding="8dp"
-            android:text="Verify Address"
+            android:text="@string/verify_address"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -134,7 +134,7 @@
             android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Verified location will be shown here."
+            android:text="@string/verified_location_will_be_shown_here"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -144,7 +144,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
             android:ems="10"
-            android:hint="bobjones@gmail.com"
+            android:hint="@string/bobjones_gmail_com"
             android:inputType="textEmailAddress"
             android:padding="8dp"
             android:singleLine="true"
@@ -168,7 +168,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Password"
+            android:text="@string/password"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 
@@ -179,7 +179,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="Password"
+            android:hint="@string/password"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@android:color/black" />
@@ -190,7 +190,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Full Name"
+            android:text="@string/full_name"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 
@@ -201,7 +201,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="Bob Jones"
+            android:hint="@string/bob_jones"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@android:color/black" />
@@ -212,7 +212,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:padding="8dp"
-            android:text="Phone Number"
+            android:text="@string/phone_number"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 
@@ -223,7 +223,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/rounded_edittext"
-            android:hint="1234567890"
+            android:hint="@string/_1234567890"
             android:inputType="phone"
             android:padding="8dp"
             android:singleLine="true"
@@ -240,7 +240,7 @@
             android:background="@drawable/rounded_edittext"
             android:onClick="finish"
             android:padding="8dp"
-            android:text="Finish"
+            android:text="@string/finish"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 

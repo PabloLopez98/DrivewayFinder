@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Located at: "
+                    android:text="@string/located_at"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="104dp"
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="My Name: "
+                    android:text="@string/my_name"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="104dp"
@@ -131,19 +131,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="My Phone Number: "
+                    android:text="@string/my_phone_number"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="104dp"
                     tools:layout_editor_absoluteY="433dp" />
 
             </LinearLayout>
-
-            <!--  <View
-                  android:layout_width="match_parent"
-                  android:layout_height="1dp"
-                  android:background="@color/colorAccent"
-                  />-->
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -156,12 +150,6 @@
                 android:background="@drawable/rounded_edittext"
                 tools:layout_editor_absoluteX="31dp"
                 tools:layout_editor_absoluteY="32dp" />
-
-            <!--   <View
-                   android:layout_width="match_parent"
-                   android:layout_height="1dp"
-                   android:background="@color/colorAccent"
-                   />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -180,7 +168,7 @@
                     android:layout_weight=".10"
                     android:gravity="end"
                     android:padding="8dp"
-                    android:text="$"
+                    android:text="@string/money_symbol"
                     android:textColor="@android:color/background_dark"
                     android:textStyle="bold" />
 
@@ -191,7 +179,7 @@
                     android:layout_weight=".20"
                     android:background="@drawable/rounded_edittext"
                     android:gravity="center_horizontal"
-                    android:hint="15"
+                    android:hint="@string/_15"
                     android:inputType="number"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
@@ -204,17 +192,11 @@
                     android:layout_weight=".10"
                     android:gravity="start"
                     android:padding="8dp"
-                    android:text="/Hr"
+                    android:text="@string/hr"
                     android:textColor="@android:color/background_dark"
                     android:textStyle="bold" />
 
             </LinearLayout>
-
-            <!-- <View
-                 android:layout_width="match_parent"
-                 android:layout_height="1dp"
-                 android:background="@color/colorAccent"
-                 />-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -232,14 +214,14 @@
                     android:background="@drawable/rounded_edittext"
                     android:onClick="showTimePicker"
                     android:padding="8dp"
-                    android:text="00:00 AM"
+                    android:text="@string/_00_00_am"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" - "
+                    android:text="@string/dash"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -250,17 +232,11 @@
                     android:background="@drawable/rounded_edittext"
                     android:onClick="showTimePicker"
                     android:padding="8dp"
-                    android:text="00:00 PM"
+                    android:text="@string/_00_00_pm"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
             </LinearLayout>
-
-            <!--  <View
-                  android:layout_width="match_parent"
-                  android:layout_height="1dp"
-                  android:background="@color/colorAccent"
-                  />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Divide time into "
+                    android:text="@string/divide_time_into"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -285,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
-                    android:hint="60"
+                    android:hint="@string/_60"
                     android:inputType="number"
                     android:padding="8dp"
                     android:textColor="@android:color/black" />
@@ -294,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text=" minute intervals"
+                    android:text="@string/minute_intervals"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -308,7 +284,7 @@
                 android:background="@drawable/rounded_edittext"
                 android:onClick="divideTime"
                 android:padding="8dp"
-                android:text="Create Time"
+                android:text="@string/create_time"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -332,7 +308,7 @@
                 android:background="@drawable/rounded_edittext"
                 android:onClick="addDate"
                 android:padding="8dp"
-                android:text="Finish"
+                android:text="@string/finish"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 

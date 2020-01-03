@@ -10,19 +10,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="visible"
-        />
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/fragThreeDriverLayout"
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Full Name"
+                android:text="@string/full_name"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -52,8 +51,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -68,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -77,8 +76,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -94,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Car Model"
+                android:text="@string/car_model"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -103,8 +102,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -120,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="License Plate"
+                android:text="@string/license_plate"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
@@ -130,13 +129,13 @@
             android:id="@+id/editDriverProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_edittext"
             android:onClick="toEditProfileDriver"
             android:padding="8dp"
-            android:text="Edit"
+            android:text="@string/edit"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 

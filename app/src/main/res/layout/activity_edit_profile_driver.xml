@@ -2,115 +2,114 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editprofiledriverroot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:id="@+id/editprofiledriverroot"
     tools:context="pablo.myexample.drivewayfindertwo.EditProfileDriver">
 
     <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="26dp"
         android:padding="8dp"
-        android:text="Current Name:"
+        android:text="@string/current_name"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/newName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="Bob Jones"
+        android:hint="@string/bob_jones"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:padding="8dp"
-        android:text="Current Phone Number:"
+        android:text="@string/current_phone_number"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/newPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="1234653787"
+        android:hint="@string/_1234653787"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisplayCarModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:padding="8dp"
-        android:text="Current Car Model:"
+        android:text="@string/current_car_model"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/newCarModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="Honda Accord"
+        android:hint="@string/honda_accord"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/profileDisiplayPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:padding="8dp"
-        android:text="Current License Plate:"
+        android:text="@string/current_license_plate"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/newPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="5JW232"
+        android:hint="@string/_5jw232"
         android:padding="8dp"
         android:textColor="@android:color/black" />
 
     <Button
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/rounded_edittext"
         android:onClick="editProfileDriverConfirm"
         android:padding="8dp"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
-
 
 </LinearLayout>

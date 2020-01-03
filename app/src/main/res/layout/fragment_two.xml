@@ -16,35 +16,34 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:outlineSpotShadowColor="@color/colorAccent"
-        android:visibility="visible"
-        />
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/fragtwolayout"
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/textView"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:padding="8dp"
-            android:text="Time Remaining"
+            android:text="@string/time_remaining"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="126dp" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/twoTimeRemaining"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:hint="00 : 00 : 00"
+            android:gravity="center"
+            android:hint="@string/_00_00_00"
             android:padding="8dp"
             android:textColor="@android:color/black"
             android:textSize="50sp"
@@ -71,11 +70,10 @@
                 android:id="@+id/twoDrivewayLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Driveway Location"
+                android:hint="@string/driveway_location"
                 android:padding="8dp"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
 
@@ -99,7 +97,7 @@
                 android:id="@+id/twoDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Date"
+                android:hint="@string/date"
                 android:padding="8dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -128,7 +126,7 @@
                 android:id="@+id/twoClientName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Client Name"
+                android:hint="@string/client_name"
                 android:padding="8dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -156,7 +154,7 @@
                 android:id="@+id/twoPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Client Phone Number"
+                android:hint="@string/client_phone_number"
                 android:padding="8dp"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
@@ -185,7 +183,7 @@
                 android:id="@+id/twoTimeStartEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Arrive - Leave"
+                android:hint="@string/arrive_leave"
                 android:padding="8dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"

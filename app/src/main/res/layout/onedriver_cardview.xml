@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true"
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp"
-    >
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +48,7 @@
                     android:id="@+id/locationAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11223 Laurel Ave, Whittier CA 90605, USA"
+                    android:text="@string/_11223_laurel_ave_whittier_ca_90605_usa"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 
@@ -74,7 +73,7 @@
                     android:id="@+id/locationRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15"
+                    android:text="@string/_15"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 
@@ -99,7 +98,7 @@
                     android:id="@+id/locationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2019 10 12"
+                    android:text="@string/_2019_10_12"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold" />
 

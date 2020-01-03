@@ -101,8 +101,15 @@ public class LocationsScreen extends AppCompatActivity implements MyRecyclerView
                 startActivity(toDetailsOfReservation);
             } else if (month == theMonth) {
                 if (day < theDay) {
-                    String timeSlot = String.valueOf(reservationInfo.getTimeSlot());
-                    deleteOldAppointmentDriver(timeSlot, position, intent.getStringExtra("checkRequested"));
+                    toDetailsOfReservation.putExtra("ownerId", reservationInfo.getOwnerId());
+                    toDetailsOfReservation.putExtra("url", reservationInfo.getImageUrl());
+                    toDetailsOfReservation.putExtra("location", reservationInfo.getLocation());
+                    toDetailsOfReservation.putExtra("rate", reservationInfo.getRate());
+                    toDetailsOfReservation.putExtra("time", reservationInfo.getTimeSlot());
+                    toDetailsOfReservation.putExtra("date", reservationInfo.getDate());
+                    toDetailsOfReservation.putExtra("ownerName", reservationInfo.getOwnerName());
+                    toDetailsOfReservation.putExtra("ownerPhone", reservationInfo.getOwnerPhoneNumber());
+                    startActivity(toDetailsOfReservation);
                 } else if (day == theDay) {
                     if (currentT.isBefore(endT)) {
                         toDetailsOfReservation.putExtra("ownerId", reservationInfo.getOwnerId());

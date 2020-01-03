@@ -145,7 +145,11 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
             d = "0" + d;
         }
 
+        Log.i("checkTheDayOnCreate", d);
+
         date = y + " " + m + " " + d;
+        Log.i("checkTheDayAfter", d);
+
         switchToFragmentDriverOne();
     }
 
@@ -167,8 +171,10 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 //date is never empty, just check the input rate
                 if (rate.matches("")) {
                     rate = "100";
+                    Log.i("chechThisStuff", date + " " + rate);
                     fragObj.retrieveFormalAddress(searchForThis, date, rate);//("11223 Laurel Ave, Whittier, CA 90605, USA");
                 } else {
+                    Log.i("chechThisStuffAgain", date + " " + rate);
                     fragObj.retrieveFormalAddress(searchForThis, date, rate);
                 }
                 return false;
@@ -231,6 +237,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                 calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                     @Override
                     public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
                         int newMonth = month + 1;
 
                         String m = "0";
@@ -238,13 +245,19 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
                         if (newMonth < 10) {
                             m = m + newMonth;
+                        }else{
+                            m = String.valueOf(newMonth);
                         }
 
                         if (dayOfMonth < 10) {
                             d = d + dayOfMonth;
+                        }else{
+                            d = String.valueOf(dayOfMonth);
                         }
 
+                        Log.i("checkTheDay", d);
                         date = year + " " + m + " " + d;
+
                     }
                 });
                 dialog.findViewById(R.id.dialogCancel).setOnClickListener(new View.OnClickListener() {

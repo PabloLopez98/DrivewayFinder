@@ -315,8 +315,10 @@ public class DateDetails extends AppCompatActivity implements CardDetailsRecycle
                 startActivity(intentTo);
             } else if (month == theMonth) {
                 if (day < theDay) {
-                    String timeSlot = String.valueOf(appointmentRows.get(position).getTime());
-                    deleteOldAppointment(timeSlot, position);
+                    intentTo.putExtra("requested", "no");
+                    intentTo.putExtra("date", date.getText().toString());
+                    intentTo.putExtra("time", appointmentRows.get(position).getTime());
+                    startActivity(intentTo);
                 } else if (day == theDay) {
                     if (currentT.isBefore(endT)) {
                         intentTo.putExtra("requested", "no");

@@ -218,10 +218,14 @@ public class AddDate extends AppCompatActivity implements MyRecyclerViewAdapterF
 
                 if (newMonth < 10) {
                     m = m + newMonth;
+                } else {
+                    m = String.valueOf(month);
                 }
 
                 if (dayOfMonth < 10) {
                     d = d + dayOfMonth;
+                } else {
+                    d = String.valueOf(dayOfMonth);
                 }
 
                 chosenDate = year + " " + m + " " + d;

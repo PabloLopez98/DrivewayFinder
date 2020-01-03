@@ -157,8 +157,6 @@ public class onedriver extends Fragment implements OneDriverAdapter.ItemClickLis
                         JSONArray jsonArray = response.getJSONArray("results");
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         String formal_address = jsonObject.getString("formatted_address");
-                        Log.i("a", rate);
-                        Log.i("b", date);
                         searchFirebaseAndPopulateRecyclerView(formal_address, date, rate);
 
                     } catch (Exception e) {

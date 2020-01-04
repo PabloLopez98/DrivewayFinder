@@ -1,76 +1,44 @@
 package pablo.myexample.drivewayfindertwo;
 
 import android.app.Dialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.work.Constraints;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkInfo;
-import androidx.work.WorkManager;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import pablo.myexample.drivewayfinder.AddDate;
-import pablo.myexample.drivewayfinder.EditProfile;
 import pablo.myexample.drivewayfinder.MainActivity;
 import pablo.myexample.drivewayfinder.OwnerProfileObject;
 import pablo.myexample.drivewayfinder.R;
 import pablo.myexample.drivewayfinder.SpotObjectClass;
 import pablo.myexample.drivewayfinder.TransferObjectInterface;
-import pablo.myexample.drivewayfinder.one;
-import pablo.myexample.drivewayfinder.three;
-import pablo.myexample.drivewayfinder.two;
+
+
+/*
+Summary:
+
+TheDriverActivity.java represents the activity which holds all the fragments corresponding to drivers.
+ */
 
 public class TheDriverActivity extends AppCompatActivity implements TransferObjectInterface {
 
@@ -79,24 +47,28 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     private String rate, date;
 
     public void switchToFragmentDriverOne() {
+
         setTitle("Search For Parking");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new onedriver()).commit();
     }
 
     public void switchToFragmentDriverTwo() {
+
         setTitle("Activity");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new twodriver()).commit();
     }
 
     public void switchToFragmentDriverThree() {
+
         setTitle("Profile");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new threedriver()).commit();
     }
 
     public void switchToFragmentDriverFour() {
+
         setTitle("Scheduled");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.TheFragmentHolderDriver, new fourdriver()).commit();
@@ -105,7 +77,9 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
+
                 case R.id.navigation_home:
                     switchToFragmentDriverOne();
                     break;
@@ -119,6 +93,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                     switchToFragmentDriverFour();
                     break;
             }
+
             return true;
         }
     };
@@ -127,6 +102,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_driver);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -138,17 +114,16 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
         rate = "100";
 
         if (Integer.parseInt(m) < 10) {
+
             m = "0" + m;
         }
 
         if (Integer.parseInt(d) < 10) {
+
             d = "0" + d;
         }
 
-        Log.i("checkTheDayOnCreate", d);
-
         date = y + " " + m + " " + d;
-        Log.i("checkTheDayAfter", d);
 
         switchToFragmentDriverOne();
     }
@@ -156,41 +131,51 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.driverlogout, menu);
-
         MenuItem menuItem = menu.findItem(R.id.searchViewOption);
+
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setMaxWidth(android.R.attr.maxWidth);
         searchView.setQueryHint("Search By City...");
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 String searchForThis = query;
                 onedriver fragObj = (onedriver) getSupportFragmentManager().findFragmentById(R.id.TheFragmentHolderDriver);
+
                 //date is never empty, just check the input rate
                 if (rate.matches("")) {
+
                     rate = "100";
                     Log.i("chechThisStuff", date + " " + rate);
                     fragObj.retrieveFormalAddress(searchForThis, date, rate);//("11223 Laurel Ave, Whittier, CA 90605, USA");
                 } else {
-                    Log.i("chechThisStuffAgain", date + " " + rate);
+
                     fragObj.retrieveFormalAddress(searchForThis, date, rate);
                 }
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 return false;
             }
         });
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
+
             case R.id.driverLogout:
                 AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle("Logout?");
@@ -223,6 +208,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                                 }
                             }
                         };
+
                         thread.start();
                     }
                 });
@@ -244,18 +230,21 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
                         String d = "0";
 
                         if (newMonth < 10) {
+
                             m = m + newMonth;
-                        }else{
+                        } else {
+
                             m = String.valueOf(newMonth);
                         }
 
                         if (dayOfMonth < 10) {
+
                             d = d + dayOfMonth;
-                        }else{
+                        } else {
+
                             d = String.valueOf(dayOfMonth);
                         }
 
-                        Log.i("checkTheDay", d);
                         date = year + " " + m + " " + d;
 
                     }
@@ -281,6 +270,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     }
 
     public void toEditProfileDriver(View view) {
+
         Intent intent = new Intent(this, EditProfileDriver.class);
         intent.putExtra("name", driverProfileObject.getDriverName());
         intent.putExtra("phone", driverProfileObject.getDriverPhoneNumber());
@@ -290,6 +280,7 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
     }
 
     public void toIconClick() {
+
         Intent intent = new Intent(this, IconClick.class);
         intent.putExtra("date", spotObject.getDate());
         intent.putExtra("location", spotObject.getDrivewayLocation());
@@ -310,11 +301,13 @@ public class TheDriverActivity extends AppCompatActivity implements TransferObje
 
     @Override
     public void transferSpotObject(SpotObjectClass spotObject) {
+
         this.spotObject = spotObject;
     }
 
     @Override
     public void transferDriverProfileObject(DriverProfileObject driverProfileObject) {
+
         this.driverProfileObject = driverProfileObject;
     }
 }

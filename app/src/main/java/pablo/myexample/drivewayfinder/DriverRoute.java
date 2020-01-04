@@ -2,16 +2,11 @@ package pablo.myexample.drivewayfinder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,16 +20,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import pablo.myexample.drivewayfindertwo.DriverProfileObject;
 import pablo.myexample.drivewayfindertwo.TheDriverActivity;
 
+/*
+Summary:
+
+DriverRoute.java represents the screen where the user fills out the driver account info.
+ */
+
 public class DriverRoute extends AppCompatActivity {
 
-    EditText name, phone, plates, model, email, password;
+    private EditText name, phone, plates, model, email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_route);
-
-        setTitle("Fill Out Driver Info");
 
         name = findViewById(R.id.fullNameDriver);
         phone = findViewById(R.id.phoneNumberInputDriver);
@@ -42,24 +41,30 @@ public class DriverRoute extends AppCompatActivity {
         model = findViewById(R.id.carModelDriver);
         email = findViewById(R.id.emailDriver);
         password = findViewById(R.id.passWordDriver);
-
     }
 
     public void registerDriver(View view) {
+
         if (name.getText().toString().matches("") || phone.getText().toString().matches("") || plates.getText().toString().matches("") || model.getText().toString().matches("") || email.getText().toString().matches("") || password.getText().toString().matches("")) {
+
             Toast.makeText(getApplicationContext(), "Fill in all fields.", Toast.LENGTH_LONG).show();
         } else if (password.getText().toString().length() < 6) {
+
             Toast.makeText(getApplicationContext(), "Password must be at least 6 characters.", Toast.LENGTH_LONG).show();
         } else {
+
             createDriverAccount();
         }
     }
 
     public void createDriverAccount() {
+
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
 
                     String userId = firebaseAuth.getCurrentUser().getUid();
@@ -68,22 +73,27 @@ public class DriverRoute extends AppCompatActivity {
                     databaseReference.setValue(driverProfileObject);
 
                     Snackbar.make(findViewById(R.id.driverRouteRoot), "Successfully Created Account!", Snackbar.LENGTH_LONG).show();
+
                     final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
+
                             try {
+
                                 Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
                                 startActivity(intent);
                             } catch (Exception e) {
+
                                 e.printStackTrace();
                             }
                         }
                     };
-                    thread.start();
 
+                    thread.start();
                 } else {
+
                     Toast.makeText(getApplicationContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
                 }
             }

@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,11 +22,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Driver;
 import java.util.ArrayList;
 
 import pablo.myexample.drivewayfinder.MainActivity;
 import pablo.myexample.drivewayfinder.R;
+
+/*
+Summary:
+
+IconClick.java represents the activity where the driver sees the driveway of an owner and decides to request or not.
+ */
 
 public class IconClick extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -45,8 +47,6 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icon_click);
-
-        setTitle("Reservation Preview");
 
         intent = getIntent();
 
@@ -66,6 +66,7 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
         Picasso.get().load(intent.getStringExtra("url")).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
+
                 //hide progress circle, show layout
                 findViewById(R.id.iconclickcircle).setVisibility(View.INVISIBLE);
                 findViewById(R.id.scrollviewroot).setVisibility(View.VISIBLE);
@@ -73,12 +74,10 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
 
             @Override
             public void onError(Exception e) {
-
             }
         });
 
         retrieveTimeSlotsFromFirebase();
-
     }
 
     //fill spinner with time slots that are available
@@ -90,10 +89,15 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     for (DataSnapshot TimeSlot : dataSnapshot.getChildren()) {
+
                         String time = TimeSlot.getKey();
+
                         if (arrayList.contains(time)) {
+
                             arrayList.remove(time);
                         }
                     }
@@ -103,10 +107,15 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                 databaseReferenceTwo.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                         if (dataSnapshot.exists()) {
+
                             for (DataSnapshot TimeSlot : dataSnapshot.getChildren()) {
+
                                 String time = TimeSlot.getKey();
+
                                 if (arrayList.contains(time)) {
+
                                     arrayList.remove(time);
                                 }
                             }
@@ -117,19 +126,16 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(IconClick.this, android.R.layout.simple_spinner_item, arrayList);
                         spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                         spinner.setAdapter(spinnerAdapter);
-
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -138,15 +144,16 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
     //store the selected time slot after clicking spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         selectedTimeSlot = arrayList.get(position);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void cancelButtonPressed(View view) {
+
         finish();
     }
 
@@ -169,7 +176,6 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
                 //for driver
                 DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Requested").child(date.getText().toString()).child(selectedTimeSlot);
                 driverRef.setValue(requestedOrAppointmentObject);
-
             }
 
             @Override
@@ -185,16 +191,17 @@ public class IconClick extends AppCompatActivity implements AdapterView.OnItemSe
         Thread thread = new Thread() {
             @Override
             public void run() {
+
                 try {
+
                     Thread.sleep(3500);
                     startActivity(toTDA);
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
         };
         thread.start();
-
     }
-
 }

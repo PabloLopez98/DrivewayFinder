@@ -1,6 +1,5 @@
 package pablo.myexample.drivewayfindertwo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,11 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import pablo.myexample.drivewayfinder.DateDetails;
-import pablo.myexample.drivewayfinder.OwnerActivity;
 import pablo.myexample.drivewayfinder.R;
-import pablo.myexample.drivewayfinder.SpotObjectClass;
-import pablo.myexample.drivewayfinder.TransferObjectInterface;
+
+/*
+Summary:
+
+fourdriver.java represents the fragment where the driver sees the scheduled appointments/request
+ */
 
 public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.ItemClickListener {
 
@@ -42,6 +42,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
+
         MenuItem item = menu.findItem(R.id.searchViewOption);
         MenuItem item1 = menu.findItem(R.id.filterSearch);
         if (item != null) item.setVisible(false);
@@ -50,12 +51,16 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
     @Override
     public void onItemClick(View view, int position) {
+
         Intent intent = new Intent(getContext(), LocationsScreen.class);
+
         if (arrayListAppointmentsDatesOrRequested.get(position).matches("Requested Appointments")) {
+
             //when reaching the other side, it will only check the requested info
             intent.putExtra("checkRequested", "yes");
             startActivity(intent);
         } else {
+
             //pass date 'yyyy mm dd', on other side, it will check only specified date
             intent.putExtra("checkRequested", arrayListAppointmentsDatesOrRequested.get(position));
             startActivity(intent);
@@ -82,7 +87,6 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         retrieveAppointmentDates();
 
         return view;
-
     }
 
     public void retrieveAppointmentDates() {
@@ -94,9 +98,13 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         driverAppointmentDates.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     for (DataSnapshot DateObj : dataSnapshot.getChildren()) {
+
                         if (DateObj.exists()) {
+
                             arrayListAppointmentsDatesOrRequested.add(DateObj.getKey());
                         }
                     }
@@ -108,6 +116,7 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
 
             }
         });
+
         retrieveRequested(arrayListAppointmentsDatesOrRequested);
     }
 
@@ -118,9 +127,13 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         driverRequestedDates.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     for (DataSnapshot dateObj : dataSnapshot.getChildren()) {
+
                         if (dateObj.exists()) {
+
                             arrayListAppointmentsDatesOrRequested.add("Requested Appointments");
                             break;
                         }
@@ -128,13 +141,16 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
                     recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.theCircleInFragFour).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragfourroot).setVisibility(View.VISIBLE);
                 } else {
+
                     myRecyclerViewAdapterDriver = new MyRecyclerViewAdapterDriver(getContext(), arrayListAppointmentsDatesOrRequested);
                     myRecyclerViewAdapterDriver.setClickListener(fourdriver.this);
                     recyclerView.setAdapter(myRecyclerViewAdapterDriver);
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.theCircleInFragFour).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragfourroot).setVisibility(View.VISIBLE);
@@ -150,7 +166,5 @@ public class fourdriver extends Fragment implements MyRecyclerViewAdapterDriver.
         //hide progress circle, show layout
         view.findViewById(R.id.theCircleInFragFour).setVisibility(View.INVISIBLE);
         view.findViewById(R.id.recyclerViewForFour).setVisibility(View.VISIBLE);
-
     }
-
 }

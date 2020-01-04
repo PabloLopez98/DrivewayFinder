@@ -35,6 +35,12 @@ import java.util.Locale;
 
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 
+/*
+Summary:
+
+two.java represents the fragment where owners see their current rental activity.
+ */
+
 public class two extends Fragment {
 
     private TextView name, date, phone, location, timeRemaining, timeStartEnd;
@@ -43,7 +49,9 @@ public class two extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_two, container, false);
+
         ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         name = view.findViewById(R.id.twoClientName);
         date = view.findViewById(R.id.twoDate);
@@ -51,19 +59,23 @@ public class two extends Fragment {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (phone.getText().toString().matches("")) {
-                    //do nothing
                 } else {
+
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + phone.getText().toString()));
                     startActivity(intent);
                 }
             }
         });
+
         location = view.findViewById(R.id.twoDrivewayLocation);
         timeRemaining = view.findViewById(R.id.twoTimeRemaining);
         timeStartEnd = view.findViewById(R.id.twoTimeStartEnd);
+
         fillInFragment();
+
         return view;
     }
 
@@ -76,22 +88,20 @@ public class two extends Fragment {
         TemporalAccessor temporalAccessor = dateTimeFormatter.parse(strings[1]);
         String month = String.valueOf(temporalAccessor.get(ChronoField.MONTH_OF_YEAR));
 
-        /*if (Integer.parseInt(day) < 10) {
-            day = "0" + day;
-        }*/
-
         if (Integer.parseInt(month) < 10) {
+
             month = "0" + month;
         }
 
         String currentDate = year + " " + month + " " + day;
-        Log.i("currentDate", currentDate);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Appointments").child(currentDate);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
 
                         RequestedOrAppointmentObject data = timeSlot.getValue(RequestedOrAppointmentObject.class);
@@ -103,11 +113,13 @@ public class two extends Fragment {
                         LocalTime endT = LocalTime.parse(data.getTimeSlot().substring(11, 19), dtf);
 
                         if (currentT.isBefore(endT.plusMinutes(1)) && currentT.isAfter(startT.minusMinutes(1))) {
+
                             name.setText(data.getDriverName());
                             date.setText(data.getDate());
                             phone.setText(data.getDriverPhoneNumber());
                             location.setText(data.getLocation());
                             timeStartEnd.setText(data.getTimeSlot());
+
                             //hide progress circle, show layout
                             view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
                             view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
@@ -116,10 +128,12 @@ public class two extends Fragment {
                         }
 
                     }
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
                 } else {
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.fragtwocircle).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragtwolayout).setVisibility(View.VISIBLE);
@@ -136,21 +150,19 @@ public class two extends Fragment {
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
 
-        long milliSecOfCurrentSec = LocalDateTime.now().getSecond() * 1000;//testing
+        long milliSecOfCurrentSec = LocalDateTime.now().getSecond() * 1000;
 
-        long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
-        long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
-        //long totalMilliSecOfCurrentTime = milliSecOfCurrentMinute + milliSecOfCurrentHour;
+        long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;
+        long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;
         long totalMilliSecOfCurrentTime = milliSecOfCurrentHour + milliSecOfCurrentMinute + milliSecOfCurrentSec;
 
-        long milliSecOfEndMinute = endT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
-        long milliSecOfEndHour = endT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
+        long milliSecOfEndMinute = endT.getMinute() * 60 * 1000;
+        long milliSecOfEndHour = endT.getHour() * 60 * 60 * 1000;
         long totalMilliSecOfEndTime = milliSecOfEndMinute + milliSecOfEndHour;
 
         long total = totalMilliSecOfEndTime - totalMilliSecOfCurrentTime;
 
         new CountDownTimer(total, 1000) {
-
             public void onTick(long millisUntilFinished) {
 
                 long totalSeconds = millisUntilFinished / 1000;
@@ -164,9 +176,9 @@ public class two extends Fragment {
             }
 
             public void onFinish() {
+
                 timeStartEnd.setText("done!");
             }
         }.start();
     }
-
 }

@@ -2,15 +2,11 @@ package pablo.myexample.drivewayfinder;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+/*
+Summary:
+
+three.java represents the fragment where owners see their profile info.
+ */
+
 public class three extends Fragment {
 
     private TransferObjectInterface listener;
@@ -35,19 +37,23 @@ public class three extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+
         if (context instanceof TransferObjectInterface) {
+
             listener = (TransferObjectInterface) context;
         }
     }
 
     @Override
     public void onDetach() {
+
         listener = null;
         super.onDetach();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_three, container, false);
 
         final ImageView drivewayImage = view.findViewById(R.id.profileDisplayImage);
@@ -60,11 +66,14 @@ public class three extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     ownerProfileObject = dataSnapshot.getValue(OwnerProfileObject.class);
                     Picasso.get().load(ownerProfileObject.getDrivwayImageUrl()).into(drivewayImage, new Callback() {
                         @Override
                         public void onSuccess() {
+
                             //hide progress circle, show layout
                             view.findViewById(R.id.fragthreecircle).setVisibility(View.INVISIBLE);
                             view.findViewById(R.id.fragthreelayout).setVisibility(View.VISIBLE);
@@ -75,9 +84,11 @@ public class three extends Fragment {
 
                         }
                     });
+
                     name.setText(ownerProfileObject.getFullName());
                     phone.setText(ownerProfileObject.getPhoneNumber());
                     location.setText(ownerProfileObject.getDrivewayLocation());
+
                     //transfer profile object from this fragment into parent activity
                     listener.transferOwnerProfileObject(ownerProfileObject);
                 }
@@ -89,7 +100,6 @@ public class three extends Fragment {
         });
 
         return view;
-
     }
 
 }

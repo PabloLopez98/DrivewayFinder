@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +20,12 @@ import com.squareup.picasso.Picasso;
 
 import pablo.myexample.drivewayfinder.OwnerActivity;
 import pablo.myexample.drivewayfinder.R;
+
+/*
+Summary:
+
+ReservationDetailsForDriver.java represents the activity where the driveway appointment details are show.
+ */
 
 public class ReservationDetailsForDriver extends AppCompatActivity {
 
@@ -34,18 +39,19 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_details_for_driver);
 
-        setTitle("Reservation Details");
-
         //for getting info
         intent = getIntent();
+
         //for going back
         backTODisplayLocations = new Intent(this, LocationsScreen.class);
         backTODisplayLocations.putExtra("checkRequested", intent.getStringExtra("checkRequested"));
+
         //for showing info
         image = findViewById(R.id.imageDetail);
         Picasso.get().load(intent.getStringExtra("url")).into(image, new Callback() {
             @Override
             public void onSuccess() {
+
                 //hide progress circle, show layout
                 findViewById(R.id.resdetfordrivercircle).setVisibility(View.INVISIBLE);
                 findViewById(R.id.resdetfordriverlayout).setVisibility(View.VISIBLE);
@@ -53,14 +59,15 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
 
             @Override
             public void onError(Exception e) {
-
             }
         });
+
         location = findViewById(R.id.locationDetail);
         location.setText(intent.getStringExtra("location"));
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String[] strings = location.getText().toString().split(" ");
                 String address = strings[0];
                 String street = strings[1] + " " + strings[2];
@@ -73,6 +80,7 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
                 startActivity(mapIntent);
             }
         });
+
         rate = findViewById(R.id.rateDetail);
         rate.setText(intent.getStringExtra("rate"));
         time = findViewById(R.id.timeDetail);
@@ -86,6 +94,7 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         ownerPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + ownerPhone.getText().toString()));
                 startActivity(intent);
@@ -99,6 +108,7 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
             cancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     cancelRequest();
                 }
             });
@@ -128,21 +138,27 @@ public class ReservationDetailsForDriver extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
+
                 try {
+
                     Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
         };
+
         thread.start();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(backTODisplayLocations);
+
         return true;
     }
 

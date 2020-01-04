@@ -2,19 +2,15 @@ package pablo.myexample.drivewayfinder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,11 +20,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Driver;
 
-import pablo.myexample.drivewayfindertwo.IconClick;
 import pablo.myexample.drivewayfindertwo.RequestedOrAppointmentObject;
 import pablo.myexample.drivewayfindertwo.SendPush;
+
+/*
+Summary:
+
+DriverProfile.java represents the activity which shows owners their client info, with a few options
+of what to do with their request/appointment.
+ */
 
 public class DriverProfile extends AppCompatActivity {
 
@@ -44,8 +45,6 @@ public class DriverProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_profile);
 
-        setTitle("Client");
-
         intentToHome = new Intent(this, OwnerActivity.class);
         intentToHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -59,7 +58,7 @@ public class DriverProfile extends AppCompatActivity {
          and change 'accept' button to 'cancel appointment' button
         */
         if (result.matches("no")) {
-            //findViewById(R.id.dpacceptbutton).setVisibility(View.GONE);
+
             Button button = findViewById(R.id.dpacceptbutton);
             button.setText("End Appointment");
             button.setOnClickListener(new View.OnClickListener() {
@@ -70,15 +69,18 @@ public class DriverProfile extends AppCompatActivity {
             });
             findViewById(R.id.dpdenybutton).setVisibility(View.GONE);
         } else {
+
             findViewById(R.id.dpacceptbutton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     acceptDriver();
                 }
             });
             findViewById(R.id.dpdenybutton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     denyDriver();
                 }
             });
@@ -86,24 +88,25 @@ public class DriverProfile extends AppCompatActivity {
 
         date = intent.getStringExtra("date");
         time = intent.getStringExtra("time");
-
         name = findViewById(R.id.dpname);
         phone = findViewById(R.id.dpphone);
+
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + phone.getText().toString()));
                 startActivity(intent);
             }
         });
+
         plate = findViewById(R.id.dpplate);
         model = findViewById(R.id.dpmodel);
 
         ownerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         retrieveDriverInfo();
-
     }
 
     private void endAppointment() {
@@ -124,16 +127,19 @@ public class DriverProfile extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
+
                 try {
+
                     Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
         };
-        thread.start();
 
+        thread.start();
     }
 
     public void retrieveDriverInfo() {
@@ -143,11 +149,9 @@ public class DriverProfile extends AppCompatActivity {
         if (result.matches("yes")) {
 
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date).child(time);
-
         } else {
 
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Appointments").child(date).child(time);
-
         }
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -160,7 +164,6 @@ public class DriverProfile extends AppCompatActivity {
                 plate.setText(requestedOrAppointmentObject.getDriverLicensePlates());
                 model.setText(requestedOrAppointmentObject.getDriverCarModel());
                 driverId = requestedOrAppointmentObject.getDriverId();
-
             }
 
             @Override
@@ -173,7 +176,6 @@ public class DriverProfile extends AppCompatActivity {
     public void acceptDriver() {
 
         //set appointment value for owner and driver
-
         DatabaseReference setAppointmentsForOwner = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Appointments").child(date).child(time);
         setAppointmentsForOwner.setValue(requestedOrAppointmentObject);
 
@@ -181,7 +183,6 @@ public class DriverProfile extends AppCompatActivity {
         setAppointmentsForDriver.setValue(requestedOrAppointmentObject);
 
         //delete requested value for owner and driver
-
         DatabaseReference deleteRequestedForOwner = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date).child(time);
         deleteRequestedForOwner.removeValue();
 
@@ -195,22 +196,24 @@ public class DriverProfile extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
+
                 try {
+
                     Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
         };
-        thread.start();
 
+        thread.start();
     }
 
     public void denyDriver() {
 
         //delete requested value for owner and driver
-
         DatabaseReference deleteRequestedForOwner = FirebaseDatabase.getInstance().getReference().child("Owners").child(ownerId).child("Requested").child(date).child(time);
         deleteRequestedForOwner.removeValue();
 
@@ -224,19 +227,23 @@ public class DriverProfile extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
+
                 try {
+
                     Thread.sleep(3500);
                     startActivity(intentToHome);
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
         };
-        thread.start();
 
+        thread.start();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
+
         finish();
         return true;
     }

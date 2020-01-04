@@ -19,20 +19,7 @@ public class SpotObjectClass {
         this.drivwayImageUrl = drivwayImageUrl;
         this.rate = rate;
         this.date = date;
-        //this.isActive = isActive;
     }
-
-/*
-    public String getIsActive() {
-        return isActive;
-    }
-*/
-
-/*
-    public void setIsActive(String isActive) {
-        this.isActive = isActive;
-    }
-*/
 
     public ArrayList<String> getTimeSlots() {
         return timeSlots;

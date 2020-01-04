@@ -37,6 +37,12 @@ import java.util.Locale;
 
 import pablo.myexample.drivewayfinder.R;
 
+/*
+Summary:
+
+twodriver.java represents the fragment where the client activity is shown.
+ */
+
 public class twodriver extends Fragment {
 
     private TextView name, date, phone, location, timeRemaining, timeStartEnd;
@@ -71,21 +77,23 @@ public class twodriver extends Fragment {
             @Override
             public void onClick(View v) {
                 if (phone.getText().toString().matches("")) {
-                    //do nothing
                 } else {
+
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + phone.getText().toString()));
                     startActivity(intent);
                 }
             }
         });
+
         location = view.findViewById(R.id.fragtwolocation);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (location.getText().toString().matches("")) {
-                    //do nothing
                 } else {
+
                     String[] strings = location.getText().toString().split(" ");
                     String address = strings[0];
                     String street = strings[1] + " " + strings[2];
@@ -99,13 +107,13 @@ public class twodriver extends Fragment {
                 }
             }
         });
+
         timeRemaining = view.findViewById(R.id.fragtwotimeremaining);
         timeStartEnd = view.findViewById(R.id.fragtwostartendtime);
 
         fillInFragment();
 
         return view;
-
     }
 
     public void fillInFragment() {
@@ -117,22 +125,20 @@ public class twodriver extends Fragment {
         TemporalAccessor temporalAccessor = dateTimeFormatter.parse(strings[1]);
         String month = String.valueOf(temporalAccessor.get(ChronoField.MONTH_OF_YEAR));
 
-        /*if (Integer.parseInt(day) < 10) {
-            day = "0" + day;
-        }*/
-
         if (Integer.parseInt(month) < 10) {
+
             month = "0" + month;
         }
 
         String currentDate = year + " " + month + " " + day;
-        Log.i("currentDate", currentDate);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(driverId).child("Appointments").child(currentDate);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     for (DataSnapshot timeSlot : dataSnapshot.getChildren()) {
 
                         RequestedOrAppointmentObject data = timeSlot.getValue(RequestedOrAppointmentObject.class);
@@ -144,11 +150,13 @@ public class twodriver extends Fragment {
                         LocalTime endT = LocalTime.parse(data.getTimeSlot().substring(11, 19), dtf);
 
                         if (currentT.isBefore(endT.plusMinutes(1)) && currentT.isAfter(startT.minusMinutes(1))) {
+
                             name.setText(data.getDriverName());
                             date.setText(data.getDate());
                             phone.setText(data.getDriverPhoneNumber());
                             location.setText(data.getLocation());
                             timeStartEnd.setText(data.getTimeSlot());
+
                             //hide progress circle, show layout
                             view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
                             view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
@@ -156,10 +164,12 @@ public class twodriver extends Fragment {
                             break;
                         }
                     }
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
                 } else {
+
                     //hide progress circle, show layout
                     view.findViewById(R.id.theCircleInFragTwo).setVisibility(View.INVISIBLE);
                     view.findViewById(R.id.fragtwodriverlayout).setVisibility(View.VISIBLE);
@@ -168,7 +178,6 @@ public class twodriver extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -176,15 +185,14 @@ public class twodriver extends Fragment {
 
     public void countDownTimer(LocalTime currentT, LocalTime endT) {
 
-        long milliSecOfCurrentSec = LocalDateTime.now().getSecond() * 1000;//testing
+        long milliSecOfCurrentSec = LocalDateTime.now().getSecond() * 1000;
 
-        long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
-        long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
-        //long totalMilliSecOfCurrentTime = milliSecOfCurrentMinute + milliSecOfCurrentHour;
+        long milliSecOfCurrentMinute = currentT.getMinute() * 60 * 1000;
+        long milliSecOfCurrentHour = currentT.getHour() * 60 * 60 * 1000;
         long totalMilliSecOfCurrentTime = milliSecOfCurrentHour + milliSecOfCurrentMinute + milliSecOfCurrentSec;
 
-        long milliSecOfEndMinute = endT.getMinute() * 60 * 1000;//1minute * 60seconds * 1000milliseconds = 60000
-        long milliSecOfEndHour = endT.getHour() * 60 * 60 * 1000;//1hour * 60minutes * 60seconds * 1000milliseconds = 3600000
+        long milliSecOfEndMinute = endT.getMinute() * 60 * 1000;
+        long milliSecOfEndHour = endT.getHour() * 60 * 60 * 1000;
         long totalMilliSecOfEndTime = milliSecOfEndMinute + milliSecOfEndHour;
 
         long total = totalMilliSecOfEndTime - totalMilliSecOfCurrentTime;
@@ -204,9 +212,9 @@ public class twodriver extends Fragment {
             }
 
             public void onFinish() {
+
                 timeStartEnd.setText("done!");
             }
         }.start();
     }
-
 }

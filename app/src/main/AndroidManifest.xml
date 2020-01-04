@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".SplashScreen"
             android:theme="@style/splashTheme">
@@ -20,81 +21,100 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver"
+            android:label="Reservation Details"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.LocationsScreen"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name="pablo.myexample.drivewayfindertwo.LocationsScreen"
+            android:label="Time Slots"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name="pablo.myexample.drivewayfindertwo.IconClick"
+            android:label="Reservation Preview"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name="pablo.myexample.drivewayfindertwo.EditProfileDriver"
+            android:label="Edit Profile"
             android:parentActivityName="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
             android:label="@string/title_activity_the_driver"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".DriverProfile"
+            android:label="Client Info"
             android:parentActivityName=".DateDetails"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".DateDetails"
+            android:label="Driveway Overview"
             android:parentActivityName=".OwnerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".AddDate"
+            android:label="Add A Driveway Opening"
             android:parentActivityName=".OwnerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".EditProfile"
+            android:label="Edit Profile"
             android:parentActivityName=".OwnerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".OwnerActivity"
             android:label="@string/title_activity_owner"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".DriverRoute"
+            android:label="Fill Out Driver Info"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".OwnerRoute"
+            android:label="Fill Out Owner Info"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".MainActivityTwo"
+            android:label="Choose Account Type"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeForMain">
-            <!--  <intent-filter>
-                  <action android:name="android.intent.action.MAIN" />
-
-                  <category android:name="android.intent.category.LAUNCHER" />
-              </intent-filter>-->
-        </activity>
+            android:theme="@style/AppThemeForMain"></activity>
 
         <service android:name="pablo.myexample.drivewayfindertwo.Service">
             <intent-filter>

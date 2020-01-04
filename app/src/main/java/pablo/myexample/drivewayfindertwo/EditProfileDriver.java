@@ -1,13 +1,10 @@
 package pablo.myexample.drivewayfindertwo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,18 +19,22 @@ import java.sql.Driver;
 import pablo.myexample.drivewayfinder.MainActivity;
 import pablo.myexample.drivewayfinder.R;
 
+/*
+Summary:
+
+EditProfileDriver.java represents the activity where the driver edits his/her profile.
+ */
+
 public class EditProfileDriver extends AppCompatActivity {
 
-    Intent intent;
-    TextView dname, dphone, dplate, dmodel;
-    EditText nname, nphone, nplate, nmodel;
+    private Intent intent;
+    private TextView dname, dphone, dplate, dmodel;
+    private EditText nname, nphone, nplate, nmodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_driver);
-
-        setTitle("Edit Profile");
 
         intent = getIntent();
         dname = findViewById(R.id.profileDisplayName);
@@ -49,13 +50,15 @@ public class EditProfileDriver extends AppCompatActivity {
         nphone = findViewById(R.id.newPhone);
         nplate = findViewById(R.id.newPlate);
         nmodel = findViewById(R.id.newCarModel);
-
     }
 
     public void editProfileDriverConfirm(View view) {
+
         if (nname.getText().toString().matches("") || nphone.getText().toString().matches("") || nplate.getText().toString().matches("") || nmodel.getText().toString().matches("")) {
+
             Toast.makeText(getApplicationContext(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
         } else {
+
             DriverProfileObject driverProfileObject = new DriverProfileObject(nname.getText().toString(), nphone.getText().toString(), nplate.getText().toString(), nmodel.getText().toString());
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Drivers").child(userId).child("ProfileInfo");
@@ -66,14 +69,18 @@ public class EditProfileDriver extends AppCompatActivity {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
+
                     try {
+
                         Thread.sleep(3500);
                         startActivity(intent);
                     } catch (Exception e) {
+
                         e.printStackTrace();
                     }
                 }
             };
+
             thread.start();
         }
     }

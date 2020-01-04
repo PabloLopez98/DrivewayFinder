@@ -3,15 +3,19 @@ package pablo.myexample.drivewayfinder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.Toolbar;
+
+
+/*
+Summary:
+
+MainActivityTwo.java represents the screen in which the user
+decides what type of account he/she wants.
+ */
 
 public class MainActivityTwo extends AppCompatActivity {
 
@@ -19,8 +23,7 @@ public class MainActivityTwo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_two);
-        setTitle("Choose Account Type");
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         //change status bar color to dark
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -29,11 +32,13 @@ public class MainActivityTwo extends AppCompatActivity {
     }
 
     public void driverRoute(View view) {
+
         Intent intent = new Intent(this, DriverRoute.class);
         startActivity(intent);
     }
 
     public void ownerRoute(View view) {
+
         Intent intent = new Intent(this, OwnerRoute.class);
         startActivity(intent);
     }

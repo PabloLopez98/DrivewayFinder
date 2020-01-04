@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +27,15 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import pablo.myexample.drivewayfindertwo.TheDriverActivity;
+
+/*
+Summary:
+
+MainActivity.java represents the sign in screen.
+It routes the user to the correct screen once signed in.
+User can also navigate to MainActivityTwo.java,
+which is where the user decides what type of account he/she wants.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,16 +62,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
+
         Snackbar.make(findViewById(R.id.theMainLayout), "Signing In!", Snackbar.LENGTH_LONG).show();
+
         if (email.getText().toString().matches("") || password.getText().toString().matches("")) {
-            Toast.makeText(getApplicationContext(), "Missing Input.", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getApplicationContext(), "Missing Input", Toast.LENGTH_SHORT).show();
         } else {
+
             firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+
                     if (task.isSuccessful()) {
+
                         routeChooser(firebaseAuth.getCurrentUser().getUid());
                     } else {
+
                         Snackbar.make(findViewById(R.id.theMainLayout), "Error, Please Try Again", Snackbar.LENGTH_INDEFINITE).show();
                     }
                 }
@@ -73,30 +87,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view) {
+
         Intent intent = new Intent(this, MainActivityTwo.class);
         startActivity(intent);
     }
 
- /*   @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            routeChooser(firebaseUser.getUid());
-        }
-    }*/
-
     public void routeChooser(final String id) {
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference ownerRef = firebaseDatabase.getReference().child("Owners").child(id);
+
         ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     //generate new FCM TOKEN for owner
                     FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
                         @Override
                         public void onSuccess(InstanceIdResult instanceIdResult) {
+
                             String newOwnerToken = instanceIdResult.getToken();
                             ownerRef.child("Token").setValue(newOwnerToken);
                         }
@@ -106,10 +117,12 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
                     startActivity(intent);
                 } else {
+
                     //generate new FCM TOKEN for driver
                     FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
                         @Override
                         public void onSuccess(InstanceIdResult instanceIdResult) {
+
                             String newDriverToken = instanceIdResult.getToken();
                             FirebaseDatabase.getInstance().getReference().child("Drivers").child(id).child("Token").setValue(newDriverToken);
                         }
@@ -128,7 +141,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-    /*  Reminders:
-        - check intent navigations when app is done!
-     */

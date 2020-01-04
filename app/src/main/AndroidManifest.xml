@@ -52,6 +52,7 @@
 
         <activity
             android:name="pablo.myexample.drivewayfindertwo.TheDriverActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_the_driver"
             android:screenOrientation="portrait"
             android:theme="@style/OwnerTheme" />

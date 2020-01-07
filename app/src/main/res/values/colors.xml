@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorStatusBar">#038DCC</color>
     <color name="colorPrimary">#FFFF</color>
     <color name="colorPrimaryDark">#03A9F4</color>
     <color name="colorAccent">#03A9F4</color>
-    <color name="colorStatusBar">#038DCC</color>
+
+    <color name="smoke">#f5f5f5</color>
+
+    <color name="colorStart">#1a2980</color>
+    <color name="colorCenter">#207DA7</color>
+    <color name="colorEnd">#26d0ce</color>
+
 </resources>

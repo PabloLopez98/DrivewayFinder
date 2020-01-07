@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void signIn(View view) {
 
+        Intent intent = new Intent(this, demo_act.class);
+        startActivity(intent);
+
+        /*
         Snackbar.make(findViewById(R.id.theMainLayout), "Signing In!", Snackbar.LENGTH_LONG).show();
 
         if (email.getText().toString().matches("") || password.getText().toString().matches("")) {
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+        }*/
     }
 
     public void createAccount(View view) {

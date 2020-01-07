@@ -4,7 +4,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_the_driver">TheDriverActivity</string>
     <string name="located_at">Located at:</string>
@@ -100,4 +99,11 @@
     <string name="july_31_2019">July 31, 2019</string>
     <string name="_11223_laurel_ave_whittier_ca_90605_usa">11223 Laurel Ave, Whittier CA 90605, USA</string>
     <string name="_2019_10_12">2019 10 12</string>
+
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
 </resources>

@@ -43,7 +43,7 @@
     <string name="license_plates">License Plates</string>
     <string name="wj5751">WJ5751</string>
     <string name="white_honda_accord">White Honda Accord</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Don\'t have an account? Sign Up</string>
     <string name="current_image">Current image:</string>
     <string name="current_location">Current location:</string>
     <string name="_12345_street_ave">12345 Street Ave</string>
@@ -106,4 +106,5 @@
     <string name="login_password_hint">Password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
     <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="open_gallery">Open Gallery</string>
 </resources>

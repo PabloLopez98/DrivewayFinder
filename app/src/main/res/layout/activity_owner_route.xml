@@ -9,36 +9,42 @@
     android:scrollbars="none"
     tools:context=".OwnerRoute">
 
+    <!--  <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="26dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginEnd="26dp"
+             android:padding="8dp"
+             android:text="@string/select_an_image_for_your_driveway"
+             android:textColor="@android:color/black"
+             android:textStyle="bold" />-->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:padding="8dp"
-            android:text="@string/select_an_image_for_your_driveway"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/drivewayImageInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_bk"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
-            android:adjustViewBounds="true"
-            android:background="@android:drawable/gallery_thumb"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:maxWidth="225dp"
-            android:maxHeight="225dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/buttonshape"
             android:onClick="openFileChooser"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:text="@string/open_gallery"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,6 +119,7 @@
             android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="26dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"

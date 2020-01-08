@@ -86,19 +86,19 @@
             android:label="Fill Out Driver Info"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait"
-            android:theme="@style/OwnerTheme" />
+            android:theme="@style/AppThemeForMainTwo" />
         <activity
             android:name=".OwnerRoute"
             android:label="Fill Out Owner Info"
             android:parentActivityName=".MainActivityTwo"
             android:screenOrientation="portrait"
-            android:theme="@style/OwnerTheme" />
+            android:theme="@style/AppThemeForMainTwo" />
         <activity
             android:name=".MainActivityTwo"
             android:label="Choose Account Type"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/OwnerTheme" />
+            android:theme="@style/AppThemeForMainTwo" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

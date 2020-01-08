@@ -27,7 +27,7 @@
 
         <ImageView
             android:id="@+id/drivewayImageInput"
-            android:background="@drawable/gradient_bk"
+            android:background="@drawable/login_bknd"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -35,11 +35,13 @@
             android:scaleType="fitXY" />
 
         <Button
+            android:layout_gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/buttonshape"
             android:onClick="openFileChooser"
             android:padding="8dp"

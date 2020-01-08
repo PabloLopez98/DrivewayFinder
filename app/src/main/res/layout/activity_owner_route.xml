@@ -34,7 +34,7 @@
             android:layout_marginEnd="26dp"
             android:adjustViewBounds="true"
             android:background="@android:drawable/gallery_thumb"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@android:color/holo_blue_light"
             android:maxWidth="225dp"
             android:maxHeight="225dp"
             android:onClick="openFileChooser"
@@ -116,12 +116,12 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/buttonshape"
             android:gravity="center"
             android:onClick="validateAddress"
             android:padding="8dp"
             android:text="@string/verify_address"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -237,11 +237,11 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/buttonshape"
             android:onClick="finish"
             android:padding="8dp"
             android:text="@string/finish"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
     </LinearLayout>

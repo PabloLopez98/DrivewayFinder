@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@android:color/holo_blue_dark"
     android:id="@+id/splashLayout"
     tools:context=".SplashScreen">
 
@@ -23,7 +23,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/ic_location_on_black_24dp"
-            android:tint="@color/colorPrimary" />
+            android:tint="@android:color/white" />
 
         <TextView
             android:layout_gravity="center"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:textSize="48sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="131dp" />

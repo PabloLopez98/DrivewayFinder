@@ -42,14 +42,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_location_on_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/locationAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_11223_laurel_ave_whittier_ca_90605_usa"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/holo_blue_light"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -67,14 +67,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_attach_money_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/locationRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_15"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/holo_blue_light"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -92,14 +92,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_date_range_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/locationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_2019_10_12"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/holo_blue_light"
                     android:textStyle="bold" />
 
             </LinearLayout>

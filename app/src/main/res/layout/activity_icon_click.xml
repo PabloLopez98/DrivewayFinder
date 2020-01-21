@@ -5,14 +5,14 @@
     android:id="@+id/iconClickRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     tools:context="pablo.myexample.drivewayfindertwo.IconClick">
 
     <ProgressBar
         android:id="@+id/iconclickcircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/scrollviewroot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/white"
         android:scrollbars="none"
         android:visibility="invisible">
 
@@ -35,19 +35,13 @@
 
             <ImageView
                 android:id="@+id/iconClickImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:background="@drawable/login_bknd"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="26dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="26dp"
                 android:layout_marginBottom="30dp"
-                android:adjustViewBounds="true"
-                android:background="@android:drawable/gallery_thumb"
-                android:backgroundTint="@color/colorAccent"
-                android:maxWidth="350dp"
-                android:maxHeight="350dp"
-                android:padding="8dp" />
+                android:adjustViewBounds="true" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_location_on_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/iconClickLocation"
@@ -89,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_date_range_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/iconClickDate"
@@ -116,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_attach_money_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/iconClickRate"
@@ -143,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_account_circle_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/iconClickName"
@@ -170,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_phone_android_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/iconClickPhone"
@@ -202,7 +196,7 @@
                     android:id="@+id/iconClickSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorAccent" />
+                    android:backgroundTint="@android:color/holo_blue_light" />
 
             </LinearLayout>
 
@@ -212,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
                 android:layout_marginEnd="26dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/buttonshape"
                 android:onClick="requestAppointment"
                 android:padding="8dp"
                 android:text="@string/request"
@@ -227,7 +221,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="26dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/buttonshape"
                 android:onClick="cancelButtonPressed"
                 android:padding="8dp"
                 android:text="@string/cancel"

@@ -4,7 +4,7 @@
     android:id="@+id/fragfourroot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     android:padding="10dp"
     tools:context="pablo.myexample.drivewayfindertwo.TheDriverActivity">
 
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineSpotShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
         android:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView

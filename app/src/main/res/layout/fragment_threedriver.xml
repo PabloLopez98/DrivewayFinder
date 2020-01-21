@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@android:color/holo_blue_light"
         android:visibility="visible" />
 
     <LinearLayout
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_account_circle_24px"
-                android:tint="@color/colorAccent" />
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/profileDriverName"
@@ -60,7 +61,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_phone_android_black_24dp" />
+                android:src="@drawable/ic_phone_android_black_24dp"
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/profileDriverPhone"
@@ -86,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_directions_car_24px"
-                android:tint="@color/colorAccent" />
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/profileDriverCarModel"
@@ -112,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_call_to_action_24px"
-                android:tint="@color/colorAccent" />
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/profileDriverLicensePlate"
@@ -132,11 +134,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/buttonshape"
             android:onClick="toEditProfileDriver"
             android:padding="8dp"
             android:text="@string/edit"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
     </LinearLayout>

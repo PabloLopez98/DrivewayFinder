@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="@android:color/white"
     android:paddingStart="26dp"
     android:paddingTop="20dp"
     android:paddingEnd="26dp"
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineSpotShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
         android:visibility="visible" />
 
     <LinearLayout
@@ -61,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@+id/twoTimeRemaining">
 
             <ImageView
+                android:tint="@android:color/holo_blue_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location_on_black_24dp" />
@@ -71,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/driveway_location"
                 android:padding="8dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/holo_blue_light"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -87,6 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/twoTimeRemaining">
 
             <ImageView
+                android:tint="@android:color/holo_blue_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_calendar_empty_page_outline" />
@@ -117,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_account_circle_24px"
-                android:tint="@color/colorAccent" />
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/fragtwoname"
@@ -142,6 +144,7 @@
             app:layout_constraintTop_toBottomOf="@+id/twoTimeRemaining">
 
             <ImageView
+                android:tint="@android:color/holo_blue_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_phone_android_black_24dp" />
@@ -152,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/client_phone_number"
                 android:padding="8dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/holo_blue_light"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="446dp" />
@@ -172,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_timer_24px"
-                android:tint="@color/colorAccent" />
+                android:tint="@android:color/holo_blue_light" />
 
             <TextView
                 android:id="@+id/fragtwostartendtime"

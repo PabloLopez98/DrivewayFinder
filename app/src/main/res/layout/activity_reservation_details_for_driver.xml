@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     tools:context="pablo.myexample.drivewayfindertwo.ReservationDetailsForDriver">
 
     <ProgressBar
@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineSpotShadowColor="@color/colorAccent"
-        android:visibility="invisible"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,30 +36,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingTop="20dp"
-            android:paddingRight="16dp"
             android:paddingBottom="20dp"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/imageDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:background="@drawable/login_bknd"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
                 android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:background="@android:drawable/gallery_thumb"
-                android:backgroundTint="@color/colorAccent"
-                android:maxWidth="350dp"
-                android:maxHeight="350dp"
-                android:padding="8dp" />
+                android:adjustViewBounds="true" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -67,7 +61,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_on_black_24dp" />
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/locationDetail"
@@ -75,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/location"
                     android:padding="8dp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/holo_blue_light"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -83,9 +78,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -94,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_attach_money_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/rateDetail"
@@ -110,9 +105,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -121,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_timer_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/timeDetail"
@@ -137,9 +132,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -148,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_date_range_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/dateDetail"
@@ -164,9 +159,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -175,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_account_circle_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/ownerNameDetail"
@@ -191,9 +186,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -202,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_phone_android_black_24dp"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/ownerPhoneDetail"
@@ -210,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_number"
                     android:padding="8dp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@android:color/holo_blue_light"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -219,14 +214,14 @@
                 android:id="@+id/cancelRequestButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="26dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/buttonshape"
                 android:padding="8dp"
                 android:text="@string/cancel_request"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:visibility="invisible" />
 

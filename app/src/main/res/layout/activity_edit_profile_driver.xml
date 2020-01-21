@@ -5,7 +5,7 @@
     android:id="@+id/editprofiledriverroot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context="pablo.myexample.drivewayfindertwo.EditProfileDriver">
 
@@ -105,11 +105,11 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/buttonshape"
         android:onClick="editProfileDriverConfirm"
         android:padding="8dp"
         android:text="@string/confirm"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
 </LinearLayout>

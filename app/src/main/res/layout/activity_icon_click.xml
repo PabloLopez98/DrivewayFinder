@@ -210,7 +210,7 @@
                 android:onClick="requestAppointment"
                 android:padding="8dp"
                 android:text="@string/request"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <Button
@@ -225,7 +225,7 @@
                 android:onClick="cancelButtonPressed"
                 android:padding="8dp"
                 android:text="@string/cancel"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>

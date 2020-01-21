@@ -280,7 +280,7 @@
                 android:onClick="divideTime"
                 android:padding="8dp"
                 android:text="@string/create_time"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -304,7 +304,7 @@
                 android:onClick="addDate"
                 android:padding="8dp"
                 android:text="@string/finish"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>

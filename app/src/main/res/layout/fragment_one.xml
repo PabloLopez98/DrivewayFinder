@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineSpotShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
         android:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

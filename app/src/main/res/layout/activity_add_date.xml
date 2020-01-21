@@ -5,10 +5,7 @@
     android:id="@+id/rootAddDate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:paddingLeft="10dp"
-    android:paddingTop="20dp"
-    android:paddingRight="10dp"
+    android:background="@android:color/white"
     android:paddingBottom="20dp"
     tools:context=".AddDate">
 
@@ -17,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineSpotShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@android:color/holo_blue_light"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/adddatescrollview"
         app:layout_constraintEnd_toStartOf="@+id/adddatescrollview"
@@ -45,31 +42,28 @@
 
             <ImageView
                 android:id="@+id/drivewayImageShown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:background="@android:drawable/gallery_thumb"
-                android:backgroundTint="@color/colorAccent"
-                android:maxWidth="350dp"
-                android:maxHeight="350dp"
-                android:padding="8dp" />
+                android:background="@drawable/login_bknd"
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location_on_black_24dp" />
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/drivewayLocationShown"
@@ -88,8 +82,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -97,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_account_circle_24px"
-                    android:tint="@color/colorAccent" />
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/drivewayNameShown"
@@ -116,15 +110,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_phone_android_black_24dp" />
+                    android:src="@drawable/ic_phone_android_black_24dp"
+                    android:tint="@android:color/holo_blue_light" />
 
                 <TextView
                     android:id="@+id/drivewayPhoneNumberShown"
@@ -144,9 +139,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="26dp"
                 android:background="@drawable/rounded_edittext"
                 tools:layout_editor_absoluteX="31dp"
                 tools:layout_editor_absoluteY="32dp" />
@@ -279,9 +274,9 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/rounded_edittext"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:background="@drawable/buttonshape"
                 android:onClick="divideTime"
                 android:padding="8dp"
                 android:text="@string/create_time"
@@ -302,10 +297,10 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/buttonshape"
                 android:onClick="addDate"
                 android:padding="8dp"
                 android:text="@string/finish"

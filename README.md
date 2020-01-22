@@ -10,3 +10,5 @@ About the code(so far):
 Preview:
 
 <img src="https://user-images.githubusercontent.com/51018556/72857012-3ec09180-3c71-11ea-945d-541dc8a81936.png" width="200">
+
+<img src="https://user-images.githubusercontent.com/51018556/72857457-809e0780-3c72-11ea-82f4-867028f15935.png" width="200">

@@ -8,4 +8,5 @@ About the code(so far):
 'drivewayfindertwo' = driver side code
 
 Preview:
-Input screenshots here...
+
+<img src="https://user-images.githubusercontent.com/51018556/72857012-3ec09180-3c71-11ea-945d-541dc8a81936.png" width="200">
